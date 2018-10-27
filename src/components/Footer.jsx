@@ -11,6 +11,7 @@ export default class Footer extends React.Component {
         <div className="Footer__list">
           <p  className="Footer__list__item"><a href="#privacy">Privacy Policy</a></p>
           <p  className="Footer__list__item"><a href="#terms-of-use">Terms of use</a></p>
+          <p  className="Footer__list__item"><a href="#terms-of-use">alireza link test</a></p>
         </div>
       </div>
     </div>
