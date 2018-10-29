@@ -18,6 +18,7 @@ import Footer from './components/Footer.jsx';
 import TermsOfUse from './components/TermsOfUse.jsx';
 import Driver from './lib/Driver';
 import Login from './components/Login.jsx';
+import Dashboard from './components/Dashboard.jsx';
 
 
 let network = {
@@ -173,7 +174,7 @@ class TermApp extends React.Component {
         </Loading></Generic>;
       }
     } else if (urlParts[0] === 'login') {
-      body = <Login d={this.d} />
+      body = <Login d={this.d}/>;
     } else if (urlParts[0] === 'privacy') {
       body = <Generic title="Privacy Policy">
         <p>This policy may be updated or revised without notice. It is the responsibility of the
@@ -200,6 +201,8 @@ class TermApp extends React.Component {
       body = <Session d={this.d} urlParts={urlParts}></Session>;
     } else if (urlParts[0] === 'markets') {
       body = <Markets d={this.d}></Markets>;
+     } else if (urlParts[0] === 'dashboard') {
+      body = <Dashboard d={this.d}></Dashboard>;
     } else if (urlParts[0] === 'exchange') {
       if (urlParts.length === 3) {
         try {
@@ -255,5 +258,5 @@ class TermApp extends React.Component {
 
   }
 };
-
+export default TermApp;
 ReactDOM.render(<TermApp d={driver}/>, mountNode);

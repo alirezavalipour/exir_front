@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
-import { Redirect } from 'react-router-dom';
+import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import AuthService from './AuthService.jsx';
-import { withRouter } from 'react-router';
 
-
+import TermApp from '../app.jsx';
+import AccountView from './Session/AccountView.jsx';
 
 
 class Login extends Component {
@@ -18,8 +18,7 @@ class Login extends Component {
 
   componentWillMount() {
     if (this.Auth.loggedIn()) {
-      console.log('asd');
-      return (<Redirect to="#account" push />);
+       window.location.replace('/#dashboard');
     }
   }
 
@@ -47,6 +46,12 @@ class Login extends Component {
   render() {
     return (
       <div className="center">
+
+        {/* A JSX comment
+            <HashRouter>
+           <Route path="/" component={AccountView} />
+        </HashRouter>
+          */}
 
         <div className="card">
           <h1>Login</h1>
