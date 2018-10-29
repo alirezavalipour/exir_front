@@ -17,6 +17,8 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import TermsOfUse from './components/TermsOfUse.jsx';
 import Driver from './lib/Driver';
+import Login from './components/Login.jsx';
+
 
 let network = {
   horizonUrl: 'https://horizon.stellar.org',
@@ -52,7 +54,7 @@ const parseUrl = (href) => {
     return '';
   }
   return hash.substr(1);
-}
+};
 
 class TermApp extends React.Component {
   constructor(props) {
@@ -68,8 +70,8 @@ class TermApp extends React.Component {
       }
       this.setState({
         url: parseUrl(e.newURL)
-      })
-    } , false);
+      });
+    }, false);
   }
 
   renderHomePageActions() {
@@ -103,10 +105,16 @@ class TermApp extends React.Component {
       body = <div>
         <div className="HomePage__black">
           <div className="so-back">
-            <OpenUp />
+            <OpenUp/>
             <div className="HomePage__lead">
-              <h2 className="HomePage__lead__title">Trade on the <a href="#exchange">Stellar Decentralized Exchange</a></h2>
-              <p className="HomePage__lead__summary">StellarTerm is an <a href="https://github.com/stellarterm/stellarterm" target="_blank" rel="nofollow noopener noreferrer">open source</a> client for the <a href="https://www.stellar.org/" target="_blank" rel="nofollow noopener noreferrer">Stellar network</a>. <br />Send, receive, and <a href="#exchange">trade</a> assets on the Stellar network easily with StellarTerm.</p>
+              <h2 className="HomePage__lead__title">Trade on the <a href="#exchange">Stellar
+                Decentralized Exchange</a></h2>
+              <p className="HomePage__lead__summary">StellarTerm is an <a
+                href="https://github.com/stellarterm/stellarterm" target="_blank"
+                rel="nofollow noopener noreferrer">open source</a> client for the <a
+                href="https://www.stellar.org/" target="_blank" rel="nofollow noopener noreferrer">Stellar
+                network</a>. <br/>Send, receive, and <a href="#exchange">trade</a> assets on the
+                Stellar network easily with StellarTerm.</p>
               {this.renderHomePageActions()}
             </div>
           </div>
@@ -124,55 +132,74 @@ class TermApp extends React.Component {
             <div className="island__sub">
               <div className="island__sub__division">
                 <div className="HomePage__sideBlurb">
-                  <p>StellarTerm is just a client that can be used to access the Stellar Decentralized Exchange. Neither StellarTerm nor the developers of it are involved with operating the Stellar network.</p>
-                  <p>StellarTerm is developed by Ultra Stellar, LLC, the same company that developed the LOBSTR wallet. The project is independent of the Stellar Development Foundation.</p>
+                  <p>StellarTerm is just a client that can be used to access the Stellar
+                    Decentralized Exchange. Neither StellarTerm nor the developers of it are
+                    involved with operating the Stellar network.</p>
+                  <p>StellarTerm is developed by Ultra Stellar, LLC, the same company that developed
+                    the LOBSTR wallet. The project is independent of the Stellar Development
+                    Foundation.</p>
                 </div>
               </div>
               <div className="island__sub__division">
                 <div className="HomePage__sideBlurb">
-                  <p>StellarTerm is open source software. To support the project, please <a href="https://github.com/stellarterm/stellarterm" target="_blank" rel="nofollow noopener noreferrer">star the project on GitHub</a>.</p>
-                  <p>The project is released under the Apache-2.0 license and is released as is without warranty.</p>
+                  <p>StellarTerm is open source software. To support the project, please <a
+                    href="https://github.com/stellarterm/stellarterm" target="_blank"
+                    rel="nofollow noopener noreferrer">star the project on GitHub</a>.</p>
+                  <p>The project is released under the Apache-2.0 license and is released as is
+                    without warranty.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>;
     } else if (urlParts[0] === 'download') {
-      body = <Download />
+      body = <Download/>;
     } else if (urlParts[0] === 'testnet') {
       if (network.isTestnet) {
         body = <Generic title="Test network">
-          You are running on the <a href="https://www.stellar.org/developers/guides/concepts/test-net.html" target="_blank" rel="nofollow noopener noreferrer">Stellar test network</a>. This network is for development purposes only and the test network may be occasionally reset.
-          <br />
-          To create a test account on the test network, use the <a href="https://www.stellar.org/laboratory/#account-creator?network=test"  target="_blank" rel="nofollow noopener noreferrer">Friendbot to get some test lumens</a>.
-        </Generic>
+          You are running on the <a
+          href="https://www.stellar.org/developers/guides/concepts/test-net.html" target="_blank"
+          rel="nofollow noopener noreferrer">Stellar test network</a>. This network is for
+          development purposes only and the test network may be occasionally reset.
+          <br/>
+          To create a test account on the test network, use the <a
+          href="https://www.stellar.org/laboratory/#account-creator?network=test" target="_blank"
+          rel="nofollow noopener noreferrer">Friendbot to get some test lumens</a>.
+        </Generic>;
       } else {
         body = <Generic title="Please refresh the page to switch to testnet"><Loading darker={true}>
           Please refresh the page to switch to testnet.
-        </Loading></Generic>
+        </Loading></Generic>;
       }
+    } else if (urlParts[0] === 'login') {
+      body = <Login d={this.d} />
     } else if (urlParts[0] === 'privacy') {
       body = <Generic title="Privacy Policy">
-        <p>This policy may be updated or revised without notice. It is the responsibility of the user to stay informed about privacy policy changes.</p>
+        <p>This policy may be updated or revised without notice. It is the responsibility of the
+          user to stay informed about privacy policy changes.</p>
         <p>StellarTerm does not track your actions on this client.</p>
-        <p>StellarTerm does not store cookies and the website does not contain any analytics scripts.</p>
+        <p>StellarTerm does not store cookies and the website does not contain any analytics
+          scripts.</p>
         <p>StellarTerm developers never see your private keys.</p>
-        <p>However, StellarTerm.com is hosted on GitHub, AWS, and Cloudflare infrastructure. They may and do have their own tracking systems on their servers. Those services have their own privacy policies and they are not covered by this privacy policy.</p>
-        <p>While StellarTerm does not track you, this does not mean your actions are private. Take note of other privacy issues that may affect you:</p>
+        <p>However, StellarTerm.com is hosted on GitHub, AWS, and Cloudflare infrastructure. They
+          may and do have their own tracking systems on their servers. Those services have their own
+          privacy policies and they are not covered by this privacy policy.</p>
+        <p>While StellarTerm does not track you, this does not mean your actions are private. Take
+          note of other privacy issues that may affect you:</p>
         <ul className="privacy__ul">
           <li>Stellar is a public ledger. Anyone can see anything that happens on the network.</li>
           <li>Your inflation vote is publicly visible.</li>
           <li>Your computer might be compromised.</li>
           <li>The StellarTerm website might be compromised.</li>
         </ul>
-      </Generic>
+      </Generic>;
     } else if (urlParts[0] === 'terms-of-use') {
-      body = <TermsOfUse />
+      body = <TermsOfUse/>;
     } else if (['account', 'signup', 'ledger'].indexOf(urlParts[0]) > -1) {
-      body = <Session d={this.d} urlParts={urlParts}></Session>
+      body = <Session d={this.d} urlParts={urlParts}></Session>;
     } else if (urlParts[0] === 'markets') {
-      body = <Markets d={this.d}></Markets>
+      body = <Markets d={this.d}></Markets>;
     } else if (urlParts[0] === 'exchange') {
       if (urlParts.length === 3) {
         try {
@@ -180,10 +207,11 @@ class TermApp extends React.Component {
           let counterSelling = Stellarify.parseAssetSlug(urlParts[2]);
 
           this.d.orderbook.handlers.setOrderbook(baseBuying, counterSelling);
-          body = <Exchange d={this.d}></Exchange>
+          body = <Exchange d={this.d}></Exchange>;
         } catch (e) {
           console.error(e);
-          body = <Generic title="Pick a market">Exchange url was invalid. To begin, go to the <a href="#markets">market list page</a> and pick a trading pair.</Generic>
+          body = <Generic title="Pick a market">Exchange url was invalid. To begin, go to the <a
+            href="#markets">market list page</a> and pick a trading pair.</Generic>;
         }
       } else {
         if (this.d.orderbook.data.ready) {
@@ -192,9 +220,9 @@ class TermApp extends React.Component {
             history.replaceState(null, null, '#' + newUrl);
             this.setState({
               url: newUrl,
-            })
+            });
           }, 0);
-          body = <Generic title="Loading orderbook">Loading</Generic>
+          body = <Generic title="Loading orderbook">Loading</Generic>;
         } else {
           // Default to a market with good activity
           let baseBuying = new StellarSdk.Asset('MOBI', 'GA6HCMBLTZS5VYYBCATRBRZ3BZJMAFUDKYYF6AH6MVCMGWMRDNSWJPIH');
@@ -206,12 +234,12 @@ class TermApp extends React.Component {
             history.replaceState(null, null, '#' + newUrl);
             this.setState({
               url: newUrl,
-            })
+            });
           }, 0);
         }
       }
     } else {
-      body = <NotFound></NotFound>
+      body = <NotFound></NotFound>;
     }
 
     return <div className="AppStretch">
@@ -221,11 +249,11 @@ class TermApp extends React.Component {
           <Header d={this.props.d} urlParts={urlParts} network={network}></Header>
           {body}
         </div>
-        <Footer />
+        <Footer/>
       </div>
     </div>;
 
   }
 };
 
-ReactDOM.render(<TermApp d={driver} />, mountNode);
+ReactDOM.render(<TermApp d={driver}/>, mountNode);
