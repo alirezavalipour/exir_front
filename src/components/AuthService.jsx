@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 export default class AuthService {
   // Initializing important variables
   constructor(domain) {
-    this.domain = domain || 'http://192.168.106.1/exir/public/api/auth'; // API server domain
+    this.domain = domain || 'http://192.168.106.1/exir/public/api'; // API server domain
     this.fetch = this.fetch.bind(this); // React binding stuff
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
@@ -20,6 +20,20 @@ export default class AuthService {
         // console.log(res);
         this.setToken(res.access_token); // Setting the token in localStorage
         // return Promise.resolve(res);
+      });
+  }
+
+  register(email, firstName, LastName, password) {
+    // Get a token from api server using the fetch api
+    return this.fetch(`${this.domain}/auth/register`, {
+      method: 'POST',
+      body: JSON.stringify({ email, password, first_name: firstName, last_name: LastName }),
+    })
+      .then((res) => {
+
+        // console.log(res);
+        this.setToken(res.access_token); // Setting the token in localStorage
+        return Promise.resolve(res);
       });
   }
 
@@ -59,7 +73,13 @@ export default class AuthService {
 
   getProfile() {
     // Using jwt-decode npm package to decode the token
-    return decode(this.getToken());
+    let result = this.fetch(`${this.domain}/user/profile`, {
+      method: 'GET',
+      async: false,
+    })
+      .then((res) => {
+        localStorage.setItem('profile', JSON.stringify(res));
+      });
   }
 
   fetch(url, options) {
@@ -78,6 +98,7 @@ export default class AuthService {
 
     return fetch(url, {
       method: options.method,
+      async: options.async,
       body: options.body,
       cache: 'no-cache',
       headers,
@@ -88,9 +109,6 @@ export default class AuthService {
   }
 
   _checkStatus(response) {
-
-
-
     // raises an error in case response status is not a success
     if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
       return response;

@@ -1,3 +1,6 @@
+import Profile from './components/Profile.jsx';
+import Register from './components/Register.jsx';
+
 const React = window.React = require('react');
 const ReactDOM = require('react-dom');
 const mountNode = document.getElementById('app');
@@ -175,6 +178,8 @@ class TermApp extends React.Component {
       }
     } else if (urlParts[0] === 'login') {
       body = <Login d={this.d}/>;
+    } else if (urlParts[0] === 'register') {
+      body = <Register d={this.d}/>;
     } else if (urlParts[0] === 'privacy') {
       body = <Generic title="Privacy Policy">
         <p>This policy may be updated or revised without notice. It is the responsibility of the
@@ -202,7 +207,15 @@ class TermApp extends React.Component {
     } else if (urlParts[0] === 'markets') {
       body = <Markets d={this.d}></Markets>;
      } else if (urlParts[0] === 'dashboard') {
-      body = <Dashboard d={this.d}></Dashboard>;
+      if (urlParts[1]== null)
+      {
+        body = <Dashboard d={this.d}></Dashboard>;
+
+      }else if(urlParts[1] == "profile"){
+        body = <Profile d={this.d}></Profile>;
+
+      }
+
     } else if (urlParts[0] === 'exchange') {
       if (urlParts.length === 3) {
         try {

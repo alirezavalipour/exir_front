@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component {
           <br/>
           <a href={'/#'}>تغییر گذر واژه</a>
           <br/>
-          <a href={'/#'}>ارسال مدارک</a>
+          <a href={'/#dashboard/profile'}>مشخصات کاربری</a>
         </div>
       </div>
     );
