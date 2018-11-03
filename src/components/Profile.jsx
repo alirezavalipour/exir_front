@@ -18,7 +18,7 @@ export default class Profile extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const url = 'http://192.168.106.1/exir/public/api/user/profile';
+    const url = 'http://192.168.64.1/exireum/public/api/user/profile';
     // const formData = {
     //   passport: this.state.image,
     //   first_name: this.state.first_name,
@@ -132,7 +132,7 @@ export default class Profile extends Component {
 
 
         <div>
-          <img src={"http://192.168.106.1/exir/public/storage/" + this.state.profile.passport} />
+          <img src={"http://192.168.64.1/exireum/public/storage/" + this.state.profile.passport} />
         </div>
       </div>
     );

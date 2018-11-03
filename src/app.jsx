@@ -22,6 +22,7 @@ import TermsOfUse from './components/TermsOfUse.jsx';
 import Driver from './lib/Driver';
 import Login from './components/Login.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import Account from './components/Account.jsx';
 
 
 let network = {
@@ -206,14 +207,13 @@ class TermApp extends React.Component {
       body = <Session d={this.d} urlParts={urlParts}></Session>;
     } else if (urlParts[0] === 'markets') {
       body = <Markets d={this.d}></Markets>;
-     } else if (urlParts[0] === 'dashboard') {
-      if (urlParts[1]== null)
-      {
+    } else if (urlParts[0] === 'dashboard') {
+      if (urlParts[1] == null) {
         body = <Dashboard d={this.d}></Dashboard>;
-
-      }else if(urlParts[1] == "profile"){
+      } else if (urlParts[1] == 'profile') {
         body = <Profile d={this.d}></Profile>;
-
+      } else if (urlParts[1] == 'account') {
+        body = <Account d={this.d}/>;
       }
 
     } else if (urlParts[0] === 'exchange') {
