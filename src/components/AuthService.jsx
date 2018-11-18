@@ -7,6 +7,7 @@ export default class AuthService {
     this.fetch = this.fetch.bind(this); // React binding stuff
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.setProfile = this.setProfile.bind(this);
   }
 
 
@@ -21,10 +22,9 @@ export default class AuthService {
       body: JSON.stringify({ email, password }),
     })
       .then((res) => {
-
         // console.log(res);
         this.setToken(res.access_token); // Setting the token in localStorage
-        // return Promise.resolve(res);
+        return Promise.resolve(res);
       });
   }
 
@@ -80,11 +80,18 @@ export default class AuthService {
     // Using jwt-decode npm package to decode the token
     let result = this.fetch(`${this.domain}/user/profile`, {
       method: 'GET',
-      async: false,
     })
       .then((res) => {
         localStorage.setItem('profile', JSON.stringify(res));
       });
+  }
+
+  getLocalProfile() {
+    return JSON.parse(localStorage.getItem('profile'));
+  }
+
+  setProfile(data) {
+    localStorage.setItem('profile', JSON.stringify(data));
   }
 
   fetch(url, options) {

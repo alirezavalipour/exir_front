@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AssetList from './AssetList.jsx';
+import AccountItem from './AccountItem.jsx';
 import AuthService from './AuthService.jsx';
 
 
@@ -10,22 +10,24 @@ export default class Account extends Component {
     super(props);
     this.state = { data: '' };
     this.Auth = new AuthService();
-    this.getAjax = this.getAjax.bind(this);
-
   }
 
 
-  renderAssetItem(Item) {
-    return <AssetList data={Item}/>;
-  }
-
-
-  getAjax() {
-
+  renderAccountItem(Item) {
+    return <AccountItem data={Item}/>;
   }
 
   renderAssetList() {
-    console.log(this.state);
+
+    let result = [];
+
+    Object.entries(this.state.data)
+      .forEach(
+        ([key, value]) => {
+          result.push(this.renderAccountItem(value));
+        }
+      );
+    return result;
   }
 
   componentDidMount() {
@@ -43,9 +45,18 @@ export default class Account extends Component {
   }
 
   render() {
-    console.log(this.state);
+
     return (<div>
       <div className="so-back islandBack islandBack--t">
+        <div className="so-back islandBack">
+          <div className="island">
+            <div className="island__paddedContent">
+              <a className="s-button" href="/#dashboard/account/add">add account</a>
+              <a className="s-button" href="/#dashboard/">Dashboard</a>
+
+            </div>
+          </div>
+        </div>
         <div className="island">
           <div className="AssetList">
             <div className="AssetList__head__row">

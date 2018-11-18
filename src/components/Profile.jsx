@@ -3,6 +3,21 @@ import AuthService from './AuthService.jsx';
 import axios, { post } from 'axios';
 
 
+const righttDiv = {};
+
+const leftDiv = {
+  width: '200px',
+
+};
+
+
+const parentDiv = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+
+};
+
 export default class Profile extends Component {
 
 
@@ -12,20 +27,13 @@ export default class Profile extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.fileHandler = this.fileHandler.bind(this);
-    this.state = { profile: {}, image: '' };
+    this.state = { first_name: '', last_name: '', passport: '', mobile: '', national_number: '' };
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    const url = 'http://192.168.64.1/exireum/public/api/user/profile';
-    // const formData = {
-    //   passport: this.state.image,
-    //   first_name: this.state.first_name,
-    //   last_name: this.state.last_name,
-    //   national_number: this.state.national_number,
-    //   mobile: this.state.mobile
-    // };
+    const url = this.Auth.getDomain() + '/user/profile';
 
     let formData = new FormData();
     formData.append('passport', this.state.image);
@@ -42,8 +50,6 @@ export default class Profile extends Component {
 
     var config = { headers };
 
-    console.log(formData);
-
     return post(url, formData, config)
       .then(response => console.log(response));
   }
@@ -57,8 +63,20 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.Auth.getProfile();
-    const profile = JSON.parse(localStorage.getItem('profile'));
-    this.setState({ profile });
+
+    let result = this.Auth.fetch(`${this.Auth.getDomain()}/user/profile`, {
+      method: 'GET',
+    })
+      .then((res) => {
+        localStorage.setItem('profile', JSON.stringify(res));
+        this.setState({
+          first_name: res.first_name,
+          last_name: res.last_name,
+          passport: res.passport,
+          mobile: res.mobile,
+          national_number: res.national_number,
+        });
+      });
   }
 
 
@@ -68,71 +86,66 @@ export default class Profile extends Component {
       return;
     }
 
-
     this.setState({
       image: files[0],
     });
-    // this.createImage(files[0]);
-  }
-
-
-  createImage(file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.setState({
-        image: e.target.result,
-      });
-    };
-    reader.readAsDataURL(file);
   }
 
 
   render() {
-    return (<div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>نام</label>
-            <input
-              type="text" name="first_name" value={this.state.first_name}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label>نام خانوادگی </label>
-            <input
-              type="text" name="last_name" value={this.state.last_name}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label>عکس پاسپورت</label>
-            <input type="file" name="passport" onChange={this.fileHandler}/>
-          </div>
-          <div>
-            <label>عکس کارت ملی</label>
-            <input type="file" name="national_card" onChange={this.fileHandler}/>
-          </div>
-          <div>
-            <label>شماره ملی </label>
-            <input
-              type="text" name="national_number" value={this.state.national_number}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label>شماره همراه</label>
-            <input
-              type="text" name="mobile" value={this.state.mobile}
-              onChange={this.handleChange}
-            />
-          </div>
 
-          <button type="submit"> ارسال</button>
-        </form>
+    return (
+      <div className="so-back islandBack islandBack--t">
+        <div className="island">
+          <div className="island__header">updating profile</div>
+          <div className="island__paddedContent" style={parentDiv}>
+            <div style={leftDiv}>
+              <form onSubmit={this.handleSubmit}>
+                <div>
+                  <label>first name</label>
+                  <input
+                    type="text" name="first_name" value={this.state.first_name}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <label>last name </label>
+                  <input
+                    type="text" name="last_name" value={this.state.last_name}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <label>passport photo</label>
+                  <input type="file" name="passport" onChange={this.fileHandler}/>
+                </div>
+                <div>
+                  <label>national card photo</label>
+                  <input type="file" name="national_card" onChange={this.fileHandler}/>
+                </div>
+                <div>
+                  <label>national number</label>
+                  <input
+                    type="text" name="national_number" value={this.state.national_number}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <label>mobile</label>
+                  <input
+                    type="text" name="mobile" value={this.state.mobile}
+                    onChange={this.handleChange}
+                  />
+                </div>
 
-
-        <div>
-          <img src={"http://192.168.64.1/exireum/public/storage/" + this.state.profile.passport} />
+                <button type="submit"> update</button>
+              </form>
+            </div>
+            <div style={righttDiv}>
+              <img width="128px"
+                   src={'http://192.168.64.1/exireum/public/storage/' + this.state.passport}/>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -36,7 +36,7 @@ class Login extends Component {
     this.Auth.login(this.state.email, this.state.password)
       .then((res) => {
         console.log(res);
-        this.props.history.replace('/');
+        window.location.replace('/#dashboard');
       })
       .catch((err) => {
         alert(err);
