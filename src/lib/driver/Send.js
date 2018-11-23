@@ -12,6 +12,7 @@ export default function Send(driver) {
   // Constraint: Each step is allowed to safely assume that the previous steps are finished
   this.step2 = {};
   this.step3 = {};
+  this.step4 = {};
   this.accountId = '';
 
   const init = () => {
@@ -49,12 +50,18 @@ export default function Send(driver) {
       amount: '',
     };
   };
+  const resetStep4 = () => {
+    this.step4 = {
+      secret: '',
+    };
+  };
 
   const resetAll = () => {
     init();
     resetStep1();
     resetStep2();
     resetStep3();
+    resetStep4();
   };
 
   resetAll();
@@ -294,8 +301,16 @@ export default function Send(driver) {
       this.step3.amount = e.target.value;
       this.event.trigger();
     },
+    updateSecret: (e) => {
+      this.step4.secret = e.target.value;
+      this.event.trigger();
+    },
     step3Next: () => {
       this.step = 4;
+      this.event.trigger();
+    },
+    step4Next: () => {
+      this.step = 5;
       this.event.trigger();
     },
     submit: async () => {
@@ -305,10 +320,11 @@ export default function Send(driver) {
           content: this.memoContent,
         };
 
-        let tx = await MagicSpoon.buildTxSendPayment(driver.Server, driver.session.account, {
+        let tx = await MagicSpoon.buildTxSendPayment(driver.Server,  driver.session.account , {
           destination: this.accountId,
           asset: this.step2.availability.asset,
           amount: this.step3.amount,
+          secret: this.step3.secret,
           memo: sendMemo,
         });
 
@@ -338,4 +354,3 @@ export default function Send(driver) {
     },
   };
 }
-

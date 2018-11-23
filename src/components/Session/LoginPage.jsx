@@ -71,7 +71,9 @@ export default class LoginPage extends React.Component {
           invalidKey: true,
         })
       }
+
       this.props.d.session.handlers.logInWithSecret(this.state.secretInput);
+
     }
     this.handleGenerate = event => {
       let keypair = StellarSdk.Keypair.random();

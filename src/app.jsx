@@ -27,10 +27,10 @@ import AddAccount from './components/AddAccount.jsx';
 
 
 let network = {
-  horizonUrl: 'https://horizon.stellar.org',
-  networkPassphrase: StellarSdk.Networks.PUBLIC,
+  horizonUrl: 'https://horizon-testnet.stellar.org',
+  networkPassphrase:StellarSdk.Networks.TESTNET,
   isDefault: true, // If it's default, then we don't show a notice bar at the top
-  isTestnet: false,
+  isTestnet: true,
   isCustom: false,
 };
 

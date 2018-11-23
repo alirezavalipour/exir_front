@@ -16,6 +16,17 @@ import Ellipsis from './Ellipsis.jsx';
 import TermsOfUse from './TermsOfUse.jsx';
 import clickToSelect from '../lib/clickToSelect';
 
+
+const isValidPublicKey = input => {
+  try {
+    StellarSdk.Keypair.fromPublicKey(input);
+    return true;
+  } catch (e) {
+    // console.error(e);
+    return false;
+  }
+}
+
 class Session extends React.Component {
   constructor(props) {
     super(props);
@@ -40,11 +51,26 @@ class Session extends React.Component {
   componentWillUnmount() {
     this.mounted = false;
     this.props.d.session.event.unlisten(this.listenId);
+    console.log(this.listenId)
   }
+  componentDidMount(){
+    let d = this.props.d;
+    let state = d.session.state;
+
+    let part1 = this.props.urlParts[1];
+
+    if (isValidPublicKey(part1) ) {
+        this.props.d.session.handlers.logInWithPublicKey(part1);
+    }
+  }
+
   render() {
     let d = this.props.d;
     let state = d.session.state;
     let setupError = d.session.setupError;
+
+ 
+
     if (state === 'out') {
       return <LoginPage setupError={setupError} d={d} urlParts={this.props.urlParts}></LoginPage>
     } else if (state === 'unfunded') {
@@ -57,33 +83,13 @@ class Session extends React.Component {
     } else if (state === 'loading') {
       return <Generic title="Loading account"><Loading>Contacting network and loading account<Ellipsis /></Loading></Generic>
     } else if (state === 'in') {
-      if (!d.session.inflationDone) {
-        let currentVoteNote = '';
-        if (d.session.account.inflation_destination) {
-          currentVoteNote = ' This will overwrite your current inflation destination vote.'
-        }
-        return <div>
-          <Generic>
-            <h2 className="Session__welcomeTitle">Welcome to StellarTerm!</h2>
-            <p>Please make sure you have keys securely backed up. Never share your secret key or recovery phrase with anyone.</p>
-            <div className="Generic__divider"></div>
-            <div className="Session__inflation">
-              StellarTerm is free open source software. StellarTerm does not ask for donations, but instead, asks for inflation votes. The Stellar network rewards accounts that receive many votes through an "<a href="https://www.stellar.org/developers/guides/concepts/inflation.html" target="_blank" rel="nofollow noopener noreferrer">inflation system</a>". It is free to vote for StellarTerm and only requires a vote transaction (0.00001 XLM). Note: other wallets may do this without your permission, so if you use another wallet and they tamper with your account, this message may show up again.
-              <br />
-              <br />
-              By pressing "Accept and Continue", your account will vote for the StellarTerm inflation account. Thank you for your support!{currentVoteNote}
-              <div className="Session__inflation__next">
-                <a className="Session__inflation__next__noThanks" onClick={d.session.handlers.noThanks}>No thanks</a>
-                <button className="s-button" onClick={d.session.handlers.voteContinue}>Accept and Continue</button>
-              </div>
-            </div>
-          </Generic>
-        </div>
-      }
-      let content;
-      let part1 = this.props.urlParts[1];
 
-      if (part1 === undefined) {
+
+      let part1 = this.props.urlParts[1];
+      let content;
+
+
+      if (part1 === undefined || isValidPublicKey(part1)) {
         content = <ErrorBoundary>
           <Generic>
             <div className="s-alert s-alert--primary">

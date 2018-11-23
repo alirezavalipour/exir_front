@@ -145,10 +145,13 @@ export default function Send(driver) {
     // The reason this doesn't take in a TransactionBuilder so we can call build() here is that there
     // are cases when we want to paste in a raw transaction and sign that
     sign: async (tx) => {
+
+      console.log(tx);
       if (this.account.inflation_destination === 'GDCHDRSDOBRMSUDKRE2C4U4KDLNEATJPIHHR2ORFL5BSD56G4DQXL4VW') {
         console.log('Signing tx\nhash:', tx.hash().toString('hex'),'\nsequence: ' + tx.sequence, '\n\n' + tx.toEnvelope().toXDR('base64'))
         console.log('https://www.stellar.org/laboratory/#txsigner?xdr=' + encodeURIComponent(tx.toEnvelope().toXDR('base64')) + '&network=public');
       }
+
       if (this.authType === 'secret') {
         this.account.signWithSecret(tx);
         console.log('Signed tx\nhash:', tx.hash().toString('hex'),'\n\n' + tx.toEnvelope().toXDR('base64'))
@@ -169,18 +172,13 @@ export default function Send(driver) {
             return modalResult
           })
       } else {
-        return driver.modal.handlers.activate('sign', tx)
-        .then(async (modalResult) => {
-          if (modalResult.status === 'finish') {
-            await this.account.sign(tx);
-            console.log('Signed tx\nhash:', tx.hash().toString('hex'),'\n\n' + tx.toEnvelope().toXDR('base64'))
-            return {
-              status: 'finish',
-              signedTx: tx
-            };
-          }
-          return modalResult
-        })
+        console.log(this.account);
+        this.account.signWithSecret(tx);
+        console.log('Signed tx\nhash:', tx.hash().toString('hex'),'\n\n' + tx.toEnvelope().toXDR('base64'))
+        return {
+          status: 'finish',
+          signedTx: tx
+        };
       }
     },
     buildSignSubmit: async (txBuilder) => {
@@ -292,4 +290,3 @@ export default function Send(driver) {
     },
   };
 }
-

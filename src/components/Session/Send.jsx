@@ -23,11 +23,13 @@ export default class Send extends React.Component {
       let step2ClassName = 'Send__panel' + (step < 2 ? ' is-future' : '');
       let step3ClassName = 'Send__panel' + (step < 3 ? ' is-future' : '');
       let step4ClassName = 'Send__panel' + (step < 4 ? ' is-future' : '');
+      let step5ClassName = 'Send__panel' + (step < 4 ? ' is-future' : '');
 
       let step1TitleClassName = 'Send__title' + (step === 1 ? ' is-active' : '');
       let step2TitleClassName = 'Send__title' + (step === 2 ? ' is-active' : '');
       let step3TitleClassName = 'Send__title' + (step === 3 ? ' is-active' : '');
       let step4TitleClassName = 'Send__title' + (step === 4 ? ' is-active' : '');
+      let step5TitleClassName = 'Send__title' + (step === 4 ? ' is-active' : '');
 
       // All the steps are in this page to reduce fragmentation
 
@@ -242,6 +244,7 @@ export default class Send extends React.Component {
             </span>
             <input className="s-inputGroup__item S-flexItem-share" type="text" value={d.send.step3.amount} onChange={d.send.handlers.updateAmount} placeholder="" />
           </label>
+
           {yourBalance}
           {amountValidationMessage}
           <div className="Send__panel__next">
@@ -260,21 +263,49 @@ export default class Send extends React.Component {
         {Step3Content}
       </div>
 
+      let Step4Edit;
+      if (step > 4) {
+        Step4Edit = <a className="Send__title__edit" onClick={d.send.handlers.step4Edit}>Edit</a>;
+      }
+      let Step4Content;
+      if (step === 4) {
 
+        Step4Content = <div className="Send__content">
+          <label className="s-inputGroup Send__input">
+            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+              <span>Secret</span>
+            </span>
+            <input className="s-inputGroup__item S-flexItem-share" type="text" value={d.send.step3.secret} onChange={d.send.handlers.updateSecret} placeholder="" />
+          </label>
+          <div className="Send__panel__next">
+            <button className="s-button"   onClick={d.send.handlers.step4Next}>Save and continue</button>
+          </div>
+        </div>
+      } else if (step > 4) {
+        Step4Content = <div className="Send__content Send__overview">
+          <p className="Send__overviewLine">secret: <strong>{d.send.step4.secret} </strong></p>
+        </div>
+      }
+      let Step4 = <div className={step4ClassName}>
+        <h3 className={step4TitleClassName}>
+          4. Sign {Step4Edit}
+        </h3>
+        {Step4Content}
+      </div>
 
-      // Step 4
-      let Step4Next = step !== 4 ? null : <div className="Send__panel__next">
+     
+      let Step5Next = step !== 5 ? null : <div className="Send__panel__next">
         <p>Note: Transactions on the Stellar network are irreversible. Please make sure all the transaction details are correct.</p>
         <button className="s-button" onClick={d.send.handlers.submit}>Submit transaction</button>
       </div>
 
-      let Step4 = <div className={step4ClassName}>
-        <h3 className={step4TitleClassName}>
-          4. Review
+      let Step5 = <div className={step5ClassName}>
+        <h3 className={step5TitleClassName}>
+          5. Review
         </h3>
         <div className="Send__content">
-          {Step4Next}
-        </div>
+                 {Step5Next}
+               </div>
       </div>
 
       return <div className="island">
@@ -288,6 +319,8 @@ export default class Send extends React.Component {
         {Step3}
         <div className="Send__separator"></div>
         {Step4}
+        <div className="Send__separator"></div>
+        {Step5}
       </div>
     } else if (state === 'pending') {
       return <div className="island">
