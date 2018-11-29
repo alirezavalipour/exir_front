@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 
+const divStyleName = {
+   textAlign: 'center'
+};
+
+const divStylePublic = {
+   textAlign: 'left'
+};
+
+
 export default class AccountItem extends Component {
 
   constructor(props) {
@@ -11,10 +20,10 @@ export default class AccountItem extends Component {
      console.log(address);
     return (
       <a href={address} key="" className="AssetList__asset">
-        <div className="AssetList__asset__amount">{this.props.data.name}</div>
-        <div className="AssetList__asset__amount">{this.props.data.public_key}</div>
-        <div className="AssetList__asset__amount">exmapl@text.com</div>
-        <div className="AssetList__asset__amount">0</div>
+        <div className="AssetList__asset__amount" style={divStyleName}>{this.props.data.name}</div>
+        <div className="AssetList__asset__amount" style={divStylePublic}>{this.props.data.public_key}</div>
+        <div className="AssetList__asset__amount" style={divStyleName}>exmapl@text.com</div>
+        <div className="AssetList__asset__amount" style={divStyleName}>0</div>
       </a>);
   }
 

@@ -4,6 +4,15 @@ import AccountItem from './AccountItem.jsx';
 import AuthService from './AuthService.jsx';
 
 
+const divStyleName = {
+   textAlign: 'center'
+};
+
+const divStylePublic = {
+   textAlign: 'left'
+};
+
+
 export default class Account extends Component {
 
   constructor(props) {
@@ -51,8 +60,8 @@ export default class Account extends Component {
         <div className="so-back islandBack">
           <div className="island">
             <div className="island__paddedContent">
-              <a className="s-button" href="/#dashboard/account/add">add account</a>
-              <a className="s-button" href="/#dashboard/">Dashboard</a>
+              <a className="s-button" href="/#dashboard/account/add">Add account</a>
+              <a className="s-button" href="/#dashboard/account/create">Create account</a>
 
             </div>
           </div>
@@ -60,10 +69,10 @@ export default class Account extends Component {
         <div className="island">
           <div className="AssetList">
             <div className="AssetList__head__row">
-              <div className="AssetList__head__cell AssetList__head__amount">name</div>
-              <div className="AssetList__head__cell AssetList__head__amount">public key</div>
-              <div className="AssetList__head__cell AssetList__head__amount">federation name</div>
-              <div className="AssetList__head__cell AssetList__head__amount">balance</div>
+              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Name</div>
+              <div className="AssetList__head__cell AssetList__head__amount" style={divStylePublic}>Public key</div>
+              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Federation name</div>
+              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Balance</div>
             </div>
             {this.renderAssetList()}
           </div>

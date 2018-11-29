@@ -36,7 +36,7 @@ class Register extends Component {
     this.Auth.register(this.state.email, this.state.firstName, this.state.lastName, this.state.password)
       .then((res) => {
         console.log(res);
-        this.props.history.replace('/');
+        window.location.replace('/#login');
       })
       .catch((err) => {
         alert(err);
@@ -58,14 +58,14 @@ class Register extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <input
               className="form-item"
-              placeholder="first name goes here..."
+              placeholder="first name..."
               name="firstName"
               type="text"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
-              placeholder="email goes here..."
+              placeholder="last name..."
               name="lastName"
               type="text"
               onChange={this.handleChange}

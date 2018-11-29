@@ -29,10 +29,23 @@ export default class Header extends React.Component {
             <a className={'Header__nav__item Header__nav__item--link' + (this.props.urlParts[0] === 'account' ? ' is-current' : '')} href="#account">Account</a>
             <a className={'Header__nav__item Header__nav__item--link' + (this.props.urlParts[0] === 'download' ? ' is-current' : '')} href="#download">Download</a>
           </nav>
-          <span className="Header__version">v{window.stBuildInfo.version}</span>
+          <div className="headerlog">
+            <div className="headerlogname">نام شخص</div>
+            <div className="headerlogicon">
+              <div className="fa fa-user"></div>
+              <div className="fa fa-sort-down"></div>
+            </div>
+            <div className="headerlogin">
+              <div className="headerloginalias1"><a>first alias</a></div>
+              <div className="headerloginalias2"><a>second alias</a></div>
+              <div className="headerloginaccount">
+                <div className="headerloginsetting"><a>log out</a></div>
+                <div className="headerloginlogout"><a>setting</a></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   }
 }
-
