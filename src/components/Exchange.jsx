@@ -15,21 +15,94 @@ export default class Exchange extends React.Component {
     super(props);
     this.unsub = this.props.d.orderbook.event.sub(() => {this.forceUpdate()});
     this.unsubSession = this.props.d.session.event.sub(() => {this.forceUpdate()});
+
   }
+
   componentWillUnmount() {
     this.unsub();
     this.unsubSession();
   }
+
   render() {
 
+
     if (!this.props.d.orderbook.data.ready) {
+
       return <Generic title="Loading orderbook">Loading orderbook data from Horizon<Ellipsis /></Generic>
     }
+    if (this.props.d.orderbook.data.trades !== undefined){
+    let date ;
+    let price ;
+    let open ;
+    let close;
+    let high = 0;
+    let low =5000;
+    let dateParsed ;
+    let tempDate ;
+    let candleData= [];
+    let dateKey = 0;
+     this.props.d.orderbook.data.trades.map((elem,key) => {
+
+      date = elem[0] / 1000 ;
+      dateParsed = moment.unix(date).format('Y-M-d');
+
+      if (dateParsed == tempDate || !tempDate){
+
+      // console.log(dateParsed);
+      tempDate = dateParsed;
+
+
+      open = elem[1];
+
+
+
+       if (!close){
+          close = elem[1];
+       }
+
+
+       if (elem[1] > high){
+
+         high = elem[1];
+       }
+
+       if (elem[1] < low)
+       {
+         low = elem[1] ;
+       }
+    }
+    else{
+      candleData[dateKey] = {
+        date : dateParsed ,
+        open : open ,
+        high : high ,
+        close : close ,
+        low : low
+      }
+      console.log(candleData[dateKey])
+      dateKey++;
+      high = 0 ;
+      low = 5000;
+      tempDate = null;
+      open = 0;
+      close = 0;
+    }
+     })
+
+
+
+      }
+
 
     let thinOrderbookWarning;
     let data = this.props.d.orderbook.data;
     let ticker = this.props.d.ticker;
     let warningWarning;
+
+
+
+
+
 
     if (ticker.ready) {
       let baseSlug = Stellarify.assetToSlug(data.baseBuying);
@@ -111,4 +184,3 @@ export default class Exchange extends React.Component {
     </div>
   }
 }
-

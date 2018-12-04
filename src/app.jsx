@@ -27,10 +27,10 @@ import AddAccount from './components/AddAccount.jsx';
 
 
 let network = {
-  horizonUrl: 'https://horizon-testnet.stellar.org',
-  networkPassphrase:StellarSdk.Networks.TESTNET,
+  horizonUrl: 'https://horizon.stellar.org',
+  networkPassphrase: StellarSdk.Networks.PUBLIC,
   isDefault: true, // If it's default, then we don't show a notice bar at the top
-  isTestnet: true,
+  isTestnet: false,
   isCustom: false,
 };
 
@@ -160,7 +160,7 @@ class TermApp extends React.Component {
         </div>
       </div>;
     } else if (urlParts[0] === 'download') {
-      body = <Download/>;
+      body = <Download d={this.props.d} />;
     } else if (urlParts[0] === 'testnet') {
       if (network.isTestnet) {
         body = <Generic title="Test network">

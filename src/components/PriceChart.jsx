@@ -1,6 +1,7 @@
 const React = window.React = require('react');
 import _ from 'lodash';
 import Ellipsis from './Ellipsis.jsx';
+import moment from 'moment';
 
 // Generate data for testing:
 // let data = [];
@@ -84,6 +85,12 @@ export default class PriceChart extends React.Component {
     }
   }
   renderChart(orderbook) {
+
+
+
+
+
+
     this.rendered = true;
     let elem = document.getElementById('PriceChart');
     // We detect the height and width from the PriceChart element
@@ -258,4 +265,3 @@ export default class PriceChart extends React.Component {
     </div>;
   }
 }
-
