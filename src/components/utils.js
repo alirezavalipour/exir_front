@@ -11,7 +11,6 @@ function parseData(parse) {
 		d.low = +d.low;
 		d.close = +d.close;
 		d.volume = +d.volume;
-
 		return d;
 	};
 }
@@ -21,6 +20,6 @@ const parseDate = timeParse("%Y-%m-%d");
 export function getData() {
 	const promiseMSFT = fetch("https://cdn.rawgit.com/rrag/react-stockcharts/master/docs/data/MSFT.tsv")
 		.then(response => response.text())
-		.then(data => tsvParse(data, parseData(parseDate)))
+		.then(data =>  tsvParse(data, parseData(parseDate)))
 	return promiseMSFT;
 }

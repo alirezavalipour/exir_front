@@ -9,6 +9,17 @@ import Stellarify from '../lib/Stellarify';
 import TermsOfUse from './TermsOfUse.jsx';
 import Ellipsis from './Ellipsis.jsx';
 import directory from '../../directory';
+import moment from "moment";
+import { TypeChooser } from "react-stockcharts/lib/helper";
+import Chart from './Chart';
+import { getData } from "./utils";
+const Json2csvParser = require('json2csv').Parser;
+const writeFileP = require("write-file-p");
+
+writeFileP(`./file.txt`, "Hello World", (err, data) => {
+    console.log(err || data);
+});
+
 
 export default class Exchange extends React.Component {
   constructor(props) {
@@ -18,6 +29,11 @@ export default class Exchange extends React.Component {
 
   }
 
+  componentDidMount(){
+
+
+}
+
   componentWillUnmount() {
     this.unsub();
     this.unsubSession();
@@ -26,46 +42,45 @@ export default class Exchange extends React.Component {
   render() {
 
 
+
+
     if (!this.props.d.orderbook.data.ready) {
 
       return <Generic title="Loading orderbook">Loading orderbook data from Horizon<Ellipsis /></Generic>
     }
+
+
+
+  var candleData= [];
     if (this.props.d.orderbook.data.trades !== undefined){
     let date ;
-    let price ;
+    let absoluteChange;
+    let dividend : "";
+    let percentChange;
+    let split: "";
     let open ;
     let close;
     let high = 0;
     let low =5000;
     let dateParsed ;
     let tempDate ;
-    let candleData= [];
+    let volume ;
     let dateKey = 0;
      this.props.d.orderbook.data.trades.map((elem,key) => {
 
       date = elem[0] / 1000 ;
-      dateParsed = moment.unix(date).format('Y-M-d');
+      dateParsed = moment.unix(date).toISOString();
 
       if (dateParsed == tempDate || !tempDate){
 
-      // console.log(dateParsed);
       tempDate = dateParsed;
-
-
       open = elem[1];
-
-
-
        if (!close){
           close = elem[1];
        }
-
-
        if (elem[1] > high){
-
          high = elem[1];
        }
-
        if (elem[1] < low)
        {
          low = elem[1] ;
@@ -77,21 +92,46 @@ export default class Exchange extends React.Component {
         open : open ,
         high : high ,
         close : close ,
-        low : low
+        low : low,
+        volume : 1,
+        absoluteChange:"",
+        dividend : "",
+        percentChange: "",
+        split: ""
+
       }
-      console.log(candleData[dateKey])
       dateKey++;
       high = 0 ;
       low = 5000;
       tempDate = null;
       open = 0;
       close = 0;
+      volume = 1;
     }
      })
 
+     const fields = [  "date"  , "open"  , "high"  ,  "close" , "low" , "volume" ,  "absoluteChange"  ,  "dividend" , "percentChange"  , "split" ];
+     const opts = { fields }
+
+     try {
+       const parser = new Json2csvParser(opts);
+       const csv = parser.parse(candleData);
+       // console.log(csv);
+
+       // Write a text file
 
 
+
+     } catch (err) {
+       console.error(err);
+     }
+
+  }
+
+      if ( candleData.length == 0){
+        return <div> no candle looser!</div>
       }
+
 
 
     let thinOrderbookWarning;
@@ -154,7 +194,22 @@ export default class Exchange extends React.Component {
       offermakers = <OfferMakers d={this.props.d}></OfferMakers>
     }
 
+
+
     return <div>
+      <div className="so-back islandBack islandBack--t">
+    <div className="island Exchange__orderbook">
+        <div className="island__header">
+
+    <TypeChooser>
+      {type => <Chart type={type} data={candleData} />}
+    </TypeChooser>
+
+
+    </div>
+    </div>
+    </div>
+
       <div className="so-back islandBack islandBack--t">
         <PairPicker d={this.props.d}></PairPicker>
       </div>
