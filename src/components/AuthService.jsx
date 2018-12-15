@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 export default class AuthService {
   // Initializing important variables
   constructor(domain) {
-    this.domain = domain || 'http://192.168.64.1/exireum/public/api'; // API server domain
+    this.domain = domain || 'https://exireum.homearan.com/api'; // API server domain
     this.fetch = this.fetch.bind(this); // React binding stuff
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
@@ -15,11 +15,11 @@ export default class AuthService {
     return this.domain;
   }
 
-  login(email, password) {
+  login(mobile, password) {
     // Get a token from api server using the fetch api
     return this.fetch(`${this.domain}/auth/login`, {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ mobile, password }),
     })
       .then((res) => {
         // console.log(res);
@@ -28,17 +28,47 @@ export default class AuthService {
       });
   }
 
-  register(email, firstName, LastName, password) {
+  register( type, username, email, company_name, first_name, last_name, national_id, address, mobile) {
     // Get a token from api server using the fetch api
     return this.fetch(`${this.domain}/auth/register`, {
       method: 'POST',
-      body: JSON.stringify({ email, password, first_name: firstName, last_name: LastName }),
+      body: JSON.stringify({ type, username, email, company_name, first_name, last_name, national_id, address, mobile }),
     })
       .then((res) => {
         // console.log(res);
         // Setting the token in localStorage
         return Promise.resolve(res);
       });
+  }
+
+
+  sms(temporary_code) {
+    // Get a token from api server using the fetch api
+    var mobile = window.localStorage.getItem('mobile');
+    return this.fetch(`${this.domain}/auth/verify`, {
+      method: 'POST',
+      body: JSON.stringify({ temporary_code, mobile }),
+    })
+      .then((res) => {
+        this.setToken(res.token);
+        //console.log(res);
+        // Setting the token in localStorage
+        return Promise.resolve(res);
+      });
+  }
+
+  setpassword(password) {
+  // Get a token from api server using the fetch api
+  var token = this.getToken();
+  return this.fetch(`${this.domain}/auth/password`, {
+    method: 'POST',
+    body: JSON.stringify({ password }),
+  })
+    .then((res) => {
+      // console.log(res);
+      // Setting the token in localStorage
+      return Promise.resolve(res);
+    });
   }
 
   loggedIn() {

@@ -14,6 +14,11 @@ class Register extends Component {
     this.Auth = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
+    this.state = {
+      formSelect : "personal",
+      type : 0
+    }
   }
 
   componentWillMount() {
@@ -31,57 +36,104 @@ class Register extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-
-
-    this.Auth.register(this.state.email, this.state.firstName, this.state.lastName, this.state.password)
+    window.localStorage.setItem('mobile' , this.state.mobile);
+    this.Auth.register(this.state.type, this.state.username, this.state.email, this.state.company_name, this.state.first_name, this.state.last_name, this.state.national_id, this.state.address, this.state.mobile)
       .then((res) => {
         console.log(res);
-        window.location.replace('/#login');
+        window.location.replace('/#verify');
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   }
 
+    handleFormChange(e) {
+    this.setState(
+      {
+        formSelect : e.target.value,
+      });
+  }
+
+  componentDidMount(){
+    this.setState({
+      formSelect: "personal"
+    });
+  }
+
   render() {
+
+  if(this.state.formSelect == "company")
+  {
     return (
       <div className="center">
 
         {/* A JSX comment
-            <HashRouter>
-           <Route path="/" component={AccountView} />
-        </HashRouter>
-          */}
+          <HashRouter>
+             <Route path="/" component={AccountView} />
+          </HashRouter>
+        */}
 
         <div className="card">
-          <h1>register</h1>
-          <form onSubmit={this.handleFormSubmit}>
+          <h1>Register</h1>
+          <form className="company" onSubmit={this.handleFormSubmit}>
+            <select className="form-item" onChange={this.handleFormChange} name="type">
+              <option value="personal" type="0">personal</option>
+              <option value="company" type="1">company</option>
+            </select>
             <input
               className="form-item"
-              placeholder="first name..."
-              name="firstName"
+              placeholder="User name"
+              name="username"
               type="text"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
-              placeholder="last name..."
-              name="lastName"
-              type="text"
-              onChange={this.handleChange}
-            />
-            <input
-              className="form-item"
-              placeholder="email goes here..."
+              placeholder="Email"
               name="email"
+              type="email"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Company name"
+              name="company_name"
               type="text"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
-              placeholder="Password goes here..."
-              name="password"
-              type="password"
+              placeholder="Ceo's firstname"
+              name="first_name"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Ceo's Lastname"
+              name="last_name"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="National id"
+              name="national_number"
+              type="tel"
+              onChange={this.handleChange}
+            />
+            <textarea
+              className="form-item"
+              placeholder="Address"
+              name="address"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Phone number"
+              name="mobile"
+              type="tel"
               onChange={this.handleChange}
             />
             <input
@@ -94,8 +146,88 @@ class Register extends Component {
       </div>
     );
   }
+  else if(this.state.formSelect != "company")
+  {
+    return (
+      <div className="center">
 
+        {/* A JSX comment
+            <HashRouter>
+           <Route path="/" component={AccountView} />
+        </HashRouter>
+          */}
 
+        <div className="card">
+          <h1>Register</h1>
+          <form  className="personal" onSubmit={this.handleFormSubmit}>
+            <select className="form-item" onChange={this.handleFormChange} name="type">
+              <option value="personal" type="0">personal</option>
+              <option value="company" type="1">company</option>
+            </select>
+            <input
+              className="form-item"
+              placeholder="User name"
+              name="username"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Email"
+              name="email"
+              type="email"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="First name"
+              name="first_name"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Last name"
+              name="last_name"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="National code"
+              name="national_number"
+              type="tel"
+              onChange={this.handleChange}
+            />
+            <textarea
+              className="form-item"
+              placeholder="Address"
+              name="address"
+              type="text"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-item"
+              placeholder="Phone number"
+              name="mobile"
+              type="tel"
+              onChange={this.handleChange}
+            />
+            <input
+              className="form-submit"
+              value="SUBMIT"
+              type="submit"
+            />
+          </form>
+        </div>
+      </div>
+    );
+  }
+  else
+  {
+    return "form is loading"
+  }
+}
 }
 
 export default Register;

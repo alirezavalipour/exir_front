@@ -15,6 +15,7 @@ import HistoryView from './Session/HistoryView.jsx';
 import Ellipsis from './Ellipsis.jsx';
 import TermsOfUse from './TermsOfUse.jsx';
 import clickToSelect from '../lib/clickToSelect';
+import Popup from "reactjs-popup";
 
 
 const isValidPublicKey = input => {
@@ -27,12 +28,23 @@ const isValidPublicKey = input => {
   }
 }
 
+const isValidSecretKey = input => {
+  try {
+    StellarSdk.Keypair.fromSecret(input);
+    return true;
+  } catch (e) {
+    // console.error(e);
+    return false;
+  }
+}
+
 class Session extends React.Component {
   constructor(props) {
     super(props);
     this.listenId = this.props.d.session.event.listen(() => {this.forceUpdate()});
     this.mounted = true;
-
+    this.unlockHandler = this.unlockHandler.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
     // KLUDGE: The event listeners are kinda messed up
     // Uncomment if state changes aren't working. But with the new refactor, this dead code should be removed
     // For now, it's just extra insurance
@@ -53,6 +65,30 @@ class Session extends React.Component {
     this.props.d.session.event.unlisten(this.listenId);
     console.log(this.listenId)
   }
+
+
+
+  unlockHandler(e){
+ e.preventDefault();
+     if (!isValidSecretKey(this.state.secretInput)) {
+        alert('invalid secret key ');
+        return this.setState({
+          invalidKey: true,
+        })
+      }else{
+        this.props.d.session.handlers.logInWithSecret(this.state.secretInput);
+      }
+   
+
+    
+  } 
+
+   changeHandler(e){
+    this.setState({
+      secretInput : e.target.value
+    });
+  }
+
   componentDidMount(){
     let d = this.props.d;
     let state = d.session.state;
@@ -91,6 +127,23 @@ class Session extends React.Component {
 
       if (part1 === undefined || isValidPublicKey(part1)) {
         content = <ErrorBoundary>
+        <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top">
+          <div className="secretkeytext">please type your secret key here to unlock</div>
+          <form onSubmit={this.unlockHandler}className="secretkeyform">
+            <input
+              className="secretkeyitem"
+              placeholder="Secret Key"
+              name="secretkey"
+              onChange={this.changeHandler}
+              type="text"
+              />
+            <input
+              className="secretkeysubmit"
+              value="SUBMIT"
+              type="submit"
+            />
+          </form>
+        </Popup>
           <Generic>
             <div className="s-alert s-alert--primary">
               <p className="Sesssion__yourId__title">Your Wallet Account ID</p>

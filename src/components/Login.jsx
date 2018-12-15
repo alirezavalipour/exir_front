@@ -31,9 +31,7 @@ class Login extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-
-
-    this.Auth.login(this.state.email, this.state.password)
+    this.Auth.login(this.state.mobile, this.state.password)
       .then((res) => {
         console.log(res);
         window.location.replace('/#dashboard');
@@ -58,14 +56,14 @@ class Login extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <input
               className="form-item"
-              placeholder="email goes here..."
-              name="email"
+              placeholder="phone number"
+              name="mobile"
               type="text"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
-              placeholder="Password goes here..."
+              placeholder="Password"
               name="password"
               type="password"
               onChange={this.handleChange}

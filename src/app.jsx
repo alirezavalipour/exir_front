@@ -1,9 +1,14 @@
-import Profile from './components/Profile.jsx';
-import Register from './components/Register.jsx';
-
 const React = window.React = require('react');
 const ReactDOM = require('react-dom');
 const mountNode = document.getElementById('app');
+import Profile from './components/Profile.jsx';
+import Contactus from './components/Contactus.jsx';
+import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
+import Sms from './components/sms.jsx';
+import SetPassword from './components/SetPassword.jsx';
+import Deposit from './components/Deposit.jsx';
+import Withdrawed from './components/Withdrawed.jsx';
 import GlobalModal from './components/GlobalModal.jsx';
 import NotFound from './components/NotFound.jsx';
 import AssetList from './components/AssetList.jsx';
@@ -20,17 +25,16 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import TermsOfUse from './components/TermsOfUse.jsx';
 import Driver from './lib/Driver';
-import Login from './components/Login.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Account from './components/Account.jsx';
 import AddAccount from './components/AddAccount.jsx';
 
 
 let network = {
-  horizonUrl: 'https://horizon.stellar.org',
-  networkPassphrase: StellarSdk.Networks.PUBLIC,
+  horizonUrl: 'https://horizon-testnet.stellar.org',
+  networkPassphrase:StellarSdk.Networks.TESTNET,
   isDefault: true, // If it's default, then we don't show a notice bar at the top
-  isTestnet: false,
+  isTestnet: true,
   isCustom: false,
 };
 
@@ -102,65 +106,175 @@ class TermApp extends React.Component {
   }
 
   render() {
+    jQuery(document).ready(function(e){
+      jQuery(function(){
+        var locs = window.location.href;
+        console.log(locs);
+        if(locs=="https://localhost:3000/#")
+        {
+          jQuery('.HeaderBackBack').addClass('alireza');
+        }
+        else if(locs!="https://localhost:3000/#") 
+        {
+          jQuery('.HeaderBackBack').removeClass('alireza');
+        }
+      });
+      jQuery(".owl-carousel").owlCarousel({
+        rtl: true,
+        loop: true,
+        lazyLoad: true,
+        margin: 20,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 8000,
+        autoplayHoverPause: false,
+        autoHeight: true,
+        autoWidth: false,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+      });
+      var y=0;
+      jQuery(".logintext").click(function(){
+        if(y%2==0)
+        {
+        jQuery(".logintext div:eq(1)").removeClass("fa-sort-down");
+        jQuery(".logintext div:eq(1)").addClass("fa-sort-up");
+        jQuery(".loginform").css("display","block");
+        }
+        else if(y%2==1)
+        {
+        jQuery(".logintext div:eq(1)").removeClass("fa-sort-up");
+        jQuery(".logintext div:eq(1)").addClass("fa-sort-down");
+        jQuery(".loginform").css("display","none");
+        }
+        y+=1;
+      });
+
+      var q=0;
+      jQuery(".headerlog").click(function(){
+        if(q%2==0)
+        {
+          jQuery(".headerlogicon div:eq(1)").removeClass("fa-sort-down");
+          jQuery(".headerlogicon div:eq(1)").addClass("fa-sort-up");
+          jQuery(".headerlogin").css("display","block");
+        }
+        else if(q%2==1)
+        {
+          jQuery(".headerlogicon div:eq(1)").removeClass("fa-sort-up");
+          jQuery(".headerlogicon div:eq(1)").addClass("fa-sort-down");
+          jQuery(".headerlogin").css("display","none");
+        }
+        q+=1;
+      });
+      var $x1 = jQuery("#app").height();
+      jQuery(".picture1").css("height",$x1);
+      jQuery(".picture2").css("height",$x1);
+      jQuery(".picture3").css("height",$x1);
+    });
     let url = this.state.url;
     let urlParts = url.split('/');
-
     let body;
     if (url === '') {
       // Home page
       body = <div>
-        <div className="HomePage__black">
-          <div className="so-back">
-            <OpenUp/>
-            <div className="HomePage__lead">
-              <h2 className="HomePage__lead__title">Trade on the <a href="#exchange">Stellar
-                Decentralized Exchange</a></h2>
-              <p className="HomePage__lead__summary">StellarTerm is an <a
-                href="https://github.com/stellarterm/stellarterm" target="_blank"
-                rel="nofollow noopener noreferrer">open source</a> client for the <a
-                href="https://www.stellar.org/" target="_blank" rel="nofollow noopener noreferrer">Stellar
-                network</a>. <br/>Send, receive, and <a href="#exchange">trade</a> assets on the
-                Stellar network easily with StellarTerm.</p>
-              {this.renderHomePageActions()}
+        <div id="container" className="container">
+          <div id="home" className="home">
+            <div className="owl-carousel">
+              <div className="picture1">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
+              <div className="picture2">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
+              <div className="picture3">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="so-back islandBack HomePage__assetList">
-          <div className="island">
-            <AssetList d={this.props.d} limit={6}></AssetList>
-            <div className="AssetListFooter">
-              View more assets on the <a href="#markets">market list page</a>.
+          <div className="menu">
+            <div className="headersign">
+              <a href="#register" className="headerinsignin">Sign Up</a>
+              <a href="#login" className="headerinlogin">Log In</a>
             </div>
-          </div>
-        </div>
-        <div className="so-back islandBack">
-          <div className="island">
-            <div className="island__sub">
-              <div className="island__sub__division">
-                <div className="HomePage__sideBlurb">
-                  <p>StellarTerm is just a client that can be used to access the Stellar
-                    Decentralized Exchange. Neither StellarTerm nor the developers of it are
-                    involved with operating the Stellar network.</p>
-                  <p>StellarTerm is developed by Ultra Stellar, LLC, the same company that developed
-                    the LOBSTR wallet. The project is independent of the Stellar Development
-                    Foundation.</p>
-                </div>
-              </div>
-              <div className="island__sub__division">
-                <div className="HomePage__sideBlurb">
-                  <p>StellarTerm is open source software. To support the project, please <a
-                    href="https://github.com/stellarterm/stellarterm" target="_blank"
-                    rel="nofollow noopener noreferrer">star the project on GitHub</a>.</p>
-                  <p>The project is released under the Apache-2.0 license and is released as is
-                    without warranty.</p>
-                </div>
-              </div>
+            <nav className="Header__nav">
+              <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
+              <div className="key3"><a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a></div>
+            </nav>
+            <div className="share">
+              <a href="http://www.facebook.com" className="fa fa-facebook"></a>
+              <a href="http://www.linkedin.com" className="fa fa-linkedin"></a>
+              <a href="http://www.twitter.com" className="fa fa-twitter"></a>
+              <a href="http://www.instagram.com" className="fa fa-instagram"></a>
             </div>
           </div>
         </div>
       </div>;
     } else if (urlParts[0] === 'download') {
-      body = <Download d={this.props.d} />;
+      body = <Download/>;
     } else if (urlParts[0] === 'testnet') {
       if (network.isTestnet) {
         body = <Generic title="Test network">
@@ -178,10 +292,20 @@ class TermApp extends React.Component {
           Please refresh the page to switch to testnet.
         </Loading></Generic>;
       }
+    } else if (urlParts[0] === 'contactus') {
+      body = <Contactus d={this.d}/>;
     } else if (urlParts[0] === 'login') {
       body = <Login d={this.d}/>;
     } else if (urlParts[0] === 'register') {
       body = <Register d={this.d}/>;
+    } else if (urlParts[0] === 'verify') {
+      body = <Sms d={this.d}/>;
+    } else if (urlParts[0] === 'setpassword') {
+      body = <SetPassword d={this.d}/>;
+    } else if (urlParts[0] === 'deposit') {
+      body = <Deposit d={this.d}/>;
+    } else if (urlParts[0] === 'withdrawed') {
+      body = <Withdrawed d={this.d}/>;
     } else if (urlParts[0] === 'privacy') {
       body = <Generic title="Privacy Policy">
         <p>This policy may be updated or revised without notice. It is the responsibility of the
@@ -271,7 +395,6 @@ class TermApp extends React.Component {
           <Header d={this.props.d} urlParts={urlParts} network={network}></Header>
           {body}
         </div>
-        <Footer/>
       </div>
     </div>;
 

@@ -10,18 +10,18 @@
   align-items: center;
 }
 
-.card{
+.card , .verify_sms , .set_password{
   background-color: #fff;
   border-radius: 15px;
   padding: 0.8rem;
 }
 
-.card > form{
+.card > form , .verify_sms > form , .set_password > form{
   display: flex;
   flex-direction: column;
 }
 
-.card h1{
+.card h1 , .verify_sms , .set_password{
   text-align: center;
   margin-top: 0;
   margin-bottom: 10px;
@@ -32,6 +32,17 @@
   padding: 5px;
   margin-bottom: 2rem;
   height: 30px;
+  width: 16rem;
+  border: 1px solid grey;
+}
+
+.code{
+  font-family: 'Raleway', sans-serif;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: #fff !important;
+  margin-bottom: 15px;
+  height: 35px;
   width: 16rem;
   border: 1px solid grey;
 }
@@ -48,4 +59,21 @@
 }
 .form-submit:hover{
   opacity: 0.6;
+}
+.disable
+{
+  display: none;
+}
+.enable
+{
+  display: block;
+}
+.react-countdown-clock
+{
+  margin: 15px 50% 15px auto;
+}
+
+.set_password h1
+{
+  margin-bottom: 20px;
 }

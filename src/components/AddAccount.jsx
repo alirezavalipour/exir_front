@@ -23,7 +23,7 @@ export default class AddAccount extends Component {
       public_key: this.state.public_key,
       name: this.state.name,
     };
-
+console.log(formData);
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',

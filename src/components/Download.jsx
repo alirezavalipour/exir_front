@@ -7,23 +7,12 @@ import { TypeChooser } from "react-stockcharts/lib/helper";
 
 export default class Download extends React.Component {
 
-constructor(props){
-  super(props);
-
-}
-
-
-
-  componentDidMount(){
+  componentDidMount() {
   getData().then(data => {
     this.setState({ data })
   })
-
-
 }
 render() {
-
-
   if (this.state == null) {
     return <div>Loading...</div>
   }
