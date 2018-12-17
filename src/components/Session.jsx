@@ -139,7 +139,7 @@ class Session extends React.Component {
               />
             <input
               className="secretkeysubmit"
-              value="SUBMIT"
+              value="UNLOCK"
               type="submit"
             />
           </form>

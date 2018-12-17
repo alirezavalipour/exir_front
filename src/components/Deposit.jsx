@@ -47,47 +47,32 @@ class Deposit extends Component {
             <div className="center">
               <div className="deposit">
                 <h1>Deposit</h1>
-                <div className="deposit_in_first">
-                  <form className="amount_form_first" onSubmit={this.handleFormSubmit}>
+                <div className="deposit_in">
+                  <form className="amount_form" onSubmit={this.handleFormSubmit}>
                     <input
                     className="amount_item"
                     placeholder="The Amount Of"
                     name="amount"
-                    type="password"
+                    type="tel"
                     onChange={this.handleChange}
                     />
-                    <select>
-                      <option>XIR(Exir)</option>
-                      <option>XLM(Lumen)</option>
-                    </select>
-                  </form>
-                </div>
-                <div className="deposit_in_second">
-                  <form className="amount_form_second" onSubmit={this.handleFormSubmit}>
+                    <div className="amount_item_name">XIR(Exir)</div>
+                    <div className="amount_button">Accept XIR</div>
                     <input
                     className="amount_item"
                     placeholder="That Amount Will Be"
                     name="change"
-                    type="password"
+                    type="tel"
                     onChange={this.handleChange}
                     />
-                    <select>
-                      <option>IRR</option>
-                      <option>USD</option>
-                    </select>
+                    <div className="amount_item_name">IRR(Rial)</div>
+                    <input
+                    className="amount_submit"
+                    value="PAY"
+                    type="submit"
+                    />
                   </form>
                 </div>
-                <div>
-                </div>
-                <div>
-                      <TrustButton
-                        d={this.props.d}
-                        asset={this.props.asset}
-                        message={this.props.asset.getCode() + " accepted"}
-                        trustMessage={"Accept " + this.props.asset.getCode()}
-                        />
-                </div>
-                <a>pay</a>
               </div>
             </div>
           );

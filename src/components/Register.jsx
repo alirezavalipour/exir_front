@@ -39,10 +39,20 @@ class Register extends Component {
     window.localStorage.setItem('mobile' , this.state.mobile);
     this.Auth.register(this.state.type, this.state.username, this.state.email, this.state.company_name, this.state.first_name, this.state.last_name, this.state.national_id, this.state.address, this.state.mobile)
       .then((res) => {
-        console.log(res);
+        if(res.errors)
+        { 
+          console.log(res.errors);
+          this.setState({
+            errors : res.errors,
+          });
+        }
+      else{
         window.location.replace('/#verify');
+        }
+
       })
       .catch((err) => {
+
         console.log(err);
       });
   }
@@ -61,18 +71,11 @@ class Register extends Component {
   }
 
   render() {
-
   if(this.state.formSelect == "company")
   {
     return (
       <div className="center">
-
-        {/* A JSX comment
-          <HashRouter>
-             <Route path="/" component={AccountView} />
-          </HashRouter>
-        */}
-
+        <div className="center_in"></div>
         <div className="card">
           <h1>Register</h1>
           <form className="company" onSubmit={this.handleFormSubmit}>
@@ -84,6 +87,8 @@ class Register extends Component {
               className="form-item"
               placeholder="User name"
               name="username"
+              minlength="4" 
+              maxlength="20"
               type="text"
               onChange={this.handleChange}
             />
@@ -99,6 +104,8 @@ class Register extends Component {
               placeholder="Company name"
               name="company_name"
               type="text"
+              minlength="4" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -106,6 +113,8 @@ class Register extends Component {
               placeholder="Ceo's firstname"
               name="first_name"
               type="text"
+              minlength="3" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -113,6 +122,8 @@ class Register extends Component {
               placeholder="Ceo's Lastname"
               name="last_name"
               type="text"
+              minlength="4" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -120,6 +131,7 @@ class Register extends Component {
               placeholder="National id"
               name="national_number"
               type="tel"
+              pattern="^[0-9][0-9][0-9][0-9]{7,7}$"
               onChange={this.handleChange}
             />
             <textarea
@@ -127,6 +139,8 @@ class Register extends Component {
               placeholder="Address"
               name="address"
               type="text"
+              minlength="10" 
+              maxlength="100"
               onChange={this.handleChange}
             />
             <input
@@ -134,6 +148,7 @@ class Register extends Component {
               placeholder="Phone number"
               name="mobile"
               type="tel"
+              pattern="^[0][9][0-3][0-9]{8,8}$" 
               onChange={this.handleChange}
             />
             <input
@@ -150,13 +165,7 @@ class Register extends Component {
   {
     return (
       <div className="center">
-
-        {/* A JSX comment
-            <HashRouter>
-           <Route path="/" component={AccountView} />
-        </HashRouter>
-          */}
-
+        <div className="center_in"></div>
         <div className="card">
           <h1>Register</h1>
           <form  className="personal" onSubmit={this.handleFormSubmit}>
@@ -169,6 +178,8 @@ class Register extends Component {
               placeholder="User name"
               name="username"
               type="text"
+              minlength="4" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -183,6 +194,8 @@ class Register extends Component {
               placeholder="First name"
               name="first_name"
               type="text"
+              minlength="3" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -190,6 +203,8 @@ class Register extends Component {
               placeholder="Last name"
               name="last_name"
               type="text"
+              minlength="4" 
+              maxlength="20"
               onChange={this.handleChange}
             />
             <input
@@ -197,6 +212,7 @@ class Register extends Component {
               placeholder="National code"
               name="national_number"
               type="tel"
+              pattern="^[0-9][0-9][0-9][0-9]{7,7}$"
               onChange={this.handleChange}
             />
             <textarea
@@ -204,6 +220,8 @@ class Register extends Component {
               placeholder="Address"
               name="address"
               type="text"
+              minlength="10" 
+              maxlength="100"
               onChange={this.handleChange}
             />
             <input
@@ -211,6 +229,7 @@ class Register extends Component {
               placeholder="Phone number"
               name="mobile"
               type="tel"
+              pattern="^[0][9][0-3][0-9]{8,8}$" 
               onChange={this.handleChange}
             />
             <input

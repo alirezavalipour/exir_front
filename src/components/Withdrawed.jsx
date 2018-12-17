@@ -46,41 +46,38 @@ class Withdrawed extends Component {
   render() {
     return(
             <div className="center">
-              <div className="deposit">
-                <h1>withdrawed</h1>
-                <div className="deposit_in_first">
-                  <form className="amount_form_first" onSubmit={this.handleFormSubmit}>
+              <div className="withdrawed">
+                <h1>Withdrawed</h1>
+                <div className="withdrawed_in">
+                  <form className="amount_form" onSubmit={this.handleFormSubmit}>
                     <input
                     className="amount_item"
                     placeholder="The Amount Of"
                     name="amount"
-                    type="password"
+                    type="tel"
                     onChange={this.handleChange}
                     />
-                    <select>
-                      <option>XIR(Exir)</option>
-                      <option>XLM(Lumen)</option>
+                    <div className="amount_item_name">XIR(Exir)</div>
+                    <select className="amount_option">
+                      <option>shaba1</option>
+                      <option>shaba2</option>
+                      <option>shaba3</option>
                     </select>
-                  </form>
-                </div>
-                <div className="deposit_in_second">
-                  <form className="amount_form_second" onSubmit={this.handleFormSubmit}>
                     <input
                     className="amount_item"
                     placeholder="That Amount Will Be"
                     name="change"
-                    type="password"
+                    type="tel"
                     onChange={this.handleChange}
                     />
-                    <select>
-                      <option>IRR</option>
-                      <option>USD</option>
-                    </select>
+                    <div className="amount_item_name">IRR(Rial)</div>
+                    <input
+                    className="amount_submit"
+                    value="Submit"
+                    type="submit"
+                    />
                   </form>
                 </div>
-                <a>Check Trustline</a>
-                <div></div>
-                <a>pay</a>
               </div>
             </div>
           );

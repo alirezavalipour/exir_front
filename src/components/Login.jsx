@@ -44,13 +44,7 @@ class Login extends Component {
   render() {
     return (
       <div className="center">
-
-        {/* A JSX comment
-            <HashRouter>
-           <Route path="/" component={AccountView} />
-        </HashRouter>
-          */}
-
+      <div className="center_in"></div>
         <div className="card">
           <h1>Login</h1>
           <form onSubmit={this.handleFormSubmit}>
@@ -59,6 +53,7 @@ class Login extends Component {
               placeholder="phone number"
               name="mobile"
               type="text"
+              pattern="^[0][9][0-3][0-9]{8,8}$"
               onChange={this.handleChange}
             />
             <input
@@ -66,6 +61,7 @@ class Login extends Component {
               placeholder="Password"
               name="password"
               type="password"
+              
               onChange={this.handleChange}
             />
             <input

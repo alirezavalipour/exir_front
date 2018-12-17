@@ -19,6 +19,7 @@ body {
 #app {
   position: relative;
   min-height: 100vh;
+  background-color: rgb(255, 217, 112);
 }
 
 .img--noSelect {
@@ -463,6 +464,11 @@ ul.privacy__ul {
   display: block;
 }
 
+.HeaderBackBack
+{
+  background-color: #313147;
+}
+
 .HeaderBack
 {
   width: 100%;
@@ -470,16 +476,21 @@ ul.privacy__ul {
   background-color: transparent;
 }
 
-.alireza
+.headerlogo
 {
   width: 100%;
-  float: left;
+  float: right;
   position: fixed !important;
   top: 0;
   left: 0;
   background-color: transparent !important;
   z-index: 100;
   box-shadow: 0 0 0 transparent !important;
+}
+
+.headeritem
+{
+  display: none;
 }
 
 .menu
@@ -534,11 +545,16 @@ ul.privacy__ul {
   text-align: left;
 }
 
-.Header__nav__item--logo
+.headerlogo .Header__nav__item--logo
 {
   color: rgb(49, 49, 71);
   font-weight: bold;
   margin-left: 20px;
+}
+
+.Header__nav__item--logo
+{
+  color: #fff;
 }
 
 .Header__nav__item--link

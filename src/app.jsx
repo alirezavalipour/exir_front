@@ -107,16 +107,138 @@ class TermApp extends React.Component {
 
   render() {
     jQuery(document).ready(function(e){
+      jQuery(".center div form").find( "input" ).eq( 0 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 1 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 2 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 3 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 4 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 5 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 6 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 7 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).addClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 8 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
+      });
+      jQuery(".center div form").find( "input" ).eq( 9 ).click(function(){
+        jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 2 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 3 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).addClass("form-item-active");
+      });
       jQuery(function(){
-        var locs = window.location.href;
+        var locs = location.hash;
         console.log(locs);
-        if(locs=="https://localhost:3000/#")
+        if(locs=="" || locs=="#")
         {
-          jQuery('.HeaderBackBack').addClass('alireza');
+          jQuery('.HeaderBackBack').addClass('headerlogo');
+          jQuery('.Header__navs .Header__nav__item--link').addClass('headeritem');
         }
-        else if(locs!="https://localhost:3000/#") 
+        else
         {
-          jQuery('.HeaderBackBack').removeClass('alireza');
+          jQuery('.HeaderBackBack').removeClass('headerlogo');
+          jQuery('.Header__navs .Header__nav__item--link').removeClass('headeritem');
         }
       });
       jQuery(".owl-carousel").owlCarousel({

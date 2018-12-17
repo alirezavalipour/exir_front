@@ -23,6 +23,8 @@ export default class Header extends React.Component {
         <div className="so-chunk Header">
           <nav className="Header__navs">
             <a className="Header__nav__item Header__nav__item--logo" href="#">Exireum</a>
+            <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
+            <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
           </nav>
           <div className="headerlog">
             <div className="headerlogname">user</div>

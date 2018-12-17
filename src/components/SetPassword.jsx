@@ -31,7 +31,7 @@ class SetPassword extends Component {
     this.Auth.setpassword(this.state.password)
       .then((res) => {
         console.log(res);
-        window.location.replace('/#accounts');
+        window.location.replace('/#dashboard');
       })
       .catch((err) => {
         alert(err);
@@ -41,14 +41,16 @@ class SetPassword extends Component {
   render() {
     return(
             <div className="center">
+              <div className="center_in"></div>
               <div className="set_password">
-                <h1>Setpassword</h1>
+                <h1>Set your password</h1>
                 <form  className="personal" onSubmit={this.handleFormSubmit}>
                   <input
                     className="form-item"
-                    placeholder="Password"
+                    placeholder="New Password"
                     name="password"
                     type="password"
+                    minlength="8"
                     onChange={this.handleChange}
                   />
                   <input
@@ -56,6 +58,7 @@ class SetPassword extends Component {
                     placeholder="Confirm Password"
                     name="confirm_password"
                     type="password"
+                    minlength="8"
                     onChange={this.handleChange}
                   />
                   <input

@@ -45,9 +45,10 @@ class sms extends Component {
   render() {
     return(
             <div className="center">
+              <div className="center_in"></div>
               <div className="verify_sms">
                 <h1>Verify</h1>
-                <div>please enter code for login</div>
+                <div className="verify_sms_text">Please enter the verification code sent to your phone by SMS</div>
                 <form  className="verifysms" onSubmit={this.handleFormSubmit}>
                   <input
                     className="code"
@@ -64,8 +65,8 @@ class sms extends Component {
                 </form>
                 <div id="timer" className="timer">
                   <ReactCountdownClock seconds={120}
-                    color="#0000ff"
-                    alpha={0.5}
+                    color="#fff"
+                    alpha={1}
                     size={85} 
                     onComplete={this.activeClick}
                   />
