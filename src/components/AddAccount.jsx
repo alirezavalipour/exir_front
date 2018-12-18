@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import AuthService from './AuthService.jsx';
 import axios from 'axios';
 
+
+
+
 export default class AddAccount extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ export default class AddAccount extends Component {
     };
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -23,19 +27,23 @@ export default class AddAccount extends Component {
       public_key: this.state.public_key,
       name: this.state.name,
     };
-console.log(formData);
+
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.Auth.getToken()}`,
     };
-
     var config = { headers };
-
-
     return axios.post(url, formData, config)
-      .then(response => console.log(response));
+      .then(response =>{
+        if(response.status == 200){
+          this.setState({
+            message : "your account successfully added"
+          })
 
+        }
+         console.log(response)
+       });
   }
 
   handleChange(e) {
@@ -46,8 +54,29 @@ console.log(formData);
   }
 
   render() {
+
+    let body ;
+    let message= <div></div>;
+    if (this.state.message) {
+       message = <div><strong>New account Successfully Added !</strong></div>;
+    }
+
+
+
+
     return (
+
+
       <div>
+      <div className="so-back islandBack">
+        <div className="island">
+        <div className="island__header">
+
+          {message}
+
+          </div>
+          </div>
+          </div>
         <div className="so-back islandBack islandBack--t">
           <div className="so-back islandBack">
             <div className="island">
@@ -61,11 +90,14 @@ console.log(formData);
         <div className="so-back islandBack islandBack--t">
           <div className="so-back islandBack">
             <div className="island">
-              <div className="island__header">
-                Add Account form
-              </div>
+            <div className="island__header">
+        Pleas enter your federation name or public key
+            </div>
+
+
               <div className="island__paddedContent">
                 <form onSubmit={this.handleSubmit}>
+
                   <label className="s-inputGroup Send__input">
                      <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
                        <span>Public Key</span>
@@ -89,11 +121,13 @@ console.log(formData);
                   </label>
                   <button className="s-button" type="submit">Submit</button>
 
+
                 </form>
               </div>
             </div>
           </div>
         </div>
-      </div>);
+      </div>
+);
   }
 }
