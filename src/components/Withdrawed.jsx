@@ -31,7 +31,7 @@ class Withdrawed extends Component {
 
     this.Auth.sms(this.state.code)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         window.location.replace('/#login');
       })
       .catch((err) => {

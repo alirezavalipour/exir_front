@@ -1,9 +1,31 @@
 const React = window.React = require('react');
+import AuthService from './AuthService.jsx';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.Auth = new AuthService();
+    this.logOut = this.logOut.bind(this);
+    this.state = {
+      first_name: null
+    }
   }
-  componentWillUnmount() {
+    componentDidMount() {
+    this.Auth.getProfile();
+
+    let result = this.Auth.fetch(`${this.Auth.getDomain()}/user/profile`, {
+      method: 'GET',
+    })
+      .then((res) => {
+        localStorage.setItem('profile', JSON.stringify(res));
+        this.setState({
+          first_name: res.first_name,
+        });
+      });
+  }
+
+  logOut (e){
+    e.preventDefault();
+    this.Auth.logout();
   }
   render() {
     let networkBar;
@@ -27,24 +49,14 @@ export default class Header extends React.Component {
             <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
           </nav>
           <div className="headerlog">
-            <div className="headerlogname">user</div>
             <div className="headerlogicon">
               <div className="fa fa-user"></div>
               <div className="fa fa-sort-down"></div>
             </div>
+            <div className="headerlogname">{this.state.first_name}</div>
             <div className="headerlogin">
-              <div className="headerloginalias1">
-                <a>first account</a>
-                <div class="fa fa-lock"></div>
-              </div>
-              <div className="headerloginalias2">
-                <a>second account</a>
-                <div class="fa fa-lock"></div>
-              </div>
-              <div className="headerloginaccount">
-                <div className="headerloginsetting"><a>log out</a></div>
-                <div className="headerloginlogout"><a>setting</a></div>
-              </div>
+              <a href="/#dashboard/profile" className="headerloginsetting"><div>profile</div></a>
+              <a onClick={this.logOut} href="#" className="headerloginlogout"><div>log out</div></a>
             </div>
           </div>
         </div>

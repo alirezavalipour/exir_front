@@ -31,7 +31,7 @@ class SetPassword extends Component {
     this.Auth.setpassword(this.state.password)
       .then((res) => {
         console.log(res);
-        window.location.replace('/#dashboard');
+        window.location.replace('/#dashboard/account');
       })
       .catch((err) => {
         alert(err);

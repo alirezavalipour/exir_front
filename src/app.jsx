@@ -7,8 +7,6 @@ import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import Sms from './components/sms.jsx';
 import SetPassword from './components/SetPassword.jsx';
-import Deposit from './components/Deposit.jsx';
-import Withdrawed from './components/Withdrawed.jsx';
 import GlobalModal from './components/GlobalModal.jsx';
 import NotFound from './components/NotFound.jsx';
 import AssetList from './components/AssetList.jsx';
@@ -199,9 +197,9 @@ class TermApp extends React.Component {
         jQuery(".center div form").find( "input" ).eq( 4 ).removeClass("form-item-active");
         jQuery(".center div form").find( "input" ).eq( 5 ).removeClass("form-item-active");
         jQuery(".center div form").find( "input" ).eq( 6 ).removeClass("form-item-active");
-        jQuery(".center div form").find( "input" ).eq( 7 ).removeClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 7 ).addClass("form-item-active");
         jQuery(".center div form").find( "input" ).eq( 8 ).removeClass("form-item-active");
-        jQuery(".center div form").find( "input" ).eq( 9 ).addClass("form-item-active");
+        jQuery(".center div form").find( "input" ).eq( 9 ).removeClass("form-item-active");
       });
       jQuery(".center div form").find( "input" ).eq( 8 ).click(function(){
         jQuery(".center div form").find( "input" ).eq( 0 ).removeClass("form-item-active");
@@ -229,7 +227,6 @@ class TermApp extends React.Component {
       });
       jQuery(function(){
         var locs = location.hash;
-        console.log(locs);
         if(locs=="" || locs=="#")
         {
           jQuery('.HeaderBackBack').addClass('headerlogo');
@@ -239,8 +236,18 @@ class TermApp extends React.Component {
         {
           jQuery('.HeaderBackBack').removeClass('headerlogo');
           jQuery('.Header__navs .Header__nav__item--link').removeClass('headeritem');
+          jQuery('.headerlog').css("display","block");
+        }
+        if(locs=="" || locs=="#" || locs=="#login" || locs=="#register" || locs=="#verify" || locs=="#setpassword" )
+        {
+          jQuery('.headerlog').css("display","none");
         }
       });
+      jQuery(".headerloginlogout").click(function(){
+        var x = location.protocol + "//" + location.host;
+        $(location).attr('href', x);
+      });
+
       jQuery(".owl-carousel").owlCarousel({
         rtl: true,
         loop: true,
@@ -424,10 +431,6 @@ class TermApp extends React.Component {
       body = <Sms d={this.d}/>;
     } else if (urlParts[0] === 'setpassword') {
       body = <SetPassword d={this.d}/>;
-    } else if (urlParts[0] === 'deposit') {
-      body = <Deposit d={this.d}/>;
-    } else if (urlParts[0] === 'withdrawed') {
-      body = <Withdrawed d={this.d}/>;
     } else if (urlParts[0] === 'privacy') {
       body = <Generic title="Privacy Policy">
         <p>This policy may be updated or revised without notice. It is the responsibility of the

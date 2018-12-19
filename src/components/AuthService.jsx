@@ -71,6 +71,20 @@ export default class AuthService {
     });
   }
 
+    Deposit(amount) {
+  // Get a token from api server using the fetch api
+  var public_key = window.localStorage.getItem('public_key');
+  return this.fetch(`${this.domain}/user/deposit`, {
+    method: 'POST',
+    body: JSON.stringify({ amount, public_key }),
+  })
+    .then((res) => {
+       console.log(res);
+      // Setting the token in localStorage
+      return Promise.resolve(res);
+    });
+  }
+
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken(); // GEtting token from localstorage
@@ -103,6 +117,9 @@ export default class AuthService {
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('mobile');
+    localStorage.removeItem('profile');
+    localStorage.removeItem('public_key');
   }
 
   getProfile() {

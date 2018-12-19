@@ -18,7 +18,7 @@ class Login extends Component {
 
   componentWillMount() {
     if (this.Auth.loggedIn()) {
-       window.location.replace('/#dashboard');
+       window.location.replace('/#dashboard/account');
     }
   }
 
@@ -34,7 +34,7 @@ class Login extends Component {
     this.Auth.login(this.state.mobile, this.state.password)
       .then((res) => {
         console.log(res);
-        window.location.replace('/#dashboard');
+        window.location.replace('/#dashboard/account');
       })
       .catch((err) => {
         alert(err);

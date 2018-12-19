@@ -23,7 +23,7 @@ class Register extends Component {
 
   componentWillMount() {
     if (this.Auth.loggedIn()) {
-      window.location.replace('/#dashboard');
+      window.location.replace('/#dashboard/account');
     }
   }
 

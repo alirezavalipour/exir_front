@@ -14,7 +14,6 @@ class Deposit extends Component {
     this.Auth = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.activeClick = this.activeClick.bind(this);
   }
 
   handleChange(e) {
@@ -27,19 +26,16 @@ class Deposit extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
 
-
-    this.Auth.sms(this.state.code)
+    this.Auth.Deposit(this.state.amount)
       .then((res) => {
-        console.log(res);
-        window.location.replace('/#login');
+       console.log(res);
+        window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + res.order_id );
+     
       })
       .catch((err) => {
         alert(err);
       });
-  }
-
-   activeClick() {
-    document.getElementById("verify").setAttribute("class", "enable");
+    console.log('asdasda');
   }
 
   render() {

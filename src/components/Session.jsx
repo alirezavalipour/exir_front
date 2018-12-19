@@ -7,7 +7,8 @@ import AddTrustFromFederation from './Session/AddTrustFromFederation.jsx';
 import AddTrustFromDirectory from './Session/AddTrustFromDirectory.jsx';
 import Send from './Session/Send.jsx';
 import Inflation from './Session/Inflation.jsx';
-import Deposit from './Session/Deposit.jsx';
+import Deposit from './Deposit.jsx';
+import Withdrawed from './Withdrawed.jsx';
 import Generic from './Generic.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import Loading from './Loading.jsx';
@@ -104,7 +105,6 @@ class Session extends React.Component {
     let d = this.props.d;
     let state = d.session.state;
     let setupError = d.session.setupError;
-
  
 
     if (state === 'out') {
@@ -126,6 +126,7 @@ class Session extends React.Component {
 
 
       if (part1 === undefined || isValidPublicKey(part1)) {
+        window.localStorage.setItem('public_key' , part1);
         content = <ErrorBoundary>
         <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top">
           <div className="secretkeytext">please type your secret key here to unlock</div>
@@ -190,6 +191,8 @@ class Session extends React.Component {
         </ErrorBoundary>
       } else if (part1 === 'deposit') {
         content = (<div><Deposit d={d}/></div>);
+      } else if (part1 === 'withdrawed') {
+        content = (<div><Withdrawed d={d}/></div>);
       }
 
       return <div>
@@ -198,14 +201,17 @@ class Session extends React.Component {
             <div className="so-chunk subNav">
               <nav className="subNav__nav">
                 <a className={'subNav__nav__item' + (window.location.hash === '#account' ? ' is-current' : '')} href="#account"><span>Balances</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#dashboard/account/' ? ' is-current' : '')} href="#dashboard/account/"><span>accounts</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/send' ? ' is-current' : '')} href="#account/send"><span>Send</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/addTrust' ? ' is-current' : '')} href="#account/addTrust"><span>Accept assets</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/history' ? ' is-current' : '')} href="#account/history"><span>History</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#deposit' ? ' is-current' : '')} href="#account/deposit"><span>Deposit</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#withdrawed' ? ' is-current' : '')} href="#account/withdrawed"><span>Withdrawale</span></a>
                 {/*<a className={'subNav__nav__item' + (window.location.hash === '#account/settings' ? ' is-current' : '')} href="#account/settings"><span>Settings</span></a>*/}
                 {/*<a className="subNav__nav__item" href="#account/deposit">Deposit</a>*/}
               </nav>
               <nav className="subNav__nav">
-                <a className={'subNav__nav__item'} href="#account" onClick={() => {this.props.d.session.handlers.logout();}}><span>Log out</span></a>
+                {/*<a className={'subNav__nav__item'} href="#account" onClick={() => {this.props.d.session.handlers.logout();}}><span>Log out</span></a>*/}
               </nav>
             </div>
           </div>
