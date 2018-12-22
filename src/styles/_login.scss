@@ -110,58 +110,110 @@
 .deposit , .withdrawed
 {
   background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px #000;
+  box-shadow: 0 0 2px #888;
   text-align: center;
+  width: 64%;
+  float: left;
+  margin: 0 18%;
+}
+
+.deposit_in , .withdrawed_in
+{
+  width: 100%;
+  float: left;
+}
+
+.deposit_title , .withdrawed_title 
+{
+  background-color: #f4f4f5;
+  text-align: left;
+  color: #666;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  font-size: 23px !important;
+  float: left;
+  width: 100%;
 }
 
 .amount_form
 {
-  margin-top: 10px;
+  padding: 0 20px 20px 20px;
+  float: left;
+  width: 100%;
 }
 
-.amount_item
+.amount_item , .amount_price
 {
-  float: left;
-  width: 60%;
+  width: 70%;
   margin-top: 20px;
-}
-
-.amount_item_name
-{
-  float: left;
-  width: 20%;
-  margin-top: 20px;
-  line-height: 40px;
-}
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #aaa;
+  float: right !important;
+  }
 
 .amount_submit
 {
   width: 30%;
-  background-color: #1abc9c;
+  background-color: #68c86f;
   margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  float: none;
   color: #fff;
+  border-radius: 5px;
+  float: right;
+  margin-right: 35%;
+  margin-left: 35%;
 }
 
 .amount_button
 {
-  width: 20%;
-  background-color: #1abc9c;
+  width: 30%;
+  background-color: #68c86f;
   color: #fff;
-  float: left;
-  margin-top: 20px;
+  margin: 20px 35% 0 35%;
   line-height: 40px;
   cursor: pointer;
+  border-radius: 5px;
+  float: right;
 }
 
-.amount_option
+.centers
 {
-  width: 20%;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   float: left;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
+.amount_item_text
+{
+  width: 30%;
+  background-color: #dedfe0;
+  color: #888;
+  line-height: 35px;
+  margin-top: 20px;
+  font-size: 16px !important;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: left;
+  display: inline-block;
+  float: right;
+}
+.amount_item_text div
+{
+  padding-left: 10px;
+  float: left;
+}
+
+.amount_price
+{
+  line-height: 35px;
+  float: left;
+}

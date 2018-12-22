@@ -15,7 +15,6 @@ class Withdrawed extends Component {
     this.Auth = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.activeClick = this.activeClick.bind(this);
   }
 
   handleChange(e) {
@@ -29,48 +28,41 @@ class Withdrawed extends Component {
     e.preventDefault();
 
 
-    this.Auth.sms(this.state.code)
+    this.Auth.Withdrawed(this.state.amount, this.state.sheba)
       .then((res) => {
-        //console.log(res);
-        window.location.replace('/#login');
+        console.log(res);
+        //window.location.replace('/#login');
       })
       .catch((err) => {
         alert(err);
       });
   }
 
-   activeClick() {
-    document.getElementById("verify").setAttribute("class", "enable");
-  }
-
   render() {
     return(
-            <div className="center">
+            <div className="centers">
               <div className="withdrawed">
-                <h1>Withdrawed</h1>
+                <div className="withdrawed_title">Withdrawal</div>
                 <div className="withdrawed_in">
                   <form className="amount_form" onSubmit={this.handleFormSubmit}>
                     <input
                     className="amount_item"
-                    placeholder="The Amount Of"
+                    placeholder=""
                     name="amount"
                     type="tel"
                     onChange={this.handleChange}
                     />
-                    <div className="amount_item_name">XIR(Exir)</div>
-                    <select className="amount_option">
-                      <option>shaba1</option>
-                      <option>shaba2</option>
-                      <option>shaba3</option>
-                    </select>
+                    <div className="amount_item_text"><div>Amount XIR(Exir)</div></div>
                     <input
                     className="amount_item"
-                    placeholder="That Amount Will Be"
-                    name="change"
-                    type="tel"
+                    placeholder=""
+                    name="sheba"
+                    type="text"
                     onChange={this.handleChange}
                     />
-                    <div className="amount_item_name">IRR(Rial)</div>
+                    <div className="amount_item_text"><div>Sheba</div></div>
+                    <div className="amount_price">5454564</div>
+                    <div className="amount_item_text"><div>Amount will be IRR(Rial)</div></div>
                     <input
                     className="amount_submit"
                     value="Submit"

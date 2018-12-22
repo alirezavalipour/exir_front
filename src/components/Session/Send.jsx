@@ -299,6 +299,7 @@ export default class Send extends React.Component {
         </div>
       </div>
     } else if (state === 'success') {
+      window.localStorage.setItem('txId' , d.send.txId);
       return <div className="island">
         <div className="island__header">
           Send Payment

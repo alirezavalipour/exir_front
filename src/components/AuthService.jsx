@@ -79,7 +79,21 @@ export default class AuthService {
     body: JSON.stringify({ amount, public_key }),
   })
     .then((res) => {
-       console.log(res);
+      // console.log(res);
+      // Setting the token in localStorage
+      return Promise.resolve(res);
+    });
+  }
+
+    Withdrawed(amount,sheba) {
+  // Get a token from api server using the fetch api
+  var link = window.localStorage.getItem('txId');
+  return this.fetch(`${this.domain}/user/withdraw`, {
+    method: 'POST',
+    body: JSON.stringify({ amount, link, sheba }),
+  })
+    .then((res) => {
+      // console.log(res);
       // Setting the token in localStorage
       return Promise.resolve(res);
     });
@@ -120,6 +134,7 @@ export default class AuthService {
     localStorage.removeItem('mobile');
     localStorage.removeItem('profile');
     localStorage.removeItem('public_key');
+    localStorage.removeItem('txId');
   }
 
   getProfile() {

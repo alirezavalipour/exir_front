@@ -80,8 +80,8 @@ class Register extends Component {
           <h1>Register</h1>
           <form className="company" onSubmit={this.handleFormSubmit}>
             <select className="form-item" onChange={this.handleFormChange} name="type">
-              <option value="personal" type="0">personal</option>
-              <option value="company" type="1">company</option>
+              <option value="personal" type="0">Personal</option>
+              <option value="company" type="1">Company</option>
             </select>
             <input
               className="form-item"
@@ -170,8 +170,8 @@ class Register extends Component {
           <h1>Register</h1>
           <form  className="personal" onSubmit={this.handleFormSubmit}>
             <select className="form-item" onChange={this.handleFormChange} name="type">
-              <option value="personal" type="0">personal</option>
-              <option value="company" type="1">company</option>
+              <option value="personal" type="0">Personal</option>
+              <option value="company" type="1">Company</option>
             </select>
             <input
               className="form-item"
