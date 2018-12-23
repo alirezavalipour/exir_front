@@ -1,13 +1,34 @@
 const React = window.React = require('react');
 import AuthService from './AuthService.jsx';
+import axios from 'axios';
+import AccountItem from './AccountItem.jsx';
+
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.Auth = new AuthService();
     this.logOut = this.logOut.bind(this);
     this.state = {
-      first_name: null
+      first_name: '',
+      data: ''
     }
+  }
+
+  renderAccountItem(Item) {
+    return <AccountItem data={Item}/>;
+  }
+
+  renderAssetList() {
+
+    let result = [];
+    Object.entries(this.state.data)
+      .forEach(
+        ([key, value]) => {
+          result.push(this.renderAccountItem(value));
+        }
+      );
+    return result;
   }
     componentDidMount() {
     this.Auth.getProfile();
@@ -19,6 +40,18 @@ export default class Header extends React.Component {
         localStorage.setItem('profile', JSON.stringify(res));
         this.setState({
           first_name: res.first_name,
+        });
+      });
+
+    axios.get(this.Auth.getDomain() + '/user/account', {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${this.Auth.getToken()}`,
+      }
+    })
+      .then(response => {
+        this.setState({
+          data: response.data
         });
       });
   }
@@ -46,6 +79,7 @@ export default class Header extends React.Component {
           <nav className="Header__navs">
             <a className="Header__nav__item Header__nav__item--logo" href="#">Exireum</a>
             <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
+            <a className={'Header__nav__item Header__nav__item--link'} href="#dashboard/account">Accounts</a>
             <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
           </nav>
           <div className="headerlog">
@@ -55,8 +89,9 @@ export default class Header extends React.Component {
             </div>
             <div className="headerlogname">{this.state.first_name}</div>
             <div className="headerlogin">
-              <a href="/#dashboard/profile" className="headerloginsetting"><div>Profile</div></a>
-              <a onClick={this.logOut} href="#" className="headerloginlogout"><div>Logout</div></a>
+              <div className="headerloginalias">{this.renderAssetList()}</div>
+              <a href="/#dashboard/profile" className="headerloginsetting"><div className="fa fa-user-circle">Profile</div></a>
+              <a onClick={this.logOut} className="headerloginlogout"><div className="fa fa-sign-out">Logout</div></a>
             </div>
           </div>
         </div>

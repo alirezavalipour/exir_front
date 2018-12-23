@@ -20,11 +20,23 @@ class Deposit extends Component {
   }
 
   handleChange(e) {
-    // this.Auth.getDomain()+"convert/deposit/amount=2000" + res.order_id
     this.setState(
       {
         [e.target.name]: e.target.value,
       });
+    let amount =  e.target.value; 
+
+    console.log(amount);
+    
+    this.Auth.convertDeposit(amount)
+    .then((res) => {
+        this.setState({
+          rial : res.result
+        });
+    }).catch( (err) => {
+      alert(err);
+    });
+
   }
 
   handleFormSubmit(e) {
@@ -32,9 +44,7 @@ class Deposit extends Component {
 
     this.Auth.Deposit(this.state.amount)
       .then((res) => {
-        console.log(res);
-        // window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + res.order_id );
-     
+        window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + res.order_id );
       })
       .catch((err) => {
         alert(err);
@@ -57,7 +67,7 @@ class Deposit extends Component {
                     />
                     <div className="amount_item_text"><div>Amount XIR(Exir)</div></div>
                     <div className="amount_button">Accept XIR</div>
-                    <div className="amount_price">5454564</div>
+                    <div className="amount_price">-{this.state.rial}-</div>
                     <div className="amount_item_text"><div>Amount will be IRR(Rial)</div></div>
                     <input
                     className="amount_submit"

@@ -29,7 +29,6 @@ export default class Account extends Component {
   renderAssetList() {
 
     let result = [];
-
     Object.entries(this.state.data)
       .forEach(
         ([key, value]) => {

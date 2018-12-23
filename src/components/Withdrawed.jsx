@@ -15,6 +15,9 @@ class Withdrawed extends Component {
     this.Auth = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.state = {
+      price: null
+    }
   }
 
   handleChange(e) {
@@ -22,6 +25,20 @@ class Withdrawed extends Component {
       {
         [e.target.name]: e.target.value,
       });
+
+
+if(e.target.name == "amount"){
+    let amount =  e.target.value; 
+    this.Auth.convertWithdrawed(amount)
+    .then((res) => {
+    console.log(res);
+        this.setState({
+          rial : res.result
+        });
+    }).catch( (err) => {
+      alert(err);
+    });
+  }
   }
 
   handleFormSubmit(e) {
@@ -61,7 +78,7 @@ class Withdrawed extends Component {
                     onChange={this.handleChange}
                     />
                     <div className="amount_item_text"><div>Sheba</div></div>
-                    <div className="amount_price">5454564</div>
+                    <div className="amount_price">-{this.state.rial}-</div>
                     <div className="amount_item_text"><div>Amount will be IRR(Rial)</div></div>
                     <input
                     className="amount_submit"

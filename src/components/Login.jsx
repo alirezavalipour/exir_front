@@ -52,6 +52,7 @@ class Login extends Component {
               className="form-item"
               placeholder="phone number"
               name="mobile"
+              required="required"
               type="text"
               pattern="^[0][9][0-3][0-9]{8,8}$"
               onChange={this.handleChange}
@@ -60,8 +61,8 @@ class Login extends Component {
               className="form-item"
               placeholder="Password"
               name="password"
+              required="required"
               type="password"
-              
               onChange={this.handleChange}
             />
             <input

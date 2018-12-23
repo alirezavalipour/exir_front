@@ -28,6 +28,30 @@ export default class AuthService {
       });
   }
 
+  convertDeposit(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=deposit&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+
+        return Promise.resolve(res);
+      });
+  }
+
+   convertWithdrawed(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+        
+        return Promise.resolve(res);
+      });
+  }
+
   register( type, username, email, company_name, first_name, last_name, national_id, address, mobile) {
     // Get a token from api server using the fetch api
     return this.fetch(`${this.domain}/auth/register`, {

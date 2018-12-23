@@ -87,8 +87,7 @@ class Register extends Component {
               className="form-item"
               placeholder="User name"
               name="username"
-              minlength="4" 
-              maxlength="20"
+              required="required"
               type="text"
               onChange={this.handleChange}
             />
@@ -96,6 +95,7 @@ class Register extends Component {
               className="form-item"
               placeholder="Email"
               name="email"
+              required="required"
               type="email"
               onChange={this.handleChange}
             />
@@ -103,33 +103,31 @@ class Register extends Component {
               className="form-item"
               placeholder="Company name"
               name="company_name"
+              required="required"
               type="text"
-              minlength="4" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Ceo's firstname"
               name="first_name"
+              required="required"
               type="text"
-              minlength="3" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Ceo's Lastname"
               name="last_name"
+              required="required"
               type="text"
-              minlength="4" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="National id"
               name="national_number"
+              required="required"
               type="tel"
               pattern="^[0-9][0-9][0-9][0-9]{7,7}$"
               onChange={this.handleChange}
@@ -138,15 +136,15 @@ class Register extends Component {
               className="form-item"
               placeholder="Address"
               name="address"
+              required="required"
               type="text"
-              minlength="10" 
-              maxlength="100"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Phone number"
               name="mobile"
+              required="required"
               type="tel"
               pattern="^[0][9][0-3][0-9]{8,8}$" 
               onChange={this.handleChange}
@@ -177,15 +175,15 @@ class Register extends Component {
               className="form-item"
               placeholder="User name"
               name="username"
+              required="required"
               type="text"
-              minlength="4" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Email"
               name="email"
+              required="required"
               type="email"
               onChange={this.handleChange}
             />
@@ -193,24 +191,23 @@ class Register extends Component {
               className="form-item"
               placeholder="First name"
               name="first_name"
+              required="required"
               type="text"
-              minlength="3" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Last name"
               name="last_name"
+              required="required"
               type="text"
-              minlength="4" 
-              maxlength="20"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="National code"
               name="national_number"
+              required="required"
               type="tel"
               pattern="^[0-9][0-9][0-9][0-9]{7,7}$"
               onChange={this.handleChange}
@@ -219,15 +216,15 @@ class Register extends Component {
               className="form-item"
               placeholder="Address"
               name="address"
+              required="required"
               type="text"
-              minlength="10" 
-              maxlength="100"
               onChange={this.handleChange}
             />
             <input
               className="form-item"
               placeholder="Phone number"
               name="mobile"
+              required="required"
               type="tel"
               pattern="^[0][9][0-3][0-9]{8,8}$" 
               onChange={this.handleChange}

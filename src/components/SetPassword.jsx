@@ -49,6 +49,7 @@ class SetPassword extends Component {
                     className="form-item"
                     placeholder="New Password"
                     name="password"
+                    required="required"
                     type="password"
                     minlength="8"
                     onChange={this.handleChange}
@@ -57,6 +58,7 @@ class SetPassword extends Component {
                     className="form-item"
                     placeholder="Confirm Password"
                     name="confirm_password"
+                    required="required"
                     type="password"
                     minlength="8"
                     onChange={this.handleChange}

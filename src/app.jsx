@@ -26,6 +26,7 @@ import Driver from './lib/Driver';
 import Dashboard from './components/Dashboard.jsx';
 import Account from './components/Account.jsx';
 import AddAccount from './components/AddAccount.jsx';
+import AuthService from './components/AuthService.jsx';
 
 
 let network = {
@@ -67,6 +68,8 @@ const parseUrl = (href) => {
 class TermApp extends React.Component {
   constructor(props) {
     super(props);
+    this.Auth = new AuthService();
+    this.logOut = this.logOut.bind(this);
     this.d = props.d;
     this.state = {
       // The url is the hash cleaned up
@@ -80,6 +83,12 @@ class TermApp extends React.Component {
         url: parseUrl(e.newURL)
       });
     }, false);
+  }
+
+    logOut (e){
+    e.preventDefault();
+    this.Auth.logout();
+    window.location.reload();
   }
 
   renderHomePageActions() {
@@ -243,6 +252,17 @@ class TermApp extends React.Component {
           jQuery('.headerlog').css("display","none");
         }
       });
+       jQuery(function(){
+        var test = location.hash;
+        if(test=="#dashboard/account")
+        {
+          jQuery('.headerloginalias').css("display","none");
+        }
+        else
+        {
+          jQuery('.headerloginalias').css("display","block");
+        }
+      });
       jQuery(".headerloginlogout").click(function(){
         var x = location.protocol + "//" + location.host;
         $(location).attr('href', x);
@@ -309,11 +329,13 @@ class TermApp extends React.Component {
       jQuery(".picture1").css("height",$x1);
       jQuery(".picture2").css("height",$x1);
       jQuery(".picture3").css("height",$x1);
+      jQuery(".center").css("height",$x1);
     });
     let url = this.state.url;
     let urlParts = url.split('/');
     let body;
     if (url === '') {
+      if(this.Auth.loggedIn()==false){
       // Home page
       body = <div>
         <div id="container" className="container">
@@ -394,14 +416,103 @@ class TermApp extends React.Component {
               <div className="key3"><a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a></div>
             </nav>
             <div className="share">
-              <a href="http://www.facebook.com" className="fa fa-facebook"></a>
+              <a href="http://www.facebook.com" className="fa fa-send"></a>
               <a href="http://www.linkedin.com" className="fa fa-linkedin"></a>
-              <a href="http://www.twitter.com" className="fa fa-twitter"></a>
               <a href="http://www.instagram.com" className="fa fa-instagram"></a>
             </div>
           </div>
         </div>
-      </div>;
+      </div>
+      }
+      else{
+            body = <div>
+        <div id="container" className="container">
+          <div id="home" className="home">
+            <div className="owl-carousel">
+              <div className="picture1">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
+              <div className="picture2">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
+              <div className="picture3">
+                <div className="picturetext">
+                  <div className="picturetextin">
+                    <div></div>
+                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
+                    <div></div>
+                    Key features:
+                    <div></div>
+                    - Multiple Accounts and Assets management support
+                    <div></div>
+                    - Send and recieve Lumen and all other assets
+                    <div></div>
+                    - Allow to circulate and sign multi-signature transactions.
+                    <div></div>
+                    - Intetface for Stellar distributed exchange
+                    <div></div>
+                    - Hardware wallet support
+                  </div>
+                </div>
+                <div className="picture1img"></div>
+              </div>
+            </div>
+          </div>
+          <div className="menu">
+            <div className="headersign">
+              <a href="#" onClick={this.logOut} className="headerinsignin">Logout</a>
+              <a href="#dashboard/profile" className="headerinlogin">Profile</a>
+            </div>
+            <nav className="Header__nav">
+              <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
+              <a className={'Header__nav__item Header__nav__item--link'} href="#dashboard/account">Accounts</a>
+              <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
+            </nav>
+            <div className="share">
+              <a href="http://www.facebook.com" className="fa fa-send"></a>
+              <a href="http://www.linkedin.com" className="fa fa-linkedin"></a>
+              <a href="http://www.instagram.com" className="fa fa-instagram"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
     } else if (urlParts[0] === 'download') {
       body = <Download/>;
     } else if (urlParts[0] === 'testnet') {

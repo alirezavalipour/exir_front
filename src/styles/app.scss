@@ -310,30 +310,36 @@ ul.privacy__ul {
   z-index: 1000;
 }
 
-.headerloginlogout , .headerloginsetting
+.headerloginlogout div , .headerloginsetting div
 {
   width: 100%;
-  padding: 10px 0;
-  float: right;
+  padding: 10px 10px;
+  float: left;
   height: 100%;
   color: #fff !important;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
 }
 
-.headerloginsetting
+.headerloginlogout div:before , .headerloginsetting div:before
+{
+  float: right;
+  text-align: right;
+}
+
+.headerloginsetting div
 {
   border-bottom: 1px solid #fff !important;
 }
 
-.headerloginlogout:hover , .headerloginsetting:hover
+.headerloginlogout:hover div , .headerloginsetting:hover div
 {
   background-color: #fff;
 }
 
 .headerloginlogout:hover div , .headerloginsetting:hover div
 {
-  color: #000;
+  color: #000 !important;
 }
 
 .so-chunk
@@ -471,7 +477,7 @@ ul.privacy__ul {
   line-height: 120px;
 }
 
-.fa-facebook , .fa-twitter , .fa-instagram , .fa-linkedin
+.fa-send , .fa-instagram , .fa-linkedin
 {
   font-size: 20px !important;
   padding-right: 10px;
@@ -481,7 +487,7 @@ ul.privacy__ul {
   text-decoration: none;
 }
 
-.fa-share-alt:hover , .fa-facebook:hover , .fa-twitter:hover , .fa-instagram:hover , .fa-linkedin:hover
+.fa-send:hover , .fa-instagram:hover , .fa-linkedin:hover
 {
   text-decoration: none;
 }
@@ -625,8 +631,7 @@ ul.privacy__ul {
 
 .subNavBack
 {
-  background-color: #313147;
-  border-top: 1px solid #fff;
+  background-color: #4d4d78;
 }
 
 .subNav__nav__item
@@ -642,4 +647,39 @@ ul.privacy__ul {
 
 .subNav__nav__item.is-current {
   border-bottom: 5px solid #fff;
+}
+
+.headerloginalias .AssetList__asset__amount__public_key , .headerloginalias .AssetList__asset__amount_federation , .headerloginalias .AssetList__asset__amount_id
+{
+  display: none;
+}
+
+.headerloginalias .AssetList__asset
+{
+  display: block;
+  border-top: 0;
+}
+
+.headerloginalias .AssetList__asset__amount__name
+{
+  width: 100%;
+  padding: 10px 10px;
+  float: left;
+  height: 100%;
+  color: #fff !important;
+  text-align: left !important;
+  text-decoration: none;
+  border-bottom: 1px solid #fff !important;
+}
+
+.headerloginalias .AssetList__asset__amount__name:before
+{
+  text-align: right;
+  float: right;
+}
+
+.headerloginalias .AssetList__asset__amount__name:hover
+{
+  background-color: #fff;
+  color: #000 !important;
 }
