@@ -17,7 +17,7 @@ export default class AccountItem extends Component {
 
   render() {
     jQuery("document").ready(function(){
-      jQuery(".headerloginalias .AssetList__asset__amount__name").addClass("fa fa-lock")
+      jQuery(".headerloginalias .AssetList__asset__amount__name").addClass("fa fa-lock");
     });
      let address = "/#account/" +   this.props.data.public_key  ;
      // console.log(address);

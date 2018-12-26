@@ -7,18 +7,18 @@
 // @import 'node_modules/react-select/dist/react-select.min';
 
 html {
-  min-width: 1052px;
+  min-width: 100%;
   background: #fff;
 }
 body {
   background: linear-gradient(0deg,#ced0ff,#c0ecff);
   color: $s-color-neutral3;
   font-size: $s-scale-4;
-  min-width: 1052px;
+  min-width: 100%;
 }
 #app {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
   background-color: rgb(255, 217, 112);
 }
 
@@ -124,49 +124,6 @@ ul.privacy__ul {
   padding: 0 !important;
 }
 
-#aboutus
-{
-  width: 100%;
-  float: right;
-  direction: rtl;
-  background-color: #333;
-  padding: 0 15px !important;
-  text-align: justify;
-}
-
-.aboutussubject
-{
-  font-size: 20px;
-  color: #4990e2;
-  text-align: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-
-.aboutussubjectin
-{
-  width: 120px;
-  border-bottom: 6px solid #4990e2;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  text-align: center;
-  float: none;
-  margin: 5px auto;
-}
-
-.aboutusbody
-{
-  font-size: 18px;
-  color: #fff;
-  line-height: 45px;
-  text-align: justify;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  padding: 0 15px !important;
-  direction: ltr;
-  float: left;
-}
-
 #contactus
 {
   width: 100%;
@@ -270,6 +227,7 @@ ul.privacy__ul {
   direction: ltr;
   text-align: right;
   cursor: pointer;
+  height: 100%;
 }
 
 .headerlogname
@@ -340,11 +298,6 @@ ul.privacy__ul {
 .headerloginlogout:hover div , .headerloginsetting:hover div
 {
   color: #000 !important;
-}
-
-.so-chunk
-{
-  max-width: 100%;
 }
 
 @keyframes das {0%{transform: rotatey(0deg);} 100%{transform: rotatey(720deg);}}
@@ -443,7 +396,8 @@ ul.privacy__ul {
 .headerlogo
 {
   width: 100%;
-  float: right;
+  float: left;
+  direction: ltr;
   position: fixed !important;
   top: 0;
   left: 0;
@@ -498,6 +452,14 @@ ul.privacy__ul {
   float: left;
   direction: ltr;
   text-align: left;
+  height: 100%;
+}
+
+.so-chunk
+{
+  height: 100%;
+  max-width: 100%;
+  padding: 10px 10px !important;
 }
 
 .Header__nav
@@ -525,6 +487,7 @@ ul.privacy__ul {
 {
   color: #fff;
   font-weight: bold;
+  border-radius: 0;
 }
 
 .Header__nav__item--link:hover
@@ -583,7 +546,7 @@ ul.privacy__ul {
   cursor: pointer;
   margin: 20px;
   position: absolute;
-  top: 4%;
+  top: 5%;
   right: 3%;
   z-index: 1;
   color: #fff;
@@ -642,11 +605,11 @@ ul.privacy__ul {
 
 .subNav__nav__item:hover
 {
-  border-bottom: 5px solid #fff;
+  border-color: transparent !important;
 }
 
 .subNav__nav__item.is-current {
-  border-bottom: 5px solid #fff;
+  border-color: transparent !important;
 }
 
 .headerloginalias .AssetList__asset__amount__public_key , .headerloginalias .AssetList__asset__amount_federation , .headerloginalias .AssetList__asset__amount_id

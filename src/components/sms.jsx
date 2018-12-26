@@ -16,12 +16,24 @@ class sms extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.activeClick = this.activeClick.bind(this);
+    this.unResendClick = this.unResendClick.bind(this);
   }
 
   handleChange(e) {
     this.setState(
       {
         [e.target.name]: e.target.value,
+      });
+  }
+
+  unResendClick(e){
+    e.preventDefault();
+    this.Auth.resend()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err);
       });
   }
 
@@ -64,14 +76,16 @@ class sms extends Component {
                   />
                 </form>
                 <div id="timer" className="timer">
-                  <ReactCountdownClock seconds={120}
+                  <ReactCountdownClock
+                    className="timerin"
+                    seconds={5}
                     color="#fff"
                     alpha={1}
                     size={85} 
                     onComplete={this.activeClick}
                   />
                 </div>
-                <a id="verify" className="disable">resend code to phone number</a>
+                <a id="verify" className="disable" onClick={this.unResendClick}>resend code to phone number</a>
               </div>
             </div>)
   }

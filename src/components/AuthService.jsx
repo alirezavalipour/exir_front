@@ -81,12 +81,28 @@ export default class AuthService {
       });
   }
 
-  setpassword(password) {
+    resend() {
+    // Get a token from api server using the fetch api
+    var mobile = window.localStorage.getItem('mobile');
+    console.log(mobile);
+    return this.fetch(`${this.domain}/auth/resend`, {
+      method: 'POST',
+      body: JSON.stringify({ mobile }),
+    })
+      .then((res) => {
+        this.setToken(res.token);
+        //console.log(res);
+        // Setting the token in localStorage
+        return Promise.resolve(res);
+      });
+  }
+
+  setpassword(password,password_confirmation) {
   // Get a token from api server using the fetch api
   var token = this.getToken();
   return this.fetch(`${this.domain}/auth/password`, {
     method: 'POST',
-    body: JSON.stringify({ password }),
+    body: JSON.stringify({ password, password_confirmation }),
   })
     .then((res) => {
       // console.log(res);
@@ -201,23 +217,20 @@ export default class AuthService {
       headers,
       options,
     })
-      // .then(response => console.log())
       .then(this._checkStatus)
       .then(response => response.json());
   }
 
   _checkStatus(response) {
-     return response;
+    // return response;
     // raises an error in case response status is not a success
-    // if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
-    //   return response;
-    // }
-    // const error = new Error(response.statusText);
-
-
-    // error.response = response;
-    // error.body = response.json();
-    // console.log(error);
-    // throw error.body ;
+    if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
+      return response;
+    }
+      const error = new Error(response.statusText);
+      // error.response = response;
+      // error.body = response.json();
+      // console.log(error);
+      throw error.body ;
   }
 }

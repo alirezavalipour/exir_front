@@ -15,6 +15,9 @@ class SetPassword extends Component {
     this.Auth = new AuthService();
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.state = {
+      err: ""
+    }
   }
 
   handleChange(e) {
@@ -28,50 +31,89 @@ class SetPassword extends Component {
     e.preventDefault();
 
 
-    this.Auth.setpassword(this.state.password)
+    this.Auth.setpassword(this.state.password, this.state.password_confirmation)
       .then((res) => {
-        console.log(res);
         window.location.replace('/#dashboard/account');
       })
       .catch((err) => {
-        alert(err);
+        this.setState({
+            err : err,
+        });
       });
   }
 
   render() {
-    return(
-            <div className="center">
-              <div className="center_in"></div>
-              <div className="set_password">
-                <h1>Set your password</h1>
-                <form  className="personal" onSubmit={this.handleFormSubmit}>
-                  <input
-                    className="form-item"
-                    placeholder="New Password"
-                    name="password"
-                    required="required"
-                    type="password"
-                    minlength="8"
-                    onChange={this.handleChange}
-                  />
-                  <input
-                    className="form-item"
-                    placeholder="Confirm Password"
-                    name="confirm_password"
-                    required="required"
-                    type="password"
-                    minlength="8"
-                    onChange={this.handleChange}
-                  />
-                  <input
-                    className="form-submit"
-                    value="SUBMIT"
-                    type="submit"
-                  />
-                </form>
+    if(this.state.err!=""){
+      return(
+              <div className="center">
+                <div className="center_in"></div>
+                <div className="set_password">
+                  <div className="registererror">Your password and confirm password are not match</div>
+                  <h1>Set your password</h1>
+                  <form  className="personal" onSubmit={this.handleFormSubmit}>
+                    <input
+                      className="form-item"
+                      placeholder="New Password"
+                      name="password"
+                      minLength="8"
+                      required="required"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      className="form-item"
+                      placeholder="Confirm Password"
+                      name="password_confirmation"
+                      minLength="8"
+                      required="required"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      className="form-submit"
+                      value="SUBMIT"
+                      type="submit"
+                    />
+                  </form>
+                </div>
               </div>
-            </div>
-          );
+            );
+    }
+    else{
+      return(
+              <div className="center">
+                <div className="center_in"></div>
+                <div className="set_password">
+                  <h1>Set your password</h1>
+                  <form  className="personal" onSubmit={this.handleFormSubmit}>
+                    <input
+                      className="form-item"
+                      placeholder="New Password"
+                      name="password"
+                      minLength="8"
+                      required="required"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      className="form-item"
+                      placeholder="Confirm Password"
+                      name="password_confirmation"
+                      minLength="8"
+                      required="required"
+                      type="password"
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      className="form-submit"
+                      value="SUBMIT"
+                      type="submit"
+                    />
+                  </form>
+                </div>
+              </div>
+            );
+    }
   }
 }
   export default SetPassword;

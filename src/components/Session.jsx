@@ -46,6 +46,9 @@ class Session extends React.Component {
     this.mounted = true;
     this.unlockHandler = this.unlockHandler.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.state = {
+      secretInput: ""
+    }
     // KLUDGE: The event listeners are kinda messed up
     // Uncomment if state changes aren't working. But with the new refactor, this dead code should be removed
     // For now, it's just extra insurance
@@ -102,10 +105,13 @@ class Session extends React.Component {
   }
 
   render() {
+    if (isValidSecretKey(this.state.secretInput)) {
+      jQuery(".iconbar").addClass("fa-unlock");
+    }
     let d = this.props.d;
     let state = d.session.state;
     let setupError = d.session.setupError;
- 
+    
 
     if (state === 'out') {
       return <LoginPage setupError={setupError} d={d} urlParts={this.props.urlParts}></LoginPage>

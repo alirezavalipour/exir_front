@@ -114,6 +114,9 @@ class TermApp extends React.Component {
 
   render() {
     jQuery(document).ready(function(e){
+      jQuery("#verify").click(function(){
+        window.location.reload();
+      });
       jQuery(".center div form").find( "input" ).eq( 0 ).click(function(){
         jQuery(".center div form").find( "input" ).eq( 0 ).addClass("form-item-active");
         jQuery(".center div form").find( "input" ).eq( 1 ).removeClass("form-item-active");
@@ -325,7 +328,7 @@ class TermApp extends React.Component {
         }
         q+=1;
       });
-      var $x1 = jQuery("#app").height();
+      var $x1 = jQuery("body").height();
       jQuery(".picture1").css("height",$x1);
       jQuery(".picture2").css("height",$x1);
       jQuery(".picture3").css("height",$x1);

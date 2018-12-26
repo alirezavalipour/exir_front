@@ -62,6 +62,7 @@ class Deposit extends Component {
                     className="amount_item"
                     placeholder=""
                     name="amount"
+                    minLength="5"
                     type="tel"
                     onChange={this.handleChange}
                     />

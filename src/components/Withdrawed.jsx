@@ -47,8 +47,8 @@ if(e.target.name == "amount"){
 
     this.Auth.Withdrawed(this.state.amount, this.state.sheba)
       .then((res) => {
-        console.log(res);
-        //window.location.replace('/#login');
+        // console.log(res);
+        window.location.replace('/#account');
       })
       .catch((err) => {
         alert(err);
@@ -66,6 +66,7 @@ if(e.target.name == "amount"){
                     className="amount_item"
                     placeholder=""
                     name="amount"
+                    minLength="5"
                     type="tel"
                     onChange={this.handleChange}
                     />
