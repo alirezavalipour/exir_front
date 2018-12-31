@@ -3,16 +3,6 @@ import axios from 'axios';
 import AccountItem from './AccountItem.jsx';
 import AuthService from './AuthService.jsx';
 
-
-const divStyleName = {
-   textAlign: 'center'
-};
-
-const divStylePublic = {
-   textAlign: 'left'
-};
-
-
 export default class Account extends Component {
 
   constructor(props) {
@@ -55,23 +45,20 @@ export default class Account extends Component {
   render() {
 
     return (<div>
-      <div className="so-back islandBack islandBack--t">
-        <div className="so-back islandBack">
-          <div className="island">
-            <div className="island__paddedContent">
-              <a className="s-button" href="/#dashboard/account/add">Add account</a>
-              <a className="s-button" href="/#dashboard/account/create">Create account</a>
-
-            </div>
+      <div className="secondheaderout">
+        <div className="secondheader">
+          <div className="secondheaderin">
+            <a className="" href="/#dashboard/account/add">Add account</a>
+            <a className="" href="/#dashboard/account/create">Create account</a>
           </div>
         </div>
-        <div className="island">
+        <div className="island secondheader_body">
           <div className="AssetList">
             <div className="AssetList__head__row">
-              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Name</div>
-              <div className="AssetList__head__cell AssetList__head__amount" style={divStylePublic}>Public key</div>
-              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Federation name</div>
-              <div className="AssetList__head__cell AssetList__head__amount" style={divStyleName}>Balance</div>
+              <div className="AssetList__head__cell AssetList__head__amount secondheader_body1">Name</div>
+              <div className="AssetList__head__cell AssetList__head__amount secondheader_body2">Public key</div>
+              <div className="AssetList__head__cell AssetList__head__amount secondheader_body3">Federation name</div>
+              <div className="AssetList__head__cell AssetList__head__amount secondheader_body4">Balance</div>
             </div>
             {this.renderAssetList()}
           </div>

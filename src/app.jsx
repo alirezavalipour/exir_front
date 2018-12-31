@@ -576,7 +576,7 @@ class TermApp extends React.Component {
         body = <Profile d={this.d}></Profile>;
       } else if (urlParts[1] == 'account') {
         if (urlParts[2] == 'add') {
-          body = <AddAccount d={this.props}/>;
+          body = <AddAccount d={this.d}/>;
         }
         else {
           body = <Account d={this.d}/>;

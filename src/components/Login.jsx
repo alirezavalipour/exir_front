@@ -51,7 +51,7 @@ class Login extends Component {
         <div className="center">
           <div className="center_in"></div>
           <div className="card">
-            <div className="registererror">This phone number or password is uncorrect</div>
+            <div className="registererror">This phone number or password is incorrect</div>
             <h1>Login</h1>
             <form onSubmit={this.handleFormSubmit}>
               <input
