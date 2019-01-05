@@ -77,10 +77,10 @@ export default class Header extends React.Component {
       <div className="so-back HeaderBack">
         <div className="so-chunk Header">
           <nav className="Header__navs">
-            <a className="Header__nav__item Header__nav__item--logo" href="#">Exireum</a>
-            <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
-            <a className={'Header__nav__item Header__nav__item--link'} href="#dashboard/account">Accounts</a>
-            <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
+            <a className="Header__nav__item Header__nav__item--logo" href="#"></a>
+            <a className="Header__nav__item Header__nav__item--link" href="#markets">Markets</a>
+            <a className="Header__nav__item Header__nav__item--link Header__nav__item--link--account" href="#dashboard/account">Accounts</a>
+            <a href="#contactus" className="Header__nav__item Header__nav__item--link">Contact us</a>
           </nav>
           <div className="headerlog">
             <div className="headerlogicon">

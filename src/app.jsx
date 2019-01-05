@@ -26,6 +26,7 @@ import Driver from './lib/Driver';
 import Dashboard from './components/Dashboard.jsx';
 import Account from './components/Account.jsx';
 import AddAccount from './components/AddAccount.jsx';
+import CreatAccount from './components/CreatAccount.jsx';
 import AuthService from './components/AuthService.jsx';
 
 
@@ -250,9 +251,14 @@ class TermApp extends React.Component {
           jQuery('.Header__navs .Header__nav__item--link').removeClass('headeritem');
           jQuery('.headerlog').css("display","block");
         }
-        if(locs=="" || locs=="#" || locs=="#login" || locs=="#register" || locs=="#verify" || locs=="#setpassword" )
+        if(locs=="" || locs=="#" || locs=="#login" || locs=="#register" || locs=="#verify" || locs=="#setpassword" || locs=="#contactus" || locs=="#markets" )
         {
           jQuery('.headerlog').css("display","none");
+          jQuery(".Header__nav__item--link--account").css("display","none");
+        }
+        else
+        {
+          jQuery(".Header__nav__item--link--account").css("display","inline-block");
         }
       });
        jQuery(function(){
@@ -416,7 +422,7 @@ class TermApp extends React.Component {
             </div>
             <nav className="Header__nav">
               <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
-              <div className="key3"><a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a></div>
+              <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>
@@ -505,7 +511,7 @@ class TermApp extends React.Component {
             <nav className="Header__nav">
               <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
               <a className={'Header__nav__item Header__nav__item--link'} href="#dashboard/account">Accounts</a>
-              <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
+              <a className={'Header__nav__item Header__nav__item--link'} href="#contactus">Contact us</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>
@@ -577,6 +583,9 @@ class TermApp extends React.Component {
       } else if (urlParts[1] == 'account') {
         if (urlParts[2] == 'add') {
           body = <AddAccount d={this.d}/>;
+        }
+        else if (urlParts[2] == 'create') {
+          body = <CreatAccount d={this.d}/>;
         }
         else {
           body = <Account d={this.d}/>;

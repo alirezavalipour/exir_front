@@ -8,8 +8,8 @@ import AssetCard2 from './AssetCard2.jsx';
 import RemoveTrustLink from './Session/RemoveTrustLink.jsx';
 import _ from 'lodash';
 import directory from '../../directory';
-var base64 = require('base-64');
-var StellarSdk = require('stellar-sdk');
+import Ellipsis from './Ellipsis.jsx';
+import clickToSelect from '../lib/clickToSelect';
 
 const isValidPublicKey = input => {
   try {
@@ -21,52 +21,31 @@ const isValidPublicKey = input => {
   }
 }
 
-export default class AddAccount extends Component {
+export default class CreatAccount extends Component {
   constructor(props) {
     super(props);
     this.Auth = new AuthService();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.handleSubmitSignXdr = this.handleSubmitSignXdr.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.acceptClick = this.acceptClick.bind(this);
     this.state = {
       public_key: '',
       name: '',
       amount: '',
-      secret_key:'',
-    };
-  }
-
-  handleSubmitForm(e) {
-    e.preventDefault();
-    StellarSdk.Network.useTestNetwork();
-    var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-    let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-    console.log(keypair);
-    // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
-    let transaction = new StellarSdk.Transaction(this.state.xdr);
-    transaction.sign(keypair);
-    let xdr = transaction.toEnvelope().toXDR('base64');
-
-    const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
-    const formData = {
-      xdr: xdr,
-    };
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.Auth.getToken()}`,
-    };
-    var config = { headers };
-    return axios.post(url, formData, config)
-      .then(response =>{
-        if(response.status == 200){
-
+      exir: '',
+      newKeypair: null,
+      termsAccepted: false,
+    }
+    this.handleGenerate = event => {
+      let keypair = StellarSdk.Keypair.random();
+      this.setState({
+        newKeypair: {
+          pubKey: keypair.publicKey(),
+          secretKey: keypair.secret(),
         }
-         console.log(response)
-       });
-}
+      });
+    }
+
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -75,6 +54,7 @@ export default class AddAccount extends Component {
     const formData = {
       public_key: this.state.public_key,
       name: this.state.name,
+      lumen: this.state.lumen,
       amount: this.state.amount,
     };
 
@@ -98,10 +78,10 @@ export default class AddAccount extends Component {
     this.setState(
       {
         [e.target.name]: e.target.value,
-    });
-    if (e.target.name=="public_key" && isValidPublicKey(e.target.value) ) {
-      this.props.d.session.handlers.logInWithPublicKey(e.target.value);
-    }
+      });
+      if (e.target.name=="public_key" && isValidPublicKey(e.target.value) ) {
+        this.props.d.session.handlers.logInWithPublicKey(e.target.value);
+      }
 
     let amount =  e.target.value; 
     
@@ -110,74 +90,55 @@ export default class AddAccount extends Component {
         this.setState({
           rial : res.result
         });
-    });
-    /*this.setState({
-      balance: this.props.d.session.account.getSortedBalances()
-    });*/
-  }
-
-  acceptClick(e){
-    const url = this.Auth.getDomain() + '/user/stellar/asset/accept';
-    const formData = {
-      public_key: this.state.public_key,
-    };
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.Auth.getToken()}`,
-    };
-    var config = { headers };
-    return axios.post(url, formData, config)
-      .then(response =>{
-        if(response.status == 200){
-            this.setState({
-              xdr : response.data.xdr,
-            })
-        }
-         console.log(response)
-       });
-  }
-
-  handleSubmitSignXdr(e){
-
+    })
   }
 
   render() {
-/*    let balance = null;
-    if (this.state.balance) {
-      for ( let i=0;i < this.state.balance.length ;i++ ) {
-        if(this.state.balance[i].code==="XLM")
-        {
-          balance = this.state.balance[i].balance;
-        }
-      }
-    }
-    let price = 2 - balance;
-    let prices = "0"
-    if(price > 2)
-    {
-      prices = price;
-    }
-    let text="";
-    if (balance <= 2) {
-      text = <div>Your balance is less than minimum balance requirments. It is necessary to have at least 2.0 Xlm in your account.</div>;
-    }*/
-
     if (isValidPublicKey(this.state.public_key) ) {
       jQuery(".account_button").css("display","block");
     }
-
     let addprice = "100,000";
     let addprice2 = this.state.rial;
-    let allprice = addprice + addprice2;
+    let allprice = addprice + 2 * addprice2;
+    let d = this.props.d;
+    let newKeypairDetails;
+    if (this.state.newKeypair !== null) {
+      newKeypairDetails = <div className="LoginPage__generatedNote">
+        <form>
+          <label className="s-inputGroup Send__input">
+            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+              <span>Generate Public key</span>
+            </span>
+            <div className="s-inputGroup__item S-flexItem-share addaccount_balance">  {this.state.newKeypair.pubKey}  </div>
+          </label>
+          <label className="s-inputGroup Send__input">
+            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+              <span>Generate Secret key</span>
+            </span>
+            <div className="s-inputGroup__item S-flexItem-share addaccount_balance">  {this.state.newKeypair.secretKey}  </div>
+          </label>
+        </form>
+      </div>
+    }
     return (
             <div>
               <div className="addaccount_box1">
                 <div className="so-back islandBack">
                   <div className="island">
-                    <div className="island__header">Add an existing account</div>
+                    <div className="island__header">Create account keypair</div>
                     <div className="island__paddedContent">
-                      <form onSubmit={this.handleSubmitForm}>
+                      <input type="submit" className="LoginPage__generate s-button" onClick={this.handleGenerate} value="Generate keypair" ></input>
+                      {newKeypairDetails}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="addaccount_box2">
+                <div className="so-back islandBack">
+                  <div className="island">
+                    <div className="island__header">Create account</div>
+                    <div className="island__paddedContent">
+                      <form onSubmit={this.handleSubmit}>
                         <label className="s-inputGroup Send__input">
                           <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
                             <span>Public key</span>
@@ -202,6 +163,12 @@ export default class AddAccount extends Component {
                         </label>
                         <label className="s-inputGroup Send__input">
                           <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                            <span>Increase Lumens (XLM)</span>
+                          </span>
+                          <div className="s-inputGroup__item S-flexItem-share addaccount_balance">2</div>
+                        </label>
+                        <label className="s-inputGroup Send__input">
+                          <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
                             <span>Increase Exir (XIR)</span>
                           </span>
                           <input type="text" className="s-inputGroup__item S-flexItem-share"
@@ -210,19 +177,9 @@ export default class AddAccount extends Component {
                           name="amount"
                           placeholder="0"
                           />
-                          <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
-                        </label>
-                        <label className="s-inputGroup Send__input">
-                          <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                            <span>Secret key</span>
-                          </span>
-                          <input type="text" className="s-inputGroup__item S-flexItem-share"
-                          value={this.state.secret_key}
-                          onChange={this.handleChange}
-                          name="secret_key"
-                          placeholder="Example: SDRTBAWX6RYQG4P46VRAB2QQJGGMUTBWNXA5OMZ3VROWXJFVCCLEJICZ"
-                          />
-                          <button className="s-button">Submit</button>
+                          <div>
+                            <button className="s-button">Accept XIR</button>
+                          </div>
                         </label>
                         <label className="popup_account">
                           <Popup trigger={<button className="s-button account_button">Continue</button>} position="top top">
@@ -230,6 +187,7 @@ export default class AddAccount extends Component {
                               <div className="">Add account processing fees</div>
                               <form onSubmit={this.handleSubmit}>
                                 <div>Add account processing fee {addprice} IRR</div>
+                                <div>XLM charge {this.state.rial} IRR</div>
                                 <div>XIR charge {this.state.rial} IRR</div>
                                 <div>fees {allprice} IRR</div>
                                 <button className="s-button">Pay</button>
@@ -246,28 +204,3 @@ export default class AddAccount extends Component {
             );
   }
 }
-
-// <div className="addaccount_text">{text}</div>
-
-
-/*<label className="s-inputGroup Send__input">
-  <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-    <span>Balance (XLM)</span>
-  </span>
-  <div className="s-inputGroup__item S-flexItem-share addaccount_balance">  {balance}  </div>
-</label>
- <label className="s-inputGroup Send__input">
-  <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-    <span>Increase Lumens (XLM)</span>
-  </span>
-  <input type="text" className="s-inputGroup__item S-flexItem-share"
-  value={this.state.lumen}
-  onChange={this.handleChange}
-  name="lumen"
-  placeholder={prices}
-  />
-</label>*/
-
-/*<label className="s-inputGroup Send__input">
-  <div>XLM charge {this.state.rial} IRR</div>
-</label>*/

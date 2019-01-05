@@ -13,58 +13,70 @@ class Contactus extends Component {
   constructor() {
     super();
     this.Auth = new AuthService();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.activeClick = this.activeClick.bind(this);
-  }
-
-  componentWillMount() {
-    if (this.Auth.loggedIn()) {
-      window.location.replace('/#dashboard');
-    }
-  }
-
-  handleChange(e) {
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-      });
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-
-
-    this.Auth.sms(this.state.code)
-      .then((res) => {
-        console.log(res);
-        window.location.replace('/#login');
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }
-
-   activeClick() {
-    document.getElementById("verify").setAttribute("class", "enable");
   }
 
   render() {
     return(
-            <div id="contactus" className="contactus">
               <div>
-                <div className="contactussubject">Contact us<div className="contactussubjectin"></div></div>
-                <div className="contactusform">
-                  <form className="contactusformin">
-                    <input className="contactusformin_name" type="text" placeholder="First name or Last name"></input>
-                    <input className="contactusformin_email" type="email" placeholder="Email"></input>
-                    <input className="contactusformin_phone" type="tel" placeholder="Telephon number"></input>
-                    <textarea className="contactusformin_describe" type="text" placeholder="Subscribe"></textarea>
-                    <input className="contactusformin_signin" type="button" value="Register" src="" ></input>
-                  </form>
+                <div className="addaccount_box1">
+                  <div className="so-back islandBack">
+                    <div className="island">
+                      <div className="island__header">Contact us</div>
+                      <div className="island__paddedContent">
+                        <form>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>First name or Last name</span>
+                            </span>
+                            <input type="text" className="s-inputGroup__item S-flexItem-share"
+                            value=""
+                            onChange=""
+                            name="first_name"
+                            placeholder=""
+                            />
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>First name or Last name</span>
+                            </span>
+                            <input type="text" className="s-inputGroup__item S-flexItem-share"
+                            value=""
+                            onChange=""
+                            name="email"
+                            placeholder=""
+                            />
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>First name or Last name</span>
+                            </span>
+                            <input type="text" className="s-inputGroup__item S-flexItem-share"
+                            value=""
+                            onChange=""
+                            name="phone"
+                            placeholder=""
+                            />
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>First name or Last name</span>
+                            </span>
+                            <textarea type="text" className="s-inputGroup__item S-flexItem-share"
+                            value=""
+                            onChange=""
+                            name="describ"
+                            placeholder=""
+                            />
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <button className="s-button">send</button>
+                          </label>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
           );
   }
 }
