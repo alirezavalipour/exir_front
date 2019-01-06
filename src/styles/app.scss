@@ -802,3 +802,63 @@ ul.privacy__ul {
 {
   z-index: 1;
 }
+
+.accept_xir
+{
+  line-height: 40px;
+}
+
+.addaccount_box2
+{
+  display: none;
+}
+
+.pay_with_IRR
+{
+  float: left;
+  width: 50%;
+  padding: 0px 10px 0px 0px;
+}
+
+.account_button_fee:active
+{
+  z-index: 1;
+}
+
+.account_button_fee:hover
+{
+  z-index: 1;
+}
+
+.pay_with_XLM
+{
+  float: left;
+  width: 50%;
+  padding: 0px 0px 0px 10px;
+}
+
+.add_account_fee , .charge_fee , .total_fee
+{
+  border: 1px solid #ccc !important;
+  text-align: center !important;
+  line-height: 30px !important;
+  width: 50% !important;
+  float: left !important;
+}
+
+.add_account_fee_in , .charge_fee_in , .total_fee_in
+{
+  border-top: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+  text-align: center !important;
+  line-height: 30px !important;
+  width: 50% !important;
+  float: left !important;
+}
+
+.account_button_fee
+{
+  text-align: center !important;
+  margin-top: 10px;
+}

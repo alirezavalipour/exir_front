@@ -177,9 +177,6 @@ export default class CreatAccount extends Component {
                           name="amount"
                           placeholder="0"
                           />
-                          <div>
-                            <button className="s-button">Accept XIR</button>
-                          </div>
                         </label>
                         <label className="popup_account">
                           <Popup trigger={<button className="s-button account_button">Continue</button>} position="top top">
