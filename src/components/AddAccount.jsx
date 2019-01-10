@@ -32,6 +32,7 @@ export default class AddAccount extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.acceptClick = this.acceptClick.bind(this);
     this.payWithLumenSubmitHandle = this.payWithLumenSubmitHandle.bind(this);
+    this.submitToNetworkPayWithLumen = this.submitToNetworkPayWithLumen.bind(this);
     this.state = {
       public_key: '',
       name: '',
@@ -173,6 +174,34 @@ export default class AddAccount extends Component {
 
   }
 
+  submitToNetworkPayWithLumen(e){
+    e.preventDefault();
+    StellarSdk.Network.useTestNetwork();
+    var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+    let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
+    console.log(keypair);
+    // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
+    let transaction = new StellarSdk.Transaction(this.state.xdrpay);
+    transaction.sign(keypair);
+    let xdr = transaction.toEnvelope().toXDR('base64');
+
+    const url = this.Auth.getDomain() + '/user/stellar/order/payment/submit';
+    const formData = {
+      xdr: xdr,
+    };
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.Auth.getToken()}`,
+    };
+    var config = { headers };
+    return axios.post(url, formData, config)
+      .then(response =>{
+        if(response.status == 200){
+        }
+       });
+  }
+
   render() {
     jQuery(".account_button").click(function(){
       jQuery(".addaccount_box2").css("display","block");
@@ -198,7 +227,7 @@ export default class AddAccount extends Component {
     }*/
     let xdrtext = <div><label className="s-inputGroup Send__input">
                   <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                    <span>Increase Exir (XIR)</span>
+                    <span>Deposit Exir (XIR)</span>
                   </span>
                   <input type="text" className="s-inputGroup__item S-flexItem-share"
                   value={this.state.amount}
@@ -327,7 +356,7 @@ export default class AddAccount extends Component {
                               />
                             </label>
                             <label className="s-inputGroup Send__input">
-                              <button className="s-button">pay</button>
+                              <button onClick={this.submitToNetworkPayWithLumen} className="s-button">pay</button>
                             </label>
                           </Popup>
                           </div>
