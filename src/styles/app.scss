@@ -793,6 +793,21 @@ ul.privacy__ul {
   margin-top: 25px;
 }
 
+.addaccount_box2
+{
+  display: none;
+}
+
+.createaccount_box1
+{
+  margin-top: 25px;
+}
+
+.createaccount_box3
+{
+  display: none;
+}
+
 .account_button
 {
   display: none;
@@ -808,16 +823,11 @@ ul.privacy__ul {
   line-height: 40px;
 }
 
-.addaccount_box2
-{
-  display: none;
-}
-
 .pay_with_IRR
 {
   float: left;
-  width: 50%;
-  padding: 0px 10px 0px 0px;
+  width: 40%;
+  margin-right: 10%;
 }
 
 .account_button_fee:active
@@ -833,32 +843,69 @@ ul.privacy__ul {
 .pay_with_XLM
 {
   float: left;
+  width: 40%;
+  margin-left: 10%;
+}
+
+.add_account_fee , .total_fee
+{
+  text-align: left;
+  padding-left: 40px;
+  line-height: 30px;
   width: 50%;
-  padding: 0px 0px 0px 10px;
+  float: left;
+  background-color: #f4f4f5;
 }
 
-.add_account_fee , .charge_fee , .total_fee
+.charge_fee
 {
-  border: 1px solid #ccc !important;
-  text-align: center !important;
-  line-height: 30px !important;
-  width: 50% !important;
-  float: left !important;
+  text-align: lefts;
+  padding-left: 40px;
+  line-height: 30px;
+  width: 50%;
+  float: left;
+  background-color: #fff;
 }
 
-.add_account_fee_in , .charge_fee_in , .total_fee_in
+.total_fee
 {
-  border-top: 1px solid #ccc !important;
-  border-bottom: 1px solid #ccc !important;
-  border-right: 1px solid #ccc !important;
-  text-align: center !important;
-  line-height: 30px !important;
-  width: 50% !important;
-  float: left !important;
+  color: #000;
+}
+
+.add_account_fee_in , .total_fee_in
+{
+  text-align: right;
+  padding-right: 40px;
+  line-height: 30px;
+  width: 50%;
+  float: left;
+  background-color: #f4f4f5;
+}
+
+.charge_fee_in
+{
+  text-align: right;
+  padding-right: 40px;
+  line-height: 30px;
+  width: 50%;
+  float: left;
+  background-color: #fff;
+}
+
+.total_fee_in
+{
+  color: #000;
 }
 
 .account_button_fee
 {
-  text-align: center !important;
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+.accept_xir div
+{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 15px;
+  background-color: #f4f4f5;
 }

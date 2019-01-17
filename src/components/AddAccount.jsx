@@ -17,7 +17,7 @@ const isValidPublicKey = input => {
     StellarSdk.Keypair.fromPublicKey(input);
     return true;
   } catch (e) {
-    console.error(e);
+    //console.error(e);
     return false;
   }
 }
@@ -48,7 +48,7 @@ export default class AddAccount extends Component {
     StellarSdk.Network.useTestNetwork();
     var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
     let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-    console.log(keypair);
+    //console.log(keypair);
     // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
     let transaction = new StellarSdk.Transaction(this.state.xdr);
     transaction.sign(keypair);
@@ -96,7 +96,7 @@ export default class AddAccount extends Component {
             xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64')
           });
         }
-        console.log(this.state.xdrDecoded);
+        //console.log(this.state.xdrDecoded);
        });
   }
 
@@ -121,7 +121,7 @@ export default class AddAccount extends Component {
         if(response.status == 200){
 
         }
-         console.log(response)
+         //console.log(response)
        });
   }
 
@@ -137,10 +137,23 @@ export default class AddAccount extends Component {
 
     let amount =  e.target.value; 
     
-    this.Auth.convertDeposit(amount)
+    this.Auth.convertXirToIrr(amount)
     .then((res) => {
         this.setState({
-          rial : res.result
+          xirtoirr : res.result
+        });
+    });
+    this.Auth.convertXirToXlm(amount)
+    .then((res) => {
+        this.setState({
+          xirtoxlm : res.result
+        });
+    });
+    let amounts = 100000;
+    this.Auth.convertIrrToXlm(amounts)
+    .then((res) => {
+        this.setState({
+          irrtoxlm : res.result
         });
     });
     /*this.setState({
@@ -166,7 +179,7 @@ export default class AddAccount extends Component {
               xdr : response.data.xdr,
             })
         }
-         console.log(response)
+         //console.log(response)
        });
   }
 
@@ -234,13 +247,14 @@ export default class AddAccount extends Component {
                   onChange={this.handleChange}
                   name="amount"
                   placeholder="0"
+                  minLength={10000}
                   />
                   <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
                   </label></div>;
-    if((this.state.xdr)!=""){
+    if((this.state.xdr != "") && (this.state.amount >= 10000)){
       xdrtext =   <div><label className="s-inputGroup Send__input">
                   <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                    <span>Increase Exir (XIR)</span>
+                    <span>Deposit Exir (XIR)</span>
                   </span>
                   <input type="text" className="s-inputGroup__item S-flexItem-share"
                   value={this.state.amount}
@@ -249,6 +263,10 @@ export default class AddAccount extends Component {
                   placeholder="0"
                   />
                   <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
+                  </label>
+                  <label>
+                    <div>In order to accept xir is necessary to submit secret key and then wait a few second.</div>
+                    <div>Your secret key will not be saved any were in Exireum.</div>
                   </label>
                   <label className="s-inputGroup Send__input secret_key_click">
                   <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
@@ -267,7 +285,7 @@ export default class AddAccount extends Component {
     {
       xdrtext = <label className="s-inputGroup Send__input">
                 <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                  <span>Increase Exir (XIR)</span>
+                  <span>Deposit Exir (XIR)</span>
                 </span>
                 <input type="text" className="s-inputGroup__item S-flexItem-share"
                 value={this.state.amount}
@@ -275,7 +293,7 @@ export default class AddAccount extends Component {
                 name="amount"
                 placeholder="0"
                 />
-                <div className="accept_xir">Accepted XIR</div>
+                <div className="accept_xir"><div>Xir accepted</div></div>
               </label>;
     }
 
@@ -283,9 +301,14 @@ export default class AddAccount extends Component {
       jQuery(".account_button").css("display","block");
     }
 
-    let addprice = 100000;
-    let addprice2 = this.state.rial;
-    let allprice = (addprice) + (addprice2);
+
+    let addprice1 = 100000;
+    let addprice2 = parseFloat(this.state.xirtoirr);
+    let allprice1 = (addprice1) + (addprice2);
+
+    let addprice3 = parseFloat(this.state.irrtoxlm).toFixed(2);
+    let addprice4 = parseFloat(this.state.xirtoxlm).toFixed(2);
+    let allprice2 = parseFloat(addprice3) + parseFloat(addprice4);
     return (
             <div>
               <div className="addaccount_box1">
@@ -328,17 +351,17 @@ export default class AddAccount extends Component {
                   <div className="island">
                     <div className="island__header">Add account processing fees</div>
                     <div className="island__paddedContent">
-                      <label className="s-inputGroup Send__input">
+                      <div className="s-inputGroup Send__input">
                         <form className="pay_with_IRR" onSubmit={this.handleSubmit}>
-                          <div className="add_account_fee">Add account fee</div><div className="add_account_fee_in">{addprice} IRR</div>
-                          <div className="charge_fee">XIR charge fee</div><div className="charge_fee_in">{this.state.rial} IRR</div>
-                          <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice} IRR</div>
+                          <div className="add_account_fee">Add account fee</div><div className="add_account_fee_in">{addprice1} IRR</div>
+                          <div className="charge_fee">XIR charge fee</div><div className="charge_fee_in">{addprice2} IRR</div>
+                          <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice1} IRR</div>
                           <button className="account_button_fee s-button">Pay With IRR</button>
                         </form>
                         <form className="pay_with_XLM" onSubmit={this.payWithLumenSubmitHandle}>
-                          <div className="add_account_fee">Add account fee</div><div className="add_account_fee_in">{addprice} XLM</div>
-                          <div className="charge_fee">XIR charge fee</div><div className="charge_fee_in">{this.state.rial} XLM</div>
-                          <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice} XLM</div>
+                          <div className="add_account_fee">Add account fee</div><div className="add_account_fee_in">{addprice3} XLM</div>
+                          <div className="charge_fee">XIR charge fee</div><div className="charge_fee_in">{addprice4} XLM</div>
+                          <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice2} XLM</div>
                           <div className="popup_account">
                           <Popup trigger={<button className="account_button_fee s-button">Pay With XLM</button>} position="top top">
                             <label className="s-inputGroup Send__input secret_key_click">
@@ -361,7 +384,7 @@ export default class AddAccount extends Component {
                           </Popup>
                           </div>
                         </form>
-                      </label>
+                      </div>
                     </div>
                   </div>
                 </div>

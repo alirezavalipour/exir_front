@@ -28,7 +28,7 @@ export default class AuthService {
       });
   }
 
-  convertDeposit(amount){
+  convertXirToIrr(amount){
 
      return this.fetch(`${this.domain}/user/convert?type=deposit&amount=`+amount , {
       method: 'GET'
@@ -40,7 +40,43 @@ export default class AuthService {
       });
   }
 
-   convertWithdrawed(amount){
+  convertXirToXlm(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=XIRTOXLM&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+
+        return Promise.resolve(res);
+      });
+  }
+
+  convertIrrToXlm(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=IRRTOXLM&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+
+        return Promise.resolve(res);
+      });
+  }
+
+    convertIrrToXlm(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=XLMTOIRR&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+
+        return Promise.resolve(res);
+      });
+  }
+
+   convertIrrToXir(amount){
 
      return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=`+amount , {
       method: 'GET'
