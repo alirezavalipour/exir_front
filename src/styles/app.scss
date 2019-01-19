@@ -692,12 +692,32 @@ ul.privacy__ul {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  padding-left: 50px;
+  margin-left: 50px;
 }
 
 .secondheaderin a:first-child
 {
-  padding-left: 70px;
+  margin-left: 70px;
+}
+
+.accountback
+{
+  background-color: #fff;
+  line-height: 30px;
+  color: #4d4d78 !important;
+  padding: 5px 15px;
+  position: relative;
+}
+
+.accountback:after
+{
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 100%;
+  border-right: 15.9px solid #fff;
+  border-top: 15.9px solid transparent !important;
+  border-bottom: 15.9px solid transparent !important;
 }
 
 .secondheader_body
@@ -803,7 +823,7 @@ ul.privacy__ul {
   margin-top: 25px;
 }
 
-.createaccount_box3
+.createaccount_box2
 {
   display: none;
 }
@@ -908,4 +928,15 @@ ul.privacy__ul {
   border-radius: 4px;
   padding: 0 15px;
   background-color: #f4f4f5;
+}
+
+.addaccount_textin1
+{
+  margin-top: 10px;
+}
+
+.addaccount_textin2
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

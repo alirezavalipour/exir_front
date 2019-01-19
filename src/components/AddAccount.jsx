@@ -76,7 +76,7 @@ export default class AddAccount extends Component {
 
   payWithLumenSubmitHandle(e){
     e.preventDefault();
-    const url = this.Auth.getDomain() + '/user/stellar/order/payment';
+    const url = this.Auth.getDomain() + '/user/stellar/account/add';
     const formData = {
       public_key: this.state.public_key,
       name: this.state.name,
@@ -93,8 +93,15 @@ export default class AddAccount extends Component {
         if(response.status == 200){
           this.setState({
             xdrpay: response.data.xdr,
-            xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64')
+            xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64'),
           });
+          console.log(response);
+          this.setState({
+            xdrDecoded1: this.state.xdrDecoded._attributes.tx._attributes,
+            xdrDecoded2: this.state.xdrDecoded._attributes.signatures
+          });
+          console.log(this.state.xdrDecoded1);
+          console.log(this.state.xdrDecoded2);
         }
         //console.log(this.state.xdrDecoded);
        });
@@ -198,7 +205,7 @@ export default class AddAccount extends Component {
     transaction.sign(keypair);
     let xdr = transaction.toEnvelope().toXDR('base64');
 
-    const url = this.Auth.getDomain() + '/user/stellar/order/payment/submit';
+    const url = this.Auth.getDomain() + '/user/stellar/account/add/verify';
     const formData = {
       xdr: xdr,
     };
@@ -211,6 +218,7 @@ export default class AddAccount extends Component {
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
+          window.location.replace('/#dashboard/account');
         }
        });
   }
@@ -265,8 +273,8 @@ export default class AddAccount extends Component {
                   <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
                   </label>
                   <label>
-                    <div>In order to accept xir is necessary to submit secret key and then wait a few second.</div>
-                    <div>Your secret key will not be saved any were in Exireum.</div>
+                    <div className="addaccount_textin1">In order to accept xir is necessary to submit secret key and then wait a few second.</div>
+                    <div className="addaccount_textin2">Your secret key will not be saved any were in Exireum.</div>
                   </label>
                   <label className="s-inputGroup Send__input secret_key_click">
                   <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
@@ -293,7 +301,7 @@ export default class AddAccount extends Component {
                 name="amount"
                 placeholder="0"
                 />
-                <div className="accept_xir"><div>Xir accepted</div></div>
+                <div className="accept_xir"><div>XIR accepted</div></div>
               </label>;
     }
 
@@ -311,6 +319,15 @@ export default class AddAccount extends Component {
     let allprice2 = parseFloat(addprice3) + parseFloat(addprice4);
     return (
             <div>
+              <div className="secondheaderout">
+                <div className="secondheader">
+                  <div className="secondheaderin">
+                    <a className="accountback" href="/#dashboard/account">Back</a>
+                    <a className="" href="/#dashboard/account/add">Add account</a>
+                    <a className="" href="/#dashboard/account/create">Create account</a>
+                  </div>
+                </div>
+              </div>
               <div className="addaccount_box1">
                 <div className="so-back islandBack">
                   <div className="island">
@@ -365,7 +382,7 @@ export default class AddAccount extends Component {
                           <div className="popup_account">
                           <Popup trigger={<button className="account_button_fee s-button">Pay With XLM</button>} position="top top">
                             <label className="s-inputGroup Send__input secret_key_click">
-                              <div><ObjectInspector data={this.state.xdrDecoded}/></div>
+                              <div><ObjectInspector data={this.state.xdrDecoded} /></div>
                             </label>
                             <label className="s-inputGroup Send__input secret_key_click">
                               <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">

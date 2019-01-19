@@ -40,6 +40,18 @@ export default class AuthService {
       });
   }
 
+   convertIrrToXir(amount){
+
+     return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=`+amount , {
+      method: 'GET'
+    })
+      .then((res) => {
+        // console.log(res);
+        
+        return Promise.resolve(res);
+      });
+  }
+
   convertXirToXlm(amount){
 
      return this.fetch(`${this.domain}/user/convert?type=XIRTOXLM&amount=`+amount , {
@@ -64,7 +76,7 @@ export default class AuthService {
       });
   }
 
-    convertIrrToXlm(amount){
+  convertXlmToIrr(amount){
 
      return this.fetch(`${this.domain}/user/convert?type=XLMTOIRR&amount=`+amount , {
       method: 'GET'
@@ -72,18 +84,6 @@ export default class AuthService {
       .then((res) => {
         // console.log(res);
 
-        return Promise.resolve(res);
-      });
-  }
-
-   convertIrrToXir(amount){
-
-     return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=`+amount , {
-      method: 'GET'
-    })
-      .then((res) => {
-        // console.log(res);
-        
         return Promise.resolve(res);
       });
   }
