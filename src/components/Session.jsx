@@ -206,13 +206,13 @@ class Session extends React.Component {
           <div className="so-back subNavBack">
             <div className="so-chunk subNav">
               <nav className="subNav__nav">
-                <a className={'subNav__nav__item' + (window.location.hash === '#account' ? ' is-current' : '')} href="#account"><span>Balances</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/send' ? ' is-current' : '')} href="#account/send"><span>Send</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/addTrust' ? ' is-current' : '')} href="#account/addTrust"><span>Accept assets</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/history' ? ' is-current' : '')} href="#account/history"><span>History</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#deposit' ? ' is-current' : '')} href="#account/deposit"><span>Deposit</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#withdrawed' ? ' is-current' : '')} href="#account/withdrawed"><span>Withdrawal</span></a>
-                {/*<a className={'subNav__nav__item' + (window.location.hash === '#account/settings' ? ' is-current' : '')} href="#account/settings"><span>Settings</span></a>*/}
+                <a className={'subNav__nav__item' + (window.location.hash === '#account' ? ' activation' : '')} href="#account"><span>Balances</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/send' ? ' activation' : '')} href="#account/send"><span>Send</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/addTrust' ? ' activation' : '')} href="#account/addTrust"><span>Accept assets</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/history' ? ' activation' : '')} href="#account/history"><span>History</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/deposit' ? ' activation' : '')} href="#account/deposit"><span>Deposit</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/withdrawed' ? ' activation' : '')} href="#account/withdrawed"><span>Withdrawal</span></a>
+                {/*<a className={'subNav__nav__item' + (window.location.hash === '#account/settings' ? ' activation' : '')} href="#account/settings"><span>Settings</span></a>*/}
                 {/*<a className="subNav__nav__item" href="#account/deposit">Deposit</a>*/}
               </nav>
               <nav className="subNav__nav">

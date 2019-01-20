@@ -163,10 +163,10 @@ export default class AuthService {
 
     Withdrawed(amount,sheba) {
   // Get a token from api server using the fetch api
-  var link = window.localStorage.getItem('txId');
+  var public_key = window.localStorage.getItem('public_key');
   return this.fetch(`${this.domain}/user/withdraw`, {
     method: 'POST',
-    body: JSON.stringify({ amount, link, sheba }),
+    body: JSON.stringify({ amount, public_key, sheba }),
   })
     .then((res) => {
       // console.log(res);

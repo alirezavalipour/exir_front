@@ -79,9 +79,10 @@ export default class CreatAccount extends Component {
         if(response.status == 200){
           this.setState({
             xdrpay: response.data.xdr,
+            orderid: response.data.order.id,
             xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64')
           });
-          console.log(response);
+          console.log(this.state.orderid);
         }
         //console.log(this.state.xdrDecoded);
        });
@@ -90,12 +91,10 @@ export default class CreatAccount extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const url = this.Auth.getDomain() + '/user/account?type=add';
+    const url = this.Auth.getDomain() + '/user/account/create';
     const formData = {
-      public_key: this.state.public_key,
+      public_key: this.state.newKeypair.pubKey,
       name: this.state.name,
-      lumen: this.state.lumen,
-      amount: this.state.amount,
     };
 
     const headers = {
@@ -107,9 +106,8 @@ export default class CreatAccount extends Component {
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
-
+          window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order.id );
         }
-        //console.log(response)
        });
   }
 
@@ -154,6 +152,7 @@ export default class CreatAccount extends Component {
     const url = this.Auth.getDomain() + '/user/stellar/account/create/verify';
     const formData = {
       xdr: xdr,
+      order_id: this.state.orderid,
     };
     const headers = {
       Accept: 'application/json',
@@ -224,9 +223,9 @@ export default class CreatAccount extends Component {
               <div className="secondheaderout">
                 <div className="secondheader">
                   <div className="secondheaderin">
-                    <a className="accountback" href="/#dashboard/account">Back</a>
-                    <a className="" href="/#dashboard/account/add">Add account</a>
-                    <a className="" href="/#dashboard/account/create">Create account</a>
+                    <a className="accountback" href="/#dashboard/account"><i className="fa fa-chevron-left"></i></a>
+                    <a className={(window.location.hash === '#dashboard/account/add' ? ' activation' : '')} href="/#dashboard/account/add">Add account</a>
+                    <a className={(window.location.hash === '#dashboard/account/create' ? ' activation' : '')} href="/#dashboard/account/create">Create account</a>
                   </div>
                 </div>
               </div>

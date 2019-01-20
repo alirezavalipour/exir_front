@@ -48,8 +48,8 @@ export default class Account extends Component {
       <div className="secondheaderout">
         <div className="secondheader">
           <div className="secondheaderin">
-            <a className="" href="/#dashboard/account/add">Add account</a>
-            <a className="" href="/#dashboard/account/create">Create account</a>
+            <a className="(window.location.hash === '#dashboard/account/add' ? ' activation' : '')" href="/#dashboard/account/add">Add account</a>
+            <a className="(window.location.hash === '#dashboard/account/create' ? ' activation' : '')" href="/#dashboard/account/create">Create account</a>
           </div>
         </div>
         <div className="island secondheader_body">

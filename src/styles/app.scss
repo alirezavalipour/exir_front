@@ -11,7 +11,7 @@ html {
   background: #fff;
 }
 body {
-  background: linear-gradient(0deg,#ced0ff,#c0ecff);
+  background-color: #ffd970;
   color: $s-color-neutral3;
   font-size: $s-scale-4;
   min-width: 100%;
@@ -702,22 +702,13 @@ ul.privacy__ul {
 
 .accountback
 {
-  background-color: #fff;
-  line-height: 30px;
-  color: #4d4d78 !important;
-  padding: 5px 15px;
-  position: relative;
 }
 
-.accountback:after
+.accountback i
 {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: 100%;
-  border-right: 15.9px solid #fff;
-  border-top: 15.9px solid transparent !important;
-  border-bottom: 15.9px solid transparent !important;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
 }
 
 .secondheader_body
@@ -939,4 +930,59 @@ ul.privacy__ul {
 {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.inputtext
+{
+  position: relative;
+  border: 2px solid red;
+}
+
+.inputtextout
+{
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 5px 20px;
+  position: absolute;
+  top: 100%;
+  left: 25%;
+}
+
+.inputtextout:before
+{
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 30%;
+  border-bottom: 12px solid #ccc;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+
+
+.inputtextout:after
+{
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 30.5%;
+  border-bottom: 10px solid #fff;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+
+.inputtextin
+{
+  position: relative;
+}
+
+.activation
+{
+  color: #ffd970 !important;
+  border-bottom: 2px solid #ffd970 !important;
+}
+
+.form_secret_key
+{
+  width: 100%;
 }

@@ -421,8 +421,8 @@ class TermApp extends React.Component {
               <a href="#login" className="headerinlogin">Log In</a>
             </div>
             <nav className="Header__nav">
-              <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
-              <a href="#contactus" className={'Header__nav__item Header__nav__item--link'}>Contact us</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
+              <a href="#contactus" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'}>Contact us</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>
@@ -509,9 +509,9 @@ class TermApp extends React.Component {
               <a href="#dashboard/profile" className="headerinlogin">Profile</a>
             </div>
             <nav className="Header__nav">
-              <a className={'Header__nav__item Header__nav__item--link'} href="#markets">Markets</a>
-              <a className={'Header__nav__item Header__nav__item--link'} href="#dashboard/account">Accounts</a>
-              <a className={'Header__nav__item Header__nav__item--link'} href="#contactus">Contact us</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--account1'} href="#dashboard/account">Accounts</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'} href="#contactus">Contact us</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>

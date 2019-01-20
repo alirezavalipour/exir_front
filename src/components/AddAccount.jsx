@@ -93,15 +93,16 @@ export default class AddAccount extends Component {
         if(response.status == 200){
           this.setState({
             xdrpay: response.data.xdr,
+            orderid: response.data.order.id,
             xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64'),
           });
           console.log(response);
-          this.setState({
-            xdrDecoded1: this.state.xdrDecoded._attributes.tx._attributes,
-            xdrDecoded2: this.state.xdrDecoded._attributes.signatures
-          });
-          console.log(this.state.xdrDecoded1);
-          console.log(this.state.xdrDecoded2);
+          // this.setState({
+          //   xdrDecoded1: this.state.xdrDecoded._attributes.tx._attributes,
+          //   xdrDecoded2: this.state.xdrDecoded._attributes.signatures
+          // });
+          // console.log(this.state.xdrDecoded1);
+          // console.log(this.state.xdrDecoded2);
         }
         //console.log(this.state.xdrDecoded);
        });
@@ -110,7 +111,7 @@ export default class AddAccount extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const url = this.Auth.getDomain() + '/user/account?type=add';
+    const url = this.Auth.getDomain() + '/user/account/add';
     const formData = {
       public_key: this.state.public_key,
       name: this.state.name,
@@ -126,9 +127,8 @@ export default class AddAccount extends Component {
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
-
+          window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order.id );
         }
-         //console.log(response)
        });
   }
 
@@ -208,6 +208,7 @@ export default class AddAccount extends Component {
     const url = this.Auth.getDomain() + '/user/stellar/account/add/verify';
     const formData = {
       xdr: xdr,
+      id: this.state.orderid,
     };
     const headers = {
       Accept: 'application/json',
@@ -255,10 +256,24 @@ export default class AddAccount extends Component {
                   onChange={this.handleChange}
                   name="amount"
                   placeholder="0"
-                  minLength={10000}
                   />
                   <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
                   </label></div>;
+      if((this.state.xdr != "") && (this.state.amount < 10000)){
+      xdrtext =   <div className="inputtextin"><label className="s-inputGroup Send__input">
+                  <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                    <span>Deposit Exir (XIR)</span>
+                  </span>
+                  <input type="text" className="inputtext s-inputGroup__item S-flexItem-share"
+                  value={this.state.amount}
+                  onChange={this.handleChange}
+                  name="amount"
+                  placeholder="0"
+                  />
+                  <div className="inputtextout">Please deposit at least 10000 XIR</div>
+                  <button onClick={this.acceptClick} className="s-button">Accept XIR</button>
+                  </label></div>;
+              }
     if((this.state.xdr != "") && (this.state.amount >= 10000)){
       xdrtext =   <div><label className="s-inputGroup Send__input">
                   <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
@@ -322,9 +337,9 @@ export default class AddAccount extends Component {
               <div className="secondheaderout">
                 <div className="secondheader">
                   <div className="secondheaderin">
-                    <a className="accountback" href="/#dashboard/account">Back</a>
-                    <a className="" href="/#dashboard/account/add">Add account</a>
-                    <a className="" href="/#dashboard/account/create">Create account</a>
+                    <a className="accountback" href="/#dashboard/account"><i className="fa fa-chevron-left"></i></a>
+                    <a className={(window.location.hash === '#dashboard/account/add' ? ' activation' : '')} href="/#dashboard/account/add">Add account</a>
+                    <a className={(window.location.hash === '#dashboard/account/create' ? ' activation' : '')} href="/#dashboard/account/create">Create account</a>
                   </div>
                 </div>
               </div>

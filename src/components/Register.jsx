@@ -96,7 +96,7 @@ class Register extends Component {
             </select>
             <input
               className="form-item"
-              placeholder="User name"
+              placeholder="User name : a.karimi"
               name="username"
               minLength="3"
               maxLength="10"
@@ -106,7 +106,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Email"
+              placeholder="Email : a.karimi@gnmil.com"
               name="email"
               required="required"
               type="email"
@@ -114,7 +114,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Company name"
+              placeholder="Company name : partizan"
               name="company_name"
               minLength="3"
               maxLength="20"
@@ -124,7 +124,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's firstname"
+              placeholder="Ceo's firstname : alireza"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -134,7 +134,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's Lastname"
+              placeholder="Ceo's Lastname : karimi"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -144,7 +144,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="National id"
+              placeholder="National id : 0016315349"
               name="national_number"
               required="required"
               type="tel"
@@ -153,7 +153,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address"
+              placeholder="Address : george alley golden street flowers square london"
               name="address"
               minLength="10"
               maxLength="100"
@@ -163,7 +163,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone number"
+              placeholder="Phone number : +989191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -194,7 +194,7 @@ class Register extends Component {
             </select>
             <input
               className="form-item"
-              placeholder="User name"
+              placeholder="User name : a.karimi"
               name="username"
               minLength="3"
               maxLength="10"
@@ -204,7 +204,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Email"
+              placeholder="Email : a.karimi@gnmil.com"
               name="email"
               required="required"
               type="email"
@@ -212,7 +212,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="First name"
+              placeholder="First name : alireza"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -222,7 +222,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Last name"
+              placeholder="Last name : karimi"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -232,7 +232,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="National code"
+              placeholder="National code : 0016315349"
               name="national_number"
               required="required"
               type="tel"
@@ -241,7 +241,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address"
+              placeholder="Address : george alley golden street flowers square london"
               name="address"
               minLength="10"
               maxLength="100"
@@ -251,7 +251,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone number"
+              placeholder="Phone number : +989191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -287,7 +287,7 @@ class Register extends Component {
             </select>
             <input
               className="form-item"
-              placeholder="User name"
+              placeholder="User name : a.karimi"
               name="username"
               minLength="3"
               maxLength="10"
@@ -298,7 +298,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Email"
+              placeholder="Email : a.karimi@gnmil.com"
               name="email"
               required="required"
               type="email"
@@ -306,7 +306,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Company name"
+              placeholder="Company name : partizan"
               name="company_name"
               minLength="3"
               maxLength="20"
@@ -316,7 +316,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's firstname"
+              placeholder="Ceo's firstname : alireza"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -326,7 +326,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's Lastname"
+              placeholder="Ceo's Lastname : karimi"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -336,7 +336,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="National id"
+              placeholder="National id : 0016315349"
               name="national_number"
               required="required"
               type="tel"
@@ -345,7 +345,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address"
+              placeholder="Address : george alley golden street flowers square london"
               name="address"
               minLength="10"
               maxLength="100"
@@ -355,7 +355,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone number"
+              placeholder="Phone number : +989191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -385,7 +385,7 @@ class Register extends Component {
             </select>
             <input
               className="form-item"
-              placeholder="User name"
+              placeholder="User name : a.karimi"
               name="username"
               minLength="3"
               maxLength="10"
@@ -395,7 +395,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Email"
+              placeholder="Email : a.karimi@gnmil.com"
               name="email"
               required="required"
               type="email"
@@ -403,7 +403,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="First name"
+              placeholder="First name : alireza"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -413,7 +413,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Last name"
+              placeholder="Last name : karimi"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -423,7 +423,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="National code"
+              placeholder="National code : 0016315349"
               name="national_number"
               required="required"
               type="tel"
@@ -432,7 +432,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address"
+              placeholder="Address : george alley golden street flowers square london"
               name="address"
               minLength="10"
               maxLength="100"
@@ -442,7 +442,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone number"
+              placeholder="Phone number : +989191000000"
               name="mobile"
               required="required"
               type="tel"
