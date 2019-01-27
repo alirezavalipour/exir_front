@@ -34,7 +34,7 @@ export default class ErrorBoundary extends React.Component {
           <li>3. <strong>Screenshot</strong></li>
         </ul>
         </p>
-        <p><strong>Your funds are safe</strong> and not affected by this error. This error is just a display error in StellarTerm, and is not your fault.</p>
+        <p><strong>Your funds are safe</strong> and not affected by this error. This error is just a display error in Exireum, and is not your fault.</p>
         <pre>
           <strong>Url</strong>: {window.location.href}
           <br />

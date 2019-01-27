@@ -185,7 +185,7 @@ export default class PriceChart extends React.Component {
         borderWidth: 0,
         crosshairs: [null, null],
         shadow: {
-          // Same as the island stuff in StellarTerm
+          // Same as the island stuff in Exireum
           color: 'rgba(0,0,0,0.375)', // 0.3/0.8=0.375 to account for tooltip opacity
           width: 3,
           offsetX: 0,

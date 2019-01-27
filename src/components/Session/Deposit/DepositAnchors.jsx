@@ -40,7 +40,7 @@ export default class DepositAnchors extends React.Component {
     return (<div>
       <div className="island__paddedContent">
         <p>This is a list of anchors from the Stellar community.<br/>
-        Note: StellarTerm does not endorse any of these anchors.</p>
+        Note: Exireum does not endorse any of these anchors.</p>
       </div>
       <table className="row__full_width">
         <tbody>

@@ -2,7 +2,7 @@ const React = window.React = require('react');
 import Printify from '../lib/Printify';
 import directory from '../directory';
 
-// This is AssetCard2, the preferred way of displaying an asset in stellarterm.
+// This is AssetCard2, the preferred way of displaying an asset in Exireum.
 // The parent container should be 340px or wider
 
 // Options

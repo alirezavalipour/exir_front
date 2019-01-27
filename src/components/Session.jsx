@@ -130,27 +130,35 @@ class Session extends React.Component {
       let part1 = this.props.urlParts[1];
       let content;
 
-
+       let lock = <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top">
+          <div className="addaccount_box1">
+            <div className="so-back islandBack">
+              <div className="island">
+                <div className="island__header">please type your secret key here to unlock</div>
+                <div className="island__paddedContent">
+                  <form onSubmit={this.unlockHandler}className="secretkeyform">
+                    <label className="s-inputGroup Send__input">
+                      <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                        <span>Secret key</span>
+                      </span>
+                      <input
+                      className="s-inputGroup__item S-flexItem-share"
+                      placeholder="Example : SDRTBAWX6RYQG4P46VRAB2QQJGGMUTBWNXA5OMZ3VROWXJFVCCLEJICZ"
+                      name="secretkey"
+                      onChange={this.changeHandler}
+                      type="text"
+                      />
+                      <button className="s-button">UNLOCK</button>
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Popup>;
       if (part1 === undefined || isValidPublicKey(part1)) {
         window.localStorage.setItem('public_key' , part1);
-        content = <ErrorBoundary>
-        <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top">
-          <div className="secretkeytext">please type your secret key here to unlock</div>
-          <form onSubmit={this.unlockHandler}className="secretkeyform">
-            <input
-              className="secretkeyitem"
-              placeholder="Secret Key"
-              name="secretkey"
-              onChange={this.changeHandler}
-              type="text"
-              />
-            <input
-              className="secretkeysubmit"
-              value="UNLOCK"
-              type="submit"
-            />
-          </form>
-        </Popup>
+        content = <ErrorBoundary>{lock}
           <Generic>
             <div className="s-alert s-alert--primary">
               <p className="Sesssion__yourId__title">Your Wallet Account ID</p>
@@ -158,16 +166,16 @@ class Session extends React.Component {
             </div>
             <p>To receive payments, share your account ID with them (begins with a G).</p>
           </Generic>
-          <Generic noTopPadding>
-            <h2>Where is the money stored?</h2>
-            <p>In the Stellar network, funds exist on the network and can only be moved by whoever has the secret key. This means that your secret key is extremely sensitive, and whoever has access to it can move the funds. However, money is <strong>NOT</strong> actually <em>"inside"</em> StellarTerm. StellarTerm is just a helpful tool that helps you use your secret key to make transactions.</p>
-
-            <p><strong>WARNING</strong>: Be extremely careful with your secret key and do not share it with anybody.</p>
-          </Generic>
           <AccountView d={d}></AccountView>
         </ErrorBoundary>
-      } else if (part1 === 'addTrust') {
-        content = <ErrorBoundary>
+      } else if (part1 === 'send') {
+        content = <ErrorBoundary>{lock}
+          <div className="so-back islandBack islandBack--t">
+            <Send d={d}></Send>
+          </div>
+        </ErrorBoundary>
+      }else if (part1 === 'addTrust') {
+        content = <ErrorBoundary>{lock}
           <div className="so-back islandBack islandBack--t">
             <ManageCurrentTrust d={d}></ManageCurrentTrust>
           </div>
@@ -181,24 +189,18 @@ class Session extends React.Component {
             <ManuallyAddTrust d={d}></ManuallyAddTrust>
           </div>
         </ErrorBoundary>
-      } else if (part1 === 'send') {
-        content = <ErrorBoundary>
-          <div className="so-back islandBack islandBack--t">
-            <Send d={d}></Send>
-          </div>
-        </ErrorBoundary>
       } else if (part1 === 'settings') {
-        content = <ErrorBoundary>
+        content = <ErrorBoundary>{lock}
           <Inflation d={d}></Inflation>
         </ErrorBoundary>
       } else if (part1 === 'history') {
-        content = <ErrorBoundary>
+        content = <ErrorBoundary>{lock}
           <HistoryView d={d}></HistoryView>
         </ErrorBoundary>
       } else if (part1 === 'deposit') {
-        content = (<div><Deposit d={d}/></div>);
+        content = <ErrorBoundary>{lock}<div><Deposit d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       } else if (part1 === 'withdrawed') {
-        content = (<div><Withdrawed d={d}/></div>);
+        content = <ErrorBoundary>{lock}<div><Withdrawed d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       }
 
       return <div>

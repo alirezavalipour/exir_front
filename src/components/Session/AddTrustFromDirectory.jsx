@@ -35,7 +35,7 @@ export default class AddTrustFromDirectory extends React.Component {
         Accept more assets
       </div>
       <div className="island__paddedContent">
-        <p>This is a list of anchors from the Stellar community.<br />Note: StellarTerm does not endorse any of these anchors.</p>
+        <p>This is a list of anchors from the Stellar community.<br />Note: Exireum does not endorse any of these anchors.</p>
       </div>
       <div className="AddTrustFromDirectory">
         {rows}

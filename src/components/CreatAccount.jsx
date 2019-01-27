@@ -64,7 +64,7 @@ export default class CreatAccount extends Component {
     e.preventDefault();
     const url = this.Auth.getDomain() + '/user/stellar/account/create';
     const formData = {
-      payment_public_key: this.state.public_key,
+      payment_public_key: this.state.payment_public_key,
       public_key: this.state.newKeypair.pubKey,
       name: this.state.name,
     };
@@ -82,7 +82,6 @@ export default class CreatAccount extends Component {
             orderid: response.data.order.id,
             xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(response.data.xdr,'base64')
           });
-          console.log(this.state.orderid);
         }
         //console.log(this.state.xdrDecoded);
        });
@@ -173,7 +172,9 @@ export default class CreatAccount extends Component {
     jQuery(".account_button").click(function(){
       jQuery(".createaccount_box2").css("display","block");
     });
-    
+    jQuery(".account_button_fee_xlm").click(function(){
+      jQuery(".transaction_sign").css("display","block");
+    });
 
     let addprice1 = 100000;
     let addprice2 = parseFloat(this.state.xlmtoirr);
@@ -239,17 +240,6 @@ export default class CreatAccount extends Component {
                         {newKeypairDetails}
                         <label className="s-inputGroup Send__input">
                           <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                            <span>Payment public key</span>
-                          </span>
-                          <input type="text" className="s-inputGroup__item S-flexItem-share"
-                          value={this.state.public_key}
-                          onChange={this.handleChange}
-                          name="public_key"
-                          placeholder="Enter the public key that you wont to pay with"
-                          />
-                        </label>
-                        <label className="s-inputGroup Send__input">
-                          <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
                             <span>Alias</span>
                           </span>
                           <input type="text" className="s-inputGroup__item S-flexItem-share"
@@ -277,31 +267,40 @@ export default class CreatAccount extends Component {
                           <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice1} IRR</div>
                           <button className="account_button_fee s-button">Pay With IRR</button>
                         </form>
-                        <form className="pay_with_XLM" onSubmit={this.payWithLumenSubmitHandle}>
+                        <form className="pay_with_XLM">
                           <div className="add_account_fee">Create account fee</div><div className="add_account_fee_in">{addprice3} XLM</div>
                           <div className="charge_fee">XLM charge fee</div><div className="charge_fee_in">{addprice4} XLM</div>
                           <div className="total_fee">Total fees</div><div className="total_fee_in">{allprice2} XLM</div>
-                          <div className="popup_account">
-                          <Popup trigger={<button className="account_button_fee s-button">Pay With XLM</button>} position="top top">
-                            <label className="s-inputGroup Send__input secret_key_click">
-                              <div><ObjectInspector data={this.state.xdrDecoded}/></div>
-                            </label>
-                            <label className="s-inputGroup Send__input secret_key_click">
-                              <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                                <span>Secret key</span>
-                              </span>
-                              <input type="text" className="s-inputGroup__item S-flexItem-share"
-                              value={this.state.secret_key}
-                              onChange={this.handleChange}
-                              name="secret_key"
-                              placeholder="Example: SDRTBAWX6RYQG4P46VRAB2QQJGGMUTBWNXA5OMZ3VROWXJFVCCLEJICZ"
-                              />
-                            </label>
-                            <label className="s-inputGroup Send__input">
-                              <button onClick={this.submitToNetworkPayWithLumen} className="s-button">pay</button>
-                            </label>
-                          </Popup>
-                          </div>
+                          <button className="account_button_fee s-button account_button_fee_xlm">Pay With XLM</button>
+                        </form>
+                        <form className="transaction_sign">
+                          <label className="s-inputGroup Send__input">
+                            <div>Please enter public key and secret key for the account you are going to pay with.</div>
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>Public key</span>
+                            </span>
+                            <input type="text" className="s-inputGroup__item S-flexItem-share"
+                            value={this.state.payment_public_key}
+                            onChange={this.handleChange}
+                            name="payment_public_key"
+                            placeholder="Example: GC4DJYMFQZVX3R56FVCN3WA7FJFKT24VI67ODTZUENSE4YNUXZ3WYI7R"
+                            />
+                            <button className="s-button" onClick={this.payWithLumenSubmitHandle}>Create transaction</button>
+                          </label>
+                          <label className="s-inputGroup Send__input">
+                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
+                              <span>Secret key</span>
+                            </span>
+                            <input type="text" className="s-inputGroup__item S-flexItem-share"
+                            value={this.state.secret_key}
+                            onChange={this.handleChange}
+                            name="secret_key"
+                            placeholder="Example: SDRTBAWX6RYQG4P46VRAB2QQJGGMUTBWNXA5OMZ3VROWXJFVCCLEJICZ"
+                            />
+                            <button className="s-button sign_send_key" onClick={this.submitToNetworkPayWithLumen} >Sign and send</button>
+                          </label>
                         </form>
                       </div>
                     </div>

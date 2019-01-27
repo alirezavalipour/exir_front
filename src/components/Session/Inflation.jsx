@@ -87,7 +87,7 @@ export default class Inflation extends React.Component {
       inflationDestInfo = <div>
         <p>You are currently voting for: <strong>{account.inflation_destination}</strong> (StellarTerm)</p>
         <div className="Generic__divider"></div>
-        <h3 className="Inflation__thankYou">Thank you for voting for StellarTerm!</h3>
+        <h3 className="Inflation__thankYou">Thank you for voting for Exireum!</h3>
       </div>
     } else {
       let stButton = <button className="s-button Inflation__stellarTermVote" onClick={(e) => {this.handleStellarTermVote(e)}}>Vote for StellarTerm</button>

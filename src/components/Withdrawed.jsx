@@ -56,21 +56,20 @@ if(e.target.name == "amount"){
     e.preventDefault();
     this.Auth.Withdrawed(this.state.amount, this.state.sheba)
       .then((res) => {
-        this.setState({
-          sam : res.xdr,
-        });
+        this.signWithSecretKey(res.xdr);
+
       }).catch((err) => {
         alert(err);
       });
   }
-  signWithSecretKey(e){
-    e.preventDefault();
+  signWithSecretKey(sam){
+
     StellarSdk.Network.useTestNetwork();
     var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-    let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
+    let keypair = StellarSdk.Keypair.fromSecret(this.props.secret);
     // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
 
-    let transaction = new StellarSdk.Transaction(this.state.sam);
+    let transaction = new StellarSdk.Transaction(sam);
     transaction.sign(keypair);
     let xdr = transaction.toEnvelope().toXDR('base64');
     const url = this.Auth.getDomain() + '/user/stellar/withdraw/submit';
@@ -87,47 +86,16 @@ if(e.target.name == "amount"){
       .then(response =>{
         if(response.status == 200){
           window.location.replace('/#dashboard/account');
-        } 
+        }
        });
   }
 
 
   render() {
 
-    let sign = "";
-    if(this.state.sam !="")
-    {
-      sign =  <div className="addaccount_box">
-                <div className="so-back islandBack">
-                  <div className="island">
-                    <div className="island__header">Sign with secret key</div>
-                    <div className="island__paddedContent">
-                      <div className="s-inputGroup Send__input">
-                        <form className="form_secret_key" onSubmit={this.signWithSecretKey}>
-                          <label className="s-inputGroup Send__input">
-                            <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                              <span>Secret key</span>
-                            </span>
-                            <input
-                            className="s-inputGroup__item S-flexItem-share"
-                            placeholder=""
-                            name="secret_key"
-                            type="text"
-                            onChange={this.handleChange}
-                            />
-                          </label>
-                          <button className="s-button">Sign</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>;
-    }
-
     return(
             <div className="centers">
-              <div className="addaccount_box1">
+              <div className="addaccount_box">
                 <div className="so-back islandBack">
                   <div className="island">
                     <div className="island__header">Withdrawal</div>
@@ -170,7 +138,6 @@ if(e.target.name == "amount"){
                   </div>
                 </div>
               </div>
-              {sign}
             </div>
           );
   }

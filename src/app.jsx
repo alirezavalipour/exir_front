@@ -305,14 +305,14 @@ class TermApp extends React.Component {
       jQuery(".logintext").click(function(){
         if(y%2==0)
         {
-        jQuery(".logintext div:eq(1)").removeClass("fa-sort-down");
-        jQuery(".logintext div:eq(1)").addClass("fa-sort-up");
+        jQuery(".logintext div:eq(0)").removeClass("fa-sort-down");
+        jQuery(".logintext div:eq(0)").addClass("fa-sort-up");
         jQuery(".loginform").css("display","block");
         }
         else if(y%2==1)
         {
-        jQuery(".logintext div:eq(1)").removeClass("fa-sort-up");
-        jQuery(".logintext div:eq(1)").addClass("fa-sort-down");
+        jQuery(".logintext div:eq(0)").removeClass("fa-sort-up");
+        jQuery(".logintext div:eq(0)").addClass("fa-sort-down");
         jQuery(".loginform").css("display","none");
         }
         y+=1;
@@ -322,14 +322,14 @@ class TermApp extends React.Component {
       jQuery(".headerlog").click(function(){
         if(q%2==0)
         {
-          jQuery(".headerlogicon div:eq(1)").removeClass("fa-sort-down");
-          jQuery(".headerlogicon div:eq(1)").addClass("fa-sort-up");
+          jQuery(".headerlogicon div:eq(0)").removeClass("fa-sort-down");
+          jQuery(".headerlogicon div:eq(0)").addClass("fa-sort-up");
           jQuery(".headerlogin").css("display","block");
         }
         else if(q%2==1)
         {
-          jQuery(".headerlogicon div:eq(1)").removeClass("fa-sort-up");
-          jQuery(".headerlogicon div:eq(1)").addClass("fa-sort-down");
+          jQuery(".headerlogicon div:eq(0)").removeClass("fa-sort-up");
+          jQuery(".headerlogicon div:eq(0)").addClass("fa-sort-down");
           jQuery(".headerlogin").css("display","none");
         }
         q+=1;
@@ -423,6 +423,7 @@ class TermApp extends React.Component {
             <nav className="Header__nav">
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
               <a href="#contactus" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'}>Contact us</a>
+              <a href="https://blog.exireum.com" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--blog1'}>Blog</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>
@@ -509,9 +510,10 @@ class TermApp extends React.Component {
               <a href="#dashboard/profile" className="headerinlogin">Profile</a>
             </div>
             <nav className="Header__nav">
-              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--account1'} href="#dashboard/account">Accounts</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'} href="#contactus">Contact us</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--blog1'} href="https://blog.exireum.com">Blog</a>
             </nav>
             <div className="share">
               <a href="http://www.facebook.com" className="fa fa-send"></a>
@@ -555,20 +557,20 @@ class TermApp extends React.Component {
       body = <Generic title="Privacy Policy">
         <p>This policy may be updated or revised without notice. It is the responsibility of the
           user to stay informed about privacy policy changes.</p>
-        <p>StellarTerm does not track your actions on this client.</p>
-        <p>StellarTerm does not store cookies and the website does not contain any analytics
+        <p>Exireum does not track your actions on this client.</p>
+        <p>Exireum does not store cookies and the website does not contain any analytics
           scripts.</p>
-        <p>StellarTerm developers never see your private keys.</p>
+        <p>Exireum developers never see your private keys.</p>
         <p>However, StellarTerm.com is hosted on GitHub, AWS, and Cloudflare infrastructure. They
           may and do have their own tracking systems on their servers. Those services have their own
           privacy policies and they are not covered by this privacy policy.</p>
-        <p>While StellarTerm does not track you, this does not mean your actions are private. Take
+        <p>While Exireum does not track you, this does not mean your actions are private. Take
           note of other privacy issues that may affect you:</p>
         <ul className="privacy__ul">
           <li>Stellar is a public ledger. Anyone can see anything that happens on the network.</li>
           <li>Your inflation vote is publicly visible.</li>
           <li>Your computer might be compromised.</li>
-          <li>The StellarTerm website might be compromised.</li>
+          <li>The Exireum website might be compromised.</li>
         </ul>
       </Generic>;
     } else if (urlParts[0] === 'terms-of-use') {

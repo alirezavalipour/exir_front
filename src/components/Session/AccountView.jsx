@@ -90,8 +90,8 @@ export default class AccountView extends React.Component {
               <table className="BalancesTable">
               <thead>
                 <tr className="BalancesTable__head">
-                  <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">weight</td>
-                  <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">public</td>
+                  <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">Weight</td>
+                  <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">Public</td>
                 </tr>
               </thead>
               <tbody>
@@ -111,9 +111,9 @@ export default class AccountView extends React.Component {
                         <table className="BalancesTable">
                         <thead>
                           <tr className="BalancesTable__head">
-                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">low_threshold</td>
-                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">med_threshold</td>
-                              <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">high_threshold</td>
+                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">Low_threshold</td>
+                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">Med_threshold</td>
+                              <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">High_threshold</td>
                           </tr>
                         </thead>
                         <tbody>

@@ -147,7 +147,7 @@ export default class AuthService {
     });
   }
 
-    Deposit(amount) {
+  Deposit(amount) {
   // Get a token from api server using the fetch api
   var public_key = window.localStorage.getItem('public_key');
   return this.fetch(`${this.domain}/user/deposit`, {
@@ -161,10 +161,24 @@ export default class AuthService {
     });
   }
 
+  DepositAcceptAsset() {
+  // Get a token from api server using the fetch api
+  var public_key = window.localStorage.getItem('public_key');
+  return this.fetch(`${this.domain}/user/stellar/asset/accept`, {
+    method: 'POST',
+    body: JSON.stringify({ public_key }),
+  })
+    .then((res) => {
+      // console.log(res);
+      // Setting the token in localStorage
+      return Promise.resolve(res);
+    });
+  }
+
     Withdrawed(amount,sheba) {
   // Get a token from api server using the fetch api
   var public_key = window.localStorage.getItem('public_key');
-  return this.fetch(`${this.domain}/user/withdraw`, {
+  return this.fetch(`${this.domain}/user/stellar/withdraw`, {
     method: 'POST',
     body: JSON.stringify({ amount, public_key, sheba }),
   })

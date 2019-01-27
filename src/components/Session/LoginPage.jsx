@@ -106,7 +106,7 @@ export default class LoginPage extends React.Component {
     let newKeypairDetails;
     if (this.state.newKeypair !== null) {
       newKeypairDetails = <div className="LoginPage__generatedNote">
-        <p><strong>Keep your key secure. This secret key will only be showed to you once. StellarTerm does not save it and will not be able to help you recover it if lost.</strong></p>
+        <p><strong>Keep your key secure. This secret key will only be showed to you once. Exireum does not save it and will not be able to help you recover it if lost.</strong></p>
         <p>Public key (will be your Account ID): {this.state.newKeypair.pubKey}</p>
         <p>Secret key (<strong>SAVE THIS AND KEEP THIS SECURE</strong>): <span className="clickToSelect" onClick={clickToSelect}>{this.state.newKeypair.secretKey}</span></p>
       </div>
@@ -116,7 +116,7 @@ export default class LoginPage extends React.Component {
 
     let acceptTerms = <label className="s-inputGroup LoginPage__accept">
         <input className="LoginPage__accept__checkbox" type="checkbox" checked={this.state.termsAccepted} onClick={() => this.setState({termsAccepted: !this.state.termsAccepted})} />
-        <span className="LoginPage__accept__label">I accept the <a href="#terms-of-use" className="LoginPage__accept__link">Terms of Use</a>, understand the risks associated with cryptocurrencies, and know that StellarTerm does not issue or endorse any asset on the Stellar network.</span>
+        <span className="LoginPage__accept__label">I accept the <a href="#terms-of-use" className="LoginPage__accept__link">Terms of Use</a>, understand the risks associated with cryptocurrencies, and know that Exireum does not issue or endorse any asset on the Stellar network.</span>
       </label>
 
     let body;
@@ -144,9 +144,9 @@ export default class LoginPage extends React.Component {
             <h3>Security notes</h3>
             <ul>
               <li>Check the url to make sure you are on the correct website.</li>
-              <li>Stellarterm does not save your secret key. It is stored on your browser and will be deleted once the page is refreshed or exited.</li>
+              <li>Exireum does not save your secret key. It is stored on your browser and will be deleted once the page is refreshed or exited.</li>
               <li>For extra security, you can <a href="https://github.com/stellarterm/stellarterm" target="_blank" rel="nofollow noopener noreferrer">build from source</a> or <a href="https://github.com/stellarterm/stellarterm.github.io/" target="_blank" rel="nofollow noopener noreferrer">download from GitHub</a> and verify the hash.</li>
-              <li>StellarTerm is released under the Apache 2.0. It is provided "AS IS" without warranty. The developer is not responsible for any losses and activities caused by the application.</li>
+              <li>Exireum is released under the Apache 2.0. It is provided "AS IS" without warranty. The developer is not responsible for any losses and activities caused by the application.</li>
             </ul>
           </div>
         </div>
