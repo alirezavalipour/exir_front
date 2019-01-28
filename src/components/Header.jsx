@@ -91,8 +91,14 @@ export default class Header extends React.Component {
             <div className="headerlogname">{this.state.first_name}</div>
             <div className="headerlogin">
               <div className="headerloginalias">{this.renderAssetList()}</div>
-              <a href="/#dashboard/profile" className="headerloginsetting"><div className="fa fa-user-circle">Profile</div></a>
-              <a onClick={this.logOut} className="headerloginlogout"><div className="fa fa-sign-out">Logout</div></a>
+              <a href="/#dashboard/profile" className="headerloginsetting">
+                <div className="fa fa-user-circle headerloginsettingin1"></div>
+                <div className="headerloginsettingin2">Profile</div>
+              </a>
+              <a onClick={this.logOut} className="headerloginlogout">
+                <div className="fa fa-sign-out headerloginlogoutin1"></div>
+                <div className="headerloginlogoutin2">Logout</div>
+              </a>
             </div>
           </div>
         </div>

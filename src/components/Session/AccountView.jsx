@@ -84,7 +84,7 @@ export default class AccountView extends React.Component {
           <div className="so-back islandBack">
             <div className="island">
               <div className="island__header">
-              signers
+              Signers
               </div>
 
               <table className="BalancesTable">
@@ -106,13 +106,13 @@ export default class AccountView extends React.Component {
                     <div className="so-back islandBack">
                       <div className="island">
                         <div className="island__header">
-                        thresholds
+                        Thresholds
                         </div>
                         <table className="BalancesTable">
                         <thead>
                           <tr className="BalancesTable__head">
-                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">Low_threshold</td>
-                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">Med_threshold</td>
+                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__asset">Low_Threshold</td>
+                            <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">Med_Threshold</td>
                               <td className="BalancesTable__head__cell BalancesTable__row__item--heading BalancesTable__head__amount">High_threshold</td>
                           </tr>
                         </thead>

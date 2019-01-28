@@ -18,6 +18,7 @@ import Ellipsis from './Ellipsis.jsx';
 import TermsOfUse from './TermsOfUse.jsx';
 import clickToSelect from '../lib/clickToSelect';
 import Popup from "reactjs-popup";
+import AccountItem from './AccountItem.jsx';
 
 
 const isValidPublicKey = input => {
@@ -47,8 +48,14 @@ class Session extends React.Component {
     this.mounted = true;
     this.unlockHandler = this.unlockHandler.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.modalClose = this.modalClose.bind(this);
+    this.locker = this.locker.bind(this);
+    this.popupShow = this.popupShow.bind(this);
     this.state = {
-      secretInput: ""
+      secretInput: "",
+      show:false,
+      isUnlock: false,
+      firstFire : true, 
     }
     // KLUDGE: The event listeners are kinda messed up
     // Uncomment if state changes aren't working. But with the new refactor, this dead code should be removed
@@ -71,22 +78,28 @@ class Session extends React.Component {
     console.log(this.listenId)
   }
 
+  modalClose(){
+    this.setState({
+      show:false ,
+    });
+  }
 
 
   unlockHandler(e){
- e.preventDefault();
+    e.preventDefault();
      if (!isValidSecretKey(this.state.secretInput)) {
-        alert('invalid secret key ');
+        alert('Invalid secret key ');
         return this.setState({
           invalidKey: true,
         })
       }else{
         this.props.d.session.handlers.logInWithSecret(this.state.secretInput);
+        this.setState({
+          isUnlock : true ,
+          unlock: false,
+        })
       }
-
-
-
-  }
+  } 
 
    changeHandler(e){
     this.setState({
@@ -105,23 +118,46 @@ class Session extends React.Component {
     }
   }
 
-  render() {
-    if (isValidSecretKey(this.state.secretInput)) {
-      jQuery(".iconbar").addClass("fa-unlock");
+  popupShow(){
+
+    this.setState({
+      firstFire:false
+    });
+
+    console.log("is unlock:" + this.state.isUnlock);
+    console.log("is firstFire:" + this.state.firstFire);
+    if(this.state.isUnlock != true && !this.state.firstFire){
+      console.log("inside if");
+      this.setState({
+        show: 1,
+      });
     }
+
+  }
+
+  locker(){
+   
+    if(this.state.isUnlock == true){
+        location.reload();
+    }
+  }
+
+  render() {
+     
     let d = this.props.d;
     let state = d.session.state;
     let setupError = d.session.setupError;
-
+    
 
     if (state === 'out') {
-      return <LoginPage setupError={setupError} d={d} urlParts={this.props.urlParts}></LoginPage>
+      return  <a href="#dashboard/account"><span>Back to account</span></a>
+
     } else if (state === 'unfunded') {
       return <Generic title={'Activate your account'}><Loading darker={true} left>
         <div className="s-alert s-alert--success">
           Your Wallet Account ID: <strong>{d.session.unfundedAccountId}</strong>
         </div>
-        To use your Stellar account, you must activate it by sending at least 5 lumens (XLM) to your account. You can buy lumens (XLM) from an exchange and send them to your address.
+        Your account has not been activated to create a new account please refer to <a href="/#dashboard/account/create">create account</a> section.
       </Loading></Generic>
     } else if (state === 'loading') {
       return <Generic title="Loading account"><Loading>Contacting network and loading account<Ellipsis /></Loading></Generic>
@@ -131,7 +167,7 @@ class Session extends React.Component {
       let part1 = this.props.urlParts[1];
       let content;
 
-       let lock = <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top">
+       let lock = <Popup trigger={<div className="fa fa-lock iconbar"></div>} position="top top" onClose={this.modalClose} open={this.state.show}>
           <div className="addaccount_box1">
             <div className="so-back islandBack">
               <div className="island">
@@ -157,6 +193,10 @@ class Session extends React.Component {
             </div>
           </div>
         </Popup>;
+
+        if(this.state.isUnlock){
+          lock = <div className="fa fa-unlock iconbar" onClick={this.locker}></div>
+        }
       if (part1 === undefined || isValidPublicKey(part1)) {
         window.localStorage.setItem('public_key' , part1);
         content = <ErrorBoundary>{lock}
@@ -202,10 +242,9 @@ class Session extends React.Component {
         content = <ErrorBoundary>{lock}<div><Deposit d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       } else if (part1 === 'withdrawed') {
         content = <ErrorBoundary>{lock}<div><Withdrawed d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
-      }  else if (part1 === 'MultiSignature') {
+      } else if (part1 === 'MultiSignature') {
         content = <ErrorBoundary>{lock}<div><MultiSignature d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       }
-
 
       return <div>
         <div className="subNavBackClipper">
@@ -213,12 +252,12 @@ class Session extends React.Component {
             <div className="so-chunk subNav">
               <nav className="subNav__nav">
                 <a className={'subNav__nav__item' + (window.location.hash === '#account' ? ' activation' : '')} href="#account"><span>Balances</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/send' ? ' activation' : '')} href="#account/send"><span>Send</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/addTrust' ? ' activation' : '')} href="#account/addTrust"><span>Accept assets</span></a>
+                <a onClick={this.popupShow} className={'subNav__nav__item' + (window.location.hash === '#account/send' ? ' activation' : '')} href="#account/send"><span>Send</span></a>
+                <a onClick={this.popupShow} className={'subNav__nav__item' + (window.location.hash === '#account/addTrust' ? ' activation' : '')} href="#account/addTrust"><span>Accept assets</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/history' ? ' activation' : '')} href="#account/history"><span>History</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/deposit' ? ' activation' : '')} href="#account/deposit"><span>Deposit</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/withdrawed' ? ' activation' : '')} href="#account/withdrawed"><span>Withdrawal</span></a>
-                <a className={'subNav__nav__item' + (window.location.hash === '#account/MultiSignature' ? ' activation' : '')} href="#account/MultiSignature"><span>MultiSignature</span></a>
+                <a onClick={this.popupShow} className={'subNav__nav__item' + (window.location.hash === '#account/deposit' ? ' activation' : '')} href="#account/deposit"><span>Deposit</span></a>
+                <a onClick={this.popupShow} className={'subNav__nav__item' + (window.location.hash === '#account/withdrawed' ? ' activation' : '')} href="#account/withdrawed"><span>Withdrawal</span></a>
+                <a onClick={this.popupShow} className={'subNav__nav__item' + (window.location.hash === '#account/MultiSignature' ? ' activation' : '')} href="#account/MultiSignature"><span>MultiSignature</span></a>
                 {/*<a className={'subNav__nav__item' + (window.location.hash === '#account/settings' ? ' activation' : '')} href="#account/settings"><span>Settings</span></a>*/}
                 {/*<a className="subNav__nav__item" href="#account/deposit">Deposit</a>*/}
               </nav>

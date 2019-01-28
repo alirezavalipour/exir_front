@@ -28,7 +28,7 @@ import Account from './components/Account.jsx';
 import AddAccount from './components/AddAccount.jsx';
 import CreatAccount from './components/CreatAccount.jsx';
 import AuthService from './components/AuthService.jsx';
-import MultiSignature from './components/MultiSignature.jsx';
+
 
 let network = {
   horizonUrl: 'https://horizon-testnet.stellar.org',
@@ -254,11 +254,6 @@ class TermApp extends React.Component {
         if(locs=="" || locs=="#" || locs=="#login" || locs=="#register" || locs=="#verify" || locs=="#setpassword" || locs=="#contactus" || locs=="#markets" )
         {
           jQuery('.headerlog').css("display","none");
-          jQuery(".Header__nav__item--link--account").css("display","none");
-        }
-        else
-        {
-          jQuery(".Header__nav__item--link--account").css("display","inline-block");
         }
       });
        jQuery(function(){
@@ -350,69 +345,8 @@ class TermApp extends React.Component {
         <div id="container" className="container">
           <div id="home" className="home">
             <div className="owl-carousel">
-              <div className="picture1">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
-              <div className="picture2">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
-              <div className="picture3">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
+              <div className="picture1"></div>
+              <div className="picture2"></div>
             </div>
           </div>
           <div className="menu">
@@ -439,69 +373,8 @@ class TermApp extends React.Component {
         <div id="container" className="container">
           <div id="home" className="home">
             <div className="owl-carousel">
-              <div className="picture1">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
-              <div className="picture2">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
-              <div className="picture3">
-                <div className="picturetext">
-                  <div className="picturetextin">
-                    <div></div>
-                    Exireum is a wallet for Stellar which brought you a smart and srcure way to send and recieve Lumen. It also allows you to easily trade in the Stellar distributed exchange with a great experience.
-                    <div></div>
-                    Key features:
-                    <div></div>
-                    - Multiple Accounts and Assets management support
-                    <div></div>
-                    - Send and recieve Lumen and all other assets
-                    <div></div>
-                    - Allow to circulate and sign multi-signature transactions.
-                    <div></div>
-                    - Intetface for Stellar distributed exchange
-                    <div></div>
-                    - Hardware wallet support
-                  </div>
-                </div>
-                <div className="picture1img"></div>
-              </div>
+              <div className="picture1"></div>
+              <div className="picture2"></div>
             </div>
           </div>
           <div className="menu">

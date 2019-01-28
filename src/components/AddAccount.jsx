@@ -205,7 +205,6 @@ export default class AddAccount extends Component {
     StellarSdk.Network.useTestNetwork();
     var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
     let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-    console.log(keypair);
     // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
     let transaction = new StellarSdk.Transaction(this.state.xdrpay);
     transaction.sign(keypair);
@@ -214,7 +213,7 @@ export default class AddAccount extends Component {
     const url = this.Auth.getDomain() + '/user/stellar/account/add/verify';
     const formData = {
       xdr: xdr,
-      id: this.state.orderid,
+      order_id: this.state.orderid,
     };
     const headers = {
       Accept: 'application/json',
@@ -225,7 +224,9 @@ export default class AddAccount extends Component {
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
-          window.location.replace('/#dashboard/account');
+          this.setState({
+            hash: response.data.hash,
+          })
         }
        });
   }
@@ -341,6 +342,8 @@ export default class AddAccount extends Component {
     let addprice3 = parseFloat(this.state.irrtoxlm).toFixed(2);
     // let addprice4 = parseFloat(this.state.xirtoxlm).toFixed(2);
     // let allprice2 = parseFloat(parseFloat(addprice3) + parseFloat(addprice4)).toFixed(2);
+    if(!this.state.hash)
+    {
     return (
             <div>
               <div className="secondheaderout">
@@ -436,6 +439,34 @@ export default class AddAccount extends Component {
               </div>
           </div>
           );
+}
+else if(this.state.hash)
+{
+  return(<div>
+              <div className="secondheaderout">
+                <div className="secondheader">
+                  <div className="secondheaderin">
+                    <a className="accountback" href="/#dashboard/account"><i className="fa fa-chevron-left"></i></a>
+                    <a className={(window.location.hash === '#dashboard/account/add' ? ' activation' : '')} href="/#dashboard/account/add">Add account</a>
+                    <a className={(window.location.hash === '#dashboard/account/create' ? ' activation' : '')} href="/#dashboard/account/create">Create account</a>
+                  </div>
+                </div>
+              </div>
+              <div className="addaccount_box1">
+                <div className="so-back islandBack">
+                  <div className="island">
+                    <div className="island__header">Account added</div>
+                    <div className="island__paddedContent">
+                      <label>
+                        <div className="account-added">Your account has been successfully added.</div>
+                        <a href="/#dashboard/account" className="s-button account_button_fee_xlm">Back to Accounts</a>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>);
+}
   }
 }
 

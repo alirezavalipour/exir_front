@@ -92,3 +92,4 @@ export default class OfferTables extends React.Component {
     );
   }
 };
+

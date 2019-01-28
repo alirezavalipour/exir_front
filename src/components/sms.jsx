@@ -78,7 +78,7 @@ class sms extends Component {
                 <div id="timer" className="timer">
                   <ReactCountdownClock
                     className="timerin"
-                    seconds={5}
+                    seconds={120}
                     color="#fff"
                     alpha={1}
                     size={85} 

@@ -85,7 +85,9 @@ if(e.target.name == "amount"){
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
-          window.location.replace('/#dashboard/account');
+          this.setState({
+            hash: response.data.hash,
+          })
         }
        });
   }
@@ -93,6 +95,8 @@ if(e.target.name == "amount"){
 
   render() {
 
+    if(!this.state.hash)
+    {
     return(
             <div className="centers">
               <div className="addaccount_box">
@@ -140,6 +144,25 @@ if(e.target.name == "amount"){
               </div>
             </div>
           );
+}
+else if(this.state.hash)
+{
+  return(<div>
+              <div className="addaccount_box1">
+                <div className="so-back islandBack">
+                  <div className="island">
+                    <div className="island__header">Account added</div>
+                    <div className="island__paddedContent">
+                      <label>
+                        <div className="account-added">Your account has been successfully added.</div>
+                        <a href="/#dashboard/account" className="s-button account_button_fee_xlm">Back to Accounts</a>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>);
+}
   }
 }
   export default Withdrawed;

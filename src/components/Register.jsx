@@ -114,7 +114,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Company name : partizan"
+              placeholder="Company name : Atlas co co"
               name="company_name"
               minLength="3"
               maxLength="20"
@@ -124,7 +124,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's firstname : john"
+              placeholder="Ceo's firstname : John"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -134,7 +134,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's Lastname : smith"
+              placeholder="Ceo's Lastname : Smith"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -153,7 +153,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address : No1,2nd street,Tehran,Iran"
+              placeholder="Address : No1,2nd Street,Tehran,Iran"
               name="address"
               minLength="10"
               maxLength="100"
@@ -163,7 +163,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone : +989191000000"
+              placeholder="Phone : 09191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -212,7 +212,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="First name : john"
+              placeholder="First name : John"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -222,7 +222,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Last name : smith"
+              placeholder="Last name : Smith"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -241,7 +241,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address : No1,2nd street,Tehran,Iran"
+              placeholder="Address : No1,2nd Street,Tehran,Iran"
               name="address"
               minLength="10"
               maxLength="100"
@@ -251,7 +251,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone : +989191000000"
+              placeholder="Phone : 09191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -306,7 +306,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Company name : Atlas"
+              placeholder="Company name : Atlas co"
               name="company_name"
               minLength="3"
               maxLength="20"
@@ -316,7 +316,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's firstname : john"
+              placeholder="Ceo's firstname : John"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -326,7 +326,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Ceo's Lastname : smith"
+              placeholder="Ceo's Lastname : Smith"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -345,7 +345,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address : No1,2nd street,Tehran,Iran"
+              placeholder="Address : No1,2nd Street,Tehran,Iran"
               name="address"
               minLength="10"
               maxLength="100"
@@ -355,7 +355,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone : +989191000000"
+              placeholder="Phone : 09191000000"
               name="mobile"
               required="required"
               type="tel"
@@ -403,7 +403,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="First name : john"
+              placeholder="First name : John"
               name="first_name"
               minLength="3"
               maxLength="10"
@@ -413,7 +413,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Last name : smith"
+              placeholder="Last name : Smith"
               name="last_name"
               minLength="3"
               maxLength="10"
@@ -432,7 +432,7 @@ class Register extends Component {
             />
             <textarea
               className="form-item"
-              placeholder="Address : No1,2nd street,Tehran,Iran"
+              placeholder="Address : No1,2nd Street,Tehran,Iran"
               name="address"
               minLength="10"
               maxLength="100"
@@ -442,7 +442,7 @@ class Register extends Component {
             />
             <input
               className="form-item"
-              placeholder="Phone : +989191000000"
+              placeholder="Phone : 09191000000"
               name="mobile"
               required="required"
               type="tel"

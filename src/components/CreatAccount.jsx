@@ -135,6 +135,7 @@ export default class CreatAccount extends Component {
           xlmtoirr : res.result
         });
     });
+
   }
 
   submitToNetworkPayWithLumen(e){
@@ -162,7 +163,9 @@ export default class CreatAccount extends Component {
     return axios.post(url, formData, config)
       .then(response =>{
         if(response.status == 200){
-          window.location.replace('/#dashboard/account');
+          this.setState({
+            hash: response.data.hash,
+          })
         }
        });
   }
@@ -218,7 +221,8 @@ export default class CreatAccount extends Component {
           </label>
       </div>
     }
-
+    if(!this.state.hash)
+    {
     return (
             <div>
               <div className="secondheaderout">
@@ -258,7 +262,7 @@ export default class CreatAccount extends Component {
               <div className="createaccount_box2">
                 <div className="so-back islandBack">
                   <div className="island">
-                    <div className="island__header">Create new account processing fees</div>
+                    <div className="island__header">How do you prefer to pay for create account processing fee?</div>
                     <div className="island__paddedContent">
                       <div className="s-inputGroup Send__input">
                         <form className="pay_with_IRR" onSubmit={this.handleSubmit}>
@@ -309,5 +313,33 @@ export default class CreatAccount extends Component {
               </div>
             </div>
             );
+}
+else if(this.state.hash)
+{
+  return(<div>
+              <div className="secondheaderout">
+                <div className="secondheader">
+                  <div className="secondheaderin">
+                    <a className="accountback" href="/#dashboard/account"><i className="fa fa-chevron-left"></i></a>
+                    <a className={(window.location.hash === '#dashboard/account/add' ? ' activation' : '')} href="/#dashboard/account/add">Add account</a>
+                    <a className={(window.location.hash === '#dashboard/account/create' ? ' activation' : '')} href="/#dashboard/account/create">Create account</a>
+                  </div>
+                </div>
+              </div>
+              <div className="addaccount_box1">
+                <div className="so-back islandBack">
+                  <div className="island">
+                    <div className="island__header">Account created</div>
+                    <div className="island__paddedContent">
+                      <label>
+                        <div className="account-added">Your account has been successfully created and added.</div>
+                        <a href="/#dashboard/account" className="s-button account_button_fee_xlm">Back to Accounts</a>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>);
+}
   }
 }

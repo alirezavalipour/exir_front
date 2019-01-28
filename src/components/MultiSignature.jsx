@@ -39,7 +39,7 @@ componentDidMount(){
     Authorization: `Bearer ${this.Auth.getToken()}`,
   }};
 
-  console.log(headers);
+
   const url = this.Auth.getDomain() + '/user/stellar/multi';
   axios.get(url,headers)
     .then(response =>{
@@ -51,31 +51,42 @@ componentDidMount(){
 }
 
 handleClick(e){
-   console.log(e.currentTarget.textContent);
+
    this.setState({
      xdr:e.currentTarget.textContent,
       xdrDecoded: StellarSdk.xdr.TransactionEnvelope.fromXDR(e.currentTarget.textContent,'base64')
   })
-  console.log(this.state.xdr);
 }
 
 handleChange(e){
   this.setState({
       [e.target.name]: e.target.value,
   });
-}
+
+  let str =  e.target.name;
+
+  if(str.includes("input-")){
+    StellarSdk.Network.useTestNetwork();
+    let keypair = StellarSdk.Keypair.fromSecret(e.target.value);
+    let transaction = new StellarSdk.Transaction(this.state.xdr);
+    transaction.sign(keypair);
+    let xdr = transaction.toEnvelope().toXDR('base64');
+    this.setState({
+      xdr:xdr
+    });
+  }
+
+
+;}
 
 sign(e){
+
   e.preventDefault();
-  StellarSdk.Network.useTestNetwork();
-  var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-  let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-  let transaction = new StellarSdk.Transaction(this.state.xdr);
-  transaction.sign(keypair);
-  let xdr = transaction.toEnvelope().toXDR('base64');
-  const url = this.Auth.getDomain() + '/user/stellar/multi/Submit';
+
+
+  const url = this.Auth.getDomain() + '/user/stellar/multi/submit';
   const formData = {
-    xdr: xdr,
+    xdr: this.state.xdr,
   };
 
   const headers = {
@@ -116,17 +127,11 @@ appendInput(e) {
                           <div className="island__header">Pending Transaction</div>
                           <div className="island__paddedContent">
                             <form className="formClass" >
-                              <label className="s-inputGroup Send__input">
-                                <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                                  <span>XDR abstraction</span>
-                                </span>
-                                   <ObjectInspector data={ this.state.xdrDecoded } />,
-                              </label>
                               <label className="s-inputGroup Send__input ">
                                 <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4  ">
                                   <span>XDR</span>
                                 </span>
-                                <input
+                                <textarea
                                 className="s-inputGroup__item S-flexItem-share"
                                 value={this.state.xdr}
                                 name="XDR"
@@ -134,28 +139,9 @@ appendInput(e) {
                                 onChange={this.handleChange}
                                 />
                               </label>
-                              <label className="s-inputGroup Send__input" >
-                                <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4">
-                                  <span>Secret key</span>
-                                </span>
-                                <input
-                                className="s-inputGroup__item S-flexItem-share"
-                                placeholder="SCWAJAOIGKMHR35XI6IIBRI3UG25FR3FHNX6TMGPYEDV3SSWOGC6AI6J"
-                                name="secret_key"
-                                type="text"
-                                onChange={this.handleChange}
-                                />
-                                <button className="s-button" onClick={this.sign}>Sign</button>
-                              </label>
-                              <label className="s-inputGroup Send__input">
-                                <div id="dynamicInput">
-                                {this.state.inputs.map(input => <FormInput name={input} />)}
-                                  <button className="s-button" onClick={this.sign}>Sign</button>
-                                </div>
-                                <button   className="s-button" onClick={this.appendInput}>
-                                  CLICK TO ADD SIGNER
-                                </button>
-                              </label>
+                              {this.state.inputs.map(input => <FormInput name={input} onChange={this.handleChange} />)}
+                              <button className="s-button" onClick={this.sign}>Sign</button>
+                              <button className="s-button" onClick={this.appendInput}>Click to add signer</button>
                             </form>
                           </div>
                         </div>
