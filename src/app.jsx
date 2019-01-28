@@ -28,7 +28,7 @@ import Account from './components/Account.jsx';
 import AddAccount from './components/AddAccount.jsx';
 import CreatAccount from './components/CreatAccount.jsx';
 import AuthService from './components/AuthService.jsx';
-
+import MultiSignature from './components/MultiSignature.jsx';
 
 let network = {
   horizonUrl: 'https://horizon-testnet.stellar.org',

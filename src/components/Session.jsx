@@ -9,6 +9,7 @@ import Send from './Session/Send.jsx';
 import Inflation from './Session/Inflation.jsx';
 import Deposit from './Deposit.jsx';
 import Withdrawed from './Withdrawed.jsx';
+import MultiSignature from './MultiSignature.jsx';
 import Generic from './Generic.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import Loading from './Loading.jsx';
@@ -82,10 +83,10 @@ class Session extends React.Component {
       }else{
         this.props.d.session.handlers.logInWithSecret(this.state.secretInput);
       }
-   
 
-    
-  } 
+
+
+  }
 
    changeHandler(e){
     this.setState({
@@ -111,7 +112,7 @@ class Session extends React.Component {
     let d = this.props.d;
     let state = d.session.state;
     let setupError = d.session.setupError;
-    
+
 
     if (state === 'out') {
       return <LoginPage setupError={setupError} d={d} urlParts={this.props.urlParts}></LoginPage>
@@ -201,7 +202,10 @@ class Session extends React.Component {
         content = <ErrorBoundary>{lock}<div><Deposit d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       } else if (part1 === 'withdrawed') {
         content = <ErrorBoundary>{lock}<div><Withdrawed d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
+      }  else if (part1 === 'MultiSignature') {
+        content = <ErrorBoundary>{lock}<div><MultiSignature d={d} secret={this.state.secretInput}/></div></ErrorBoundary>
       }
+
 
       return <div>
         <div className="subNavBackClipper">
@@ -214,6 +218,7 @@ class Session extends React.Component {
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/history' ? ' activation' : '')} href="#account/history"><span>History</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/deposit' ? ' activation' : '')} href="#account/deposit"><span>Deposit</span></a>
                 <a className={'subNav__nav__item' + (window.location.hash === '#account/withdrawed' ? ' activation' : '')} href="#account/withdrawed"><span>Withdrawal</span></a>
+                <a className={'subNav__nav__item' + (window.location.hash === '#account/MultiSignature' ? ' activation' : '')} href="#account/MultiSignature"><span>MultiSignature</span></a>
                 {/*<a className={'subNav__nav__item' + (window.location.hash === '#account/settings' ? ' activation' : '')} href="#account/settings"><span>Settings</span></a>*/}
                 {/*<a className="subNav__nav__item" href="#account/deposit">Deposit</a>*/}
               </nav>
