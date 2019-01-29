@@ -1069,6 +1069,18 @@ ul.privacy__ul {
   padding-left: 30px;
 }
 
+.send_and_key
+{
+  border: 1px solid #dedfe0;
+  box-shadow: 0 0 0 #000;
+}
+
+.transaction_key
+{
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 .deposit_balance
 {
   height: 37px;
@@ -1078,4 +1090,74 @@ ul.privacy__ul {
 .account-added
 {
   margin-bottom: 10px;
+}
+
+.multi_form
+{
+  width: 100%;
+}
+
+.multimemo
+{
+  width: 10%;
+  border: 1px solid #bbb;
+  line-height: 70px;
+  text-align: center;
+  color: #333;
+  cursor: pointer;
+}
+
+.multiid
+{
+  width: 10%;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  line-height: 70px;
+  text-align: center;
+  color: #333;
+  cursor: pointer;
+}
+
+.multixdr
+{
+  cursor: pointer;
+}
+
+.multixdrs
+{
+  width: 80%;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f4f4f5;
+  line-height: 70px;
+  color: #333;
+  border: 1px solid #bbb;
+}
+
+.multimemos
+{
+  width: 10%;
+  line-height: 70px;
+  text-align: center;
+  color: #333;
+  background-color: #f4f4f5;
+  font-weight: bold;
+  border: 1px solid #bbb;
+}
+
+.multiids
+{
+  width: 10%;
+  line-height: 70px;
+  text-align: center;
+  color: #333;
+  background-color: #f4f4f5;
+  font-weight: bold;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+
+.multilabel
+{
+  padding-bottom: 0px !important;
 }

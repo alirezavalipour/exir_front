@@ -46,7 +46,6 @@ componentDidMount(){
       this.setState({
         data:response.data,
       })
-
     });
 }
 
@@ -114,8 +113,14 @@ appendInput(e) {
   let response = this.state.data;
   let xdrs='';
   if(response){
-    xdrs = response.map((signer) => {let xdr = signer.xdr;
-      return <div className="s-inputGroup__item S-flexItem-share" onClick={this.handleClick}>{xdr}</div>;
+    xdrs = response.map((signer) => {
+      let xdr = signer.xdr;
+      let id = signer.id;
+      return  <label className="s-inputGroup Send__input multilabel">
+                <div className="multimemo">XDR{id}</div>
+                <div className="multiid">{id}</div>
+                <textarea className="s-inputGroup__item S-flexItem-share multixdr" onClick={this.handleClick}>{xdr}</textarea>
+              </label>;
     })
   }
 
@@ -124,10 +129,10 @@ appendInput(e) {
                     <div className="addaccount_box">
                       <div className="so-back islandBack">
                         <div className="island">
-                          <div className="island__header">Pending Transaction</div>
+                          <div className="island__header">Sign XDR</div>
                           <div className="island__paddedContent">
                             <form className="formClass" >
-                              <label className="s-inputGroup Send__input ">
+                              <label className="s-inputGroup Send__input">
                                 <span className="s-inputGroup__item s-inputGroup__item--tag S-flexItem-1of4  ">
                                   <span>XDR</span>
                                 </span>
@@ -157,8 +162,13 @@ appendInput(e) {
               <div className="island">
                 <div className="island__header">Pending Transaction</div>
                   <div className="island__paddedContent s-inputGroup Send__input ">
-                    <form>
-                      <label>{xdrs}</label>
+                    <form className="multi_form">
+                      <label className="s-inputGroup Send__input multilabel">
+                        <div className="multimemos">Memo</div>
+                        <div className="multiids">Id</div>
+                        <div className="multixdrs">XDR</div>
+                      </label>
+                      {xdrs}
                     </form>
                   </div>
                 </div>

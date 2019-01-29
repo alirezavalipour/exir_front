@@ -150,7 +150,16 @@ class Session extends React.Component {
     
 
     if (state === 'out') {
-      return  <a href="#dashboard/account"><span>Back to account</span></a>
+      return  <div className="addaccount_box1">
+                <div className="so-back islandBack">
+                  <div className="island">
+                    <div className="island__header">Back to Accounts</div>
+                    <div className="island__paddedContent">
+                      <a className="s-button" href="#dashboard/account">Back</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
     } else if (state === 'unfunded') {
       return <Generic title={'Activate your account'}><Loading darker={true} left>
