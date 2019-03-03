@@ -356,7 +356,7 @@ class TermApp extends React.Component {
               <a href="#login" className="headerinlogin">Log In</a>
             </div>
             <nav className="Header__nav">
-              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange1'} href="#">Exchange</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange1'} href="https://www.new.exireum.com">Exchange</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
               <a href="#contactus" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'}>Contact us</a>
               <a href="https://blog.exireum.com" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--blog1'}>Blog</a>
@@ -387,7 +387,7 @@ class TermApp extends React.Component {
             </div>
             <nav className="Header__nav">
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--account1'} href="#dashboard/account">Accounts</a>
-              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange1'} href="#markets">Exchange</a>
+              <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange1'} href="https://www.new.exireum.com">Exchange</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--markets1'} href="#markets">Markets</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--contact1'} href="#contactus">Contact us</a>
               <a className={'Header__nav__item Header__nav__item--link Header__nav__item--link--blog1'} href="https://blog.exireum.com">Blog</a>

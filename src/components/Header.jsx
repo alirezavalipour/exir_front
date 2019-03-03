@@ -79,7 +79,7 @@ export default class Header extends React.Component {
           <nav className="Header__navs">
             <a className="Header__nav__item Header__nav__item--logo" href="#"></a>
             <a href="#dashboard/account" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--account' + (window.location.hash === '#dashboard/account' ? ' activation' : '')}>Accounts</a>
-            <a href="#" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange'}>Exchange</a>
+            <a href="https://www.new.exireum.com" className={'Header__nav__item Header__nav__item--link Header__nav__item--link--exchange'}>Exchange</a>
             <a href="#markets" className={'Header__nav__item Header__nav__item--link' + (window.location.hash === '#markets' ? ' activation' : '')}>Markets</a>
             <a href="#contactus" className={'Header__nav__item Header__nav__item--link' + (window.location.hash === '#contactus' ? ' activation' : '')}>Contact us</a>
             <a href="https://blog.exireum.com" className={'Header__nav__item Header__nav__item--link' + (window.location.hash === '#blog' ? ' activation' : '')}>Blog</a>
