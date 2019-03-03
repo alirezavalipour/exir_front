@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import AuthService from './AuthService.jsx';
-
 import TermApp from '../app.jsx';
 import AccountView from './Session/AccountView.jsx';
 import ReactCountdownClock from 'react-countdown-clock';
